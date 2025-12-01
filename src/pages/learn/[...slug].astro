@@ -7,7 +7,7 @@ import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
     const posts = await getCollection("learn");
-    return posts.map((post) => ({
+    return posts.map((post: any) => ({
         params: { slug: post.slug },
         props: { post },
     }));
@@ -18,11 +18,11 @@ const { Content, headings } = await post.render();
 
 const allPosts = await getCollection("learn");
 const currentCategoryPosts = allPosts
-    .filter((p) => p.data.category === post.data.category)
-    .sort((a, b) => a.data.order - b.data.order);
+    .filter((p: any) => p.data.category === post.data.category)
+    .sort((a: any, b: any) => a.data.order - b.data.order);
 
 const currentIndex = currentCategoryPosts.findIndex(
-    (p) => p.slug === post.slug,
+    (p: any) => p.slug === post.slug,
 );
 const prevPost =
     currentIndex > 0 ? currentCategoryPosts[currentIndex - 1] : null;

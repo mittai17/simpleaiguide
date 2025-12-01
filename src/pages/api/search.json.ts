@@ -39,13 +39,13 @@ export async function GET() {
 
     const searchItems = [
         ...staticPages,
-        ...blogPosts.map((post) => ({
+        ...blogPosts.map((post: any) => ({
             title: post.data.title,
             slug: `blog/${post.slug}`,
             type: 'post',
             description: post.data.description
         })),
-        ...learnPosts.map((post) => ({
+        ...learnPosts.map((post: any) => ({
             title: post.data.title,
             slug: `learn/${post.slug}`,
             type: 'lesson',

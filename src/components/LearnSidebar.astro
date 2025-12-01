@@ -23,8 +23,8 @@ const categories = [
 const groupedPosts = categories.map((cat) => ({
     ...cat,
     posts: allPosts
-        .filter((p) => p.data.category === cat.id)
-        .sort((a, b) => a.data.order - b.data.order),
+        .filter((p: LearnPost) => p.data.category === cat.id)
+        .sort((a: LearnPost, b: LearnPost) => a.data.order - b.data.order),
 }));
 ---
 

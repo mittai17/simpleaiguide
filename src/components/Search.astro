@@ -1,0 +1,137 @@
+<div class="relative group">
+  <div class="relative">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search..."
+      class="w-full md:w-64 pl-10 pr-4 py-2 rounded-lg bg-slate-100 border-none focus:ring-2 focus:ring-indigo-500 text-slate-900 placeholder-slate-500 transition-all"
+    />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+      ></path>
+    </svg>
+  </div>
+
+  <div
+    id="search-results"
+    class="absolute top-full right-0 mt-2 w-full md:w-96 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden hidden z-[100]"
+  >
+    <!-- Results will be injected here -->
+  </div>
+</div>
+
+<script>
+  import Fuse from "fuse.js";
+
+  let fuse: Fuse<any> | null = null;
+  let isLoading = false;
+  const searchInput = document.getElementById(
+    "search-input",
+  ) as HTMLInputElement | null;
+  const searchResults = document.getElementById("search-results");
+
+  // Fetch search data once on hover or focus
+  let dataFetched = false;
+  async function initSearch() {
+    if (dataFetched || isLoading) return;
+    isLoading = true;
+
+    try {
+      console.log("Fetching search index...");
+      const res = await fetch("/api/search.json");
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const data = await res.json();
+      console.log("Search index fetched:", data.length, "items");
+
+      fuse = new Fuse(data, {
+        keys: ["title", "description"],
+        threshold: 0.4,
+      });
+
+      dataFetched = true;
+    } catch (error) {
+      console.error("Error fetching search index:", error);
+    } finally {
+      isLoading = false;
+      // Trigger search if user already typed something
+      if (searchInput && searchInput.value) {
+        searchInput.dispatchEvent(new Event("input"));
+      }
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("focus", initSearch);
+    searchInput.addEventListener("mouseenter", initSearch);
+
+    searchInput.addEventListener("input", (e) => {
+      const target = e.target as HTMLInputElement;
+      const query = target.value;
+
+      if (isLoading && searchResults) {
+        searchResults.classList.remove("hidden");
+        searchResults.innerHTML =
+          '<div class="p-4 text-center text-slate-500 text-sm">Loading...</div>';
+        return;
+      }
+
+      if (!fuse) {
+        // If fuse is missing but not loading, try init again (retry)
+        initSearch();
+        return;
+      }
+
+      const results = fuse.search(query).slice(0, 5); // Limit to 5 results
+
+      if (searchResults) {
+        if (query.length > 0 && results.length > 0) {
+          searchResults.classList.remove("hidden");
+          searchResults.innerHTML = results
+            .map(
+              (result: any) => `
+            <a href="/${result.item.slug}" class="block p-4 hover:bg-slate-50 border-b border-slate-50 last:border-none transition-colors">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">${result.item.type}</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm mb-1">${result.item.title}</h4>
+              <p class="text-xs text-slate-500 line-clamp-2">${result.item.description}</p>
+            </a>
+          `,
+            )
+            .join("");
+        } else if (query.length > 0 && results.length === 0) {
+          searchResults.classList.remove("hidden");
+          searchResults.innerHTML = `
+            <div class="p-4 text-center text-slate-500 text-sm">
+              No results found for "${query}"
+            </div>
+          `;
+        } else {
+          searchResults.classList.add("hidden");
+        }
+      }
+    });
+  }
+
+  // Close results when clicking outside
+  document.addEventListener("click", (e) => {
+    if (searchInput && searchResults && e.target instanceof Node) {
+      if (
+        !searchInput.contains(e.target) &&
+        !searchResults.contains(e.target)
+      ) {
+        searchResults.classList.add("hidden");
+      }
+    }
+  });
+</script>

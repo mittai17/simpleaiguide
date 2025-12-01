@@ -1,0 +1,21 @@
+{
+  "name": "simple-ai-guide",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/tailwind": "^5.1.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "astro": "^4.4.0",
+    "fuse.js": "^7.1.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.9.3"
+  }
+}

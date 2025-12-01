@@ -1,0 +1,188 @@
+15:54:50 [types] Generated 302ms
+15:54:50 [check] Getting diagnostics for Astro files in C:\Users\ggiri\Documents\new-vs-code\website...
+[96mread_log.js[0m:[93m1[0m:[93m12[0m - [93mwarning[0m[90m ts(80001): [0mFile is a CommonJS module; it may be converted to an ES module.
+
+[7m1[0m const fs = require('fs');
+[7m [0m [93m           ~~~~~~~~~~~~~[0m
+
+[96msrc/components/AdPlaceholder.astro[0m:[93m9[0m:[93m32[0m - [93mwarning[0m[90m ts(6133): [0m'format' is declared but its value is never read.
+
+[7m9[0m const { slotId = '1234567890', format = 'auto', label = 'Advertisement', className = '' } = Astro.props;
+[7m [0m [93m                               ~~~~~~[0m
+[96msrc/components/AdPlaceholder.astro[0m:[93m9[0m:[93m9[0m - [93mwarning[0m[90m ts(6133): [0m'slotId' is declared but its value is never read.
+
+[7m9[0m const { slotId = '1234567890', format = 'auto', label = 'Advertisement', className = '' } = Astro.props;
+[7m [0m [93m        ~~~~~~[0m
+
+[96msrc/components/LearnSidebar.astro[0m:[93m53[0m:[93m20[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'color'.
+
+[7m53[0m         background-color: #94a3b8;
+[7m  [0m [91m                   ~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m53[0m:[93m9[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'background'.
+
+[7m53[0m         background-color: #94a3b8;
+[7m  [0m [91m        ~~~~~~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m49[0m:[93m20[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'color'.
+
+[7m49[0m         background-color: #cbd5e1;
+[7m  [0m [91m                   ~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m49[0m:[93m9[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'background'.
+
+[7m49[0m         background-color: #cbd5e1;
+[7m  [0m [91m        ~~~~~~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m46[0m:[93m9[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'background'.
+
+[7m46[0m         background: transparent;
+[7m  [0m [91m        ~~~~~~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m43[0m:[93m9[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'width'.
+
+[7m43[0m         width: 4px;
+[7m  [0m [91m        ~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m38[0m:[93m3[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'nav'.
+
+[7m38[0m </nav>
+[7m  [0m [91m  ~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m24[0m:[93m45[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'activeSlug'.
+
+[7m24[0m                                             activeSlug === post.slug
+[7m  [0m [91m                                            ~~~~~~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m18[0m:[93m50[0m - [91merror[0m[90m ts(7006): [0mParameter 'post' implicitly has an 'any' type.
+
+[7m18[0m                             {category.posts.map((post) => (
+[7m  [0m [91m                                                 ~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m8[0m:[93m14[0m - [91merror[0m[90m ts(7006): [0mParameter 'category' implicitly has an 'any' type.
+
+[7m8[0m             (category) =>
+[7m [0m [91m             ~~~~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m7[0m:[93m9[0m - [91merror[0m[90m ts(18004): [0mNo value exists in scope for the shorthand property 'groupedPosts'. Either declare one or provide an initializer.
+
+[7m7[0m         groupedPosts.map(
+[7m [0m [91m        ~~~~~~~~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'getCollection' is declared but its value is never read.
+
+[7m2[0m import { getCollection } from "astro:content";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m54[0m:[93m5[0m - [91merror[0m[90m ts(1381): [0mUnexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+[7m54[0m     }
+[7m  [0m [91m    ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m53[0m:[93m25[0m - [91merror[0m[90m ts(1005): [0m'}' expected.
+
+[7m53[0m         background-color: #94a3b8;
+[7m  [0m [91m                        ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m51[0m:[93m5[0m - [91merror[0m[90m ts(1381): [0mUnexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+[7m51[0m     }
+[7m  [0m [91m    ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m49[0m:[93m25[0m - [91merror[0m[90m ts(1005): [0m'}' expected.
+
+[7m49[0m         background-color: #cbd5e1;
+[7m  [0m [91m                        ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m47[0m:[93m5[0m - [91merror[0m[90m ts(1381): [0mUnexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+[7m47[0m     }
+[7m  [0m [91m    ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m46[0m:[93m19[0m - [91merror[0m[90m ts(1005): [0m'}' expected.
+
+[7m46[0m         background: transparent;
+[7m  [0m [91m                  ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m44[0m:[93m5[0m - [91merror[0m[90m ts(1381): [0mUnexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+[7m44[0m     }
+[7m  [0m [91m    ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m43[0m:[93m14[0m - [91merror[0m[90m ts(1005): [0m'}' expected.
+
+[7m43[0m         width: 4px;
+[7m  [0m [91m             ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m38[0m:[93m1[0m - [91merror[0m[90m ts(1128): [0mDeclaration or statement expected.
+
+[7m38[0m </nav>
+[7m  [0m [91m~~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m7[0m:[93m21[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m7[0m         groupedPosts.map(
+[7m [0m [91m                    ~[0m
+[96msrc/components/LearnSidebar.astro[0m:[93m5[0m:[93m1[0m - [91merror[0m[90m ts(1131): [0mProperty or signature expected.
+
+[7m5[0m >
+[7m [0m [91m~[0m
+
+[96msrc/components/MCQ.astro[0m:[93m10[0m:[93m7[0m - [93mwarning[0m[90m ts(6133): [0m'id' is declared but its value is never read.
+
+[7m10[0m const id = Math.random().toString(36).substring(7);
+[7m  [0m [93m      ~~[0m
+
+[96msrc/components/Navbar.astro[0m:[93m3[0m:[93m7[0m - [93mwarning[0m[90m ts(6133): [0m'links' is declared but its value is never read.
+
+[7m3[0m const links = [
+[7m [0m [93m      ~~~~~[0m
+
+[96msrc/components/Sidebar.astro[0m:[93m71[0m:[93m53[0m - [93mwarning[0m[90m ts(6385): [0m'event' is deprecated.
+
+[7m71[0m     <form class="space-y-2 relative z-10" onsubmit="event.preventDefault();">
+[7m  [0m [93m                                                    ~~~~~[0m
+
+[96msrc/pages/privacy-policy.astro[0m:[93m104[0m:[93m46[0m - [93mwarning[0m[90m ts(6385): [0m'(from: number, length?: number | undefined): string' is deprecated.
+
+[7m104[0m         <div>ID: {Math.random().toString(36).substr(2, 9).toUpperCase()}</div>
+[7m   [0m [93m                                             ~~~~~~[0m
+
+[96msrc/pages/learn/[...slug].astro[0m:[93m42[0m:[93m25[0m - [91merror[0m[90m ts(2322): [0mType '{ activeSlug: "ai-basics/what-is-ai" | "machine-learning/what-is-ml"; activeCategory: "ai-basics" | "machine-learning" | "deep-learning" | "math-for-ai" | "python-for-ai"; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Property 'activeSlug' does not exist on type 'IntrinsicAttributes & Props'.
+
+[7m42[0m                         activeSlug={post.slug}
+[7m  [0m [91m                        ~~~~~~~~~~[0m
+
+[96msrc/pages/learn/index.astro[0m:[93m30[0m:[93m43[0m - [91merror[0m[90m ts(7006): [0mParameter 'cat' implicitly has an 'any' type.
+
+[7m30[0m                     LEARN_CATEGORIES.map((cat) => {
+[7m  [0m [91m                                          ~~~[0m
+[96msrc/pages/learn/index.astro[0m:[93m4[0m:[93m52[0m - [91merror[0m[90m ts(2307): [0mCannot find module '../../lib/learn' or its corresponding type declarations.
+
+[7m4[0m import { getAllLearnPosts, LEARN_CATEGORIES } from "../../lib/learn";
+[7m [0m [91m                                                   ~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/learn/[category]/[slug].astro[0m:[93m14[0m:[93m23[0m - [91merror[0m[90m ts(7006): [0mParameter 'post' implicitly has an 'any' type.
+
+[7m14[0m     return posts.map((post) => ({
+[7m  [0m [91m                      ~~~~[0m
+[96msrc/pages/learn/[category]/[slug].astro[0m:[93m10[0m:[93m8[0m - [91merror[0m[90m ts(2307): [0mCannot find module '../../../lib/learn' or its corresponding type declarations.
+
+[7m10[0m } from "../../../lib/learn";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/pages/learn/[category]/[slug].astro[0m:[93m28[0m:[93m7[0m - [93mwarning[0m[90m ts(6133): [0m'catMeta' is declared but its value is never read.
+
+[7m28[0m const catMeta = findCategoryMeta(categoryId);
+[7m  [0m [93m      ~~~~~~~[0m
+[96msrc/pages/learn/[category]/[slug].astro[0m:[93m27[0m:[93m22[0m - [93mwarning[0m[90m ts(6133): [0m'Content' is declared but its value is never read.
+
+[7m27[0m const { frontmatter, Content } = postData;
+[7m  [0m [93m                     ~~~~~~~[0m
+[96msrc/pages/learn/[category]/[slug].astro[0m:[93m4[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'Breadcrumbs' is declared but its value is never read.
+
+[7m4[0m import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/pages/learn/[category]/[slug].astro[0m:[93m3[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'LearnSidebar' is declared but its value is never read.
+
+[7m3[0m import LearnSidebar from "../../../components/LearnSidebar.astro";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/learn/[category]/index.astro[0m:[93m33[0m:[93m23[0m - [91merror[0m[90m ts(2322): [0mType '{ activeCategory: LearnCategoryId; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Property 'activeCategory' does not exist on type 'IntrinsicAttributes & Props'.
+
+[7m33[0m         <LearnSidebar activeCategory={categoryId} />
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+[96msrc/pages/learn/[category]/index.astro[0m:[93m13[0m:[93m34[0m - [91merror[0m[90m ts(7006): [0mParameter 'cat' implicitly has an 'any' type.
+
+[7m13[0m     return LEARN_CATEGORIES.map((cat) => ({
+[7m  [0m [91m                                 ~~~[0m
+[96msrc/pages/learn/[category]/index.astro[0m:[93m10[0m:[93m8[0m - [91merror[0m[90m ts(2307): [0mCannot find module '../../../lib/learn' or its corresponding type declarations.
+
+[7m10[0m } from "../../../lib/learn";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+Result (32 files): 
+- 30 errors
+- 0 warnings
+- 12 hints
+

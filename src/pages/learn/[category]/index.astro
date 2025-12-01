@@ -1,0 +1,120 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../components/Layout.astro";
+import LearnSidebar from "../../../components/LearnSidebar.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+
+export async function getStaticPaths() {
+    const categories = [
+        {
+            id: "ai-basics",
+            title: "AI Basics",
+            description:
+                "Start here! Understand the fundamental concepts of Artificial Intelligence.",
+        },
+        {
+            id: "machine-learning",
+            title: "Machine Learning",
+            description:
+                "Learn how machines learn from data without explicit programming.",
+        },
+        {
+            id: "deep-learning",
+            title: "Deep Learning",
+            description:
+                "Dive into neural networks and advanced AI architectures.",
+        },
+        {
+            id: "math-for-ai",
+            title: "Math for AI",
+            description:
+                "Essential mathematics for understanding AI algorithms.",
+        },
+        {
+            id: "python-for-ai",
+            title: "Python for AI",
+            description: "Master Python programming for AI development.",
+        },
+    ];
+
+    return categories.map((cat) => ({
+        params: { category: cat.id },
+        props: { category: cat },
+    }));
+}
+
+const { category } = Astro.props;
+const allPosts = await getCollection("learn");
+const posts = allPosts
+    .filter((post) => post.data.category === category.id)
+    .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+    title={`${category.title} – Learn AI`}
+    description={category.description}
+>
+    <div
+        class="mx-auto max-w-6xl py-8 px-4 md:px-0 flex flex-col md:flex-row gap-8"
+    >
+        <LearnSidebar activeCategory={category.id} activeSlug="" />
+
+        <section class="flex-1">
+            <Breadcrumbs
+                items={[
+                    { label: "Home", href: "/" },
+                    { label: "Learn", href: "/learn" },
+                    { label: category.title },
+                ]}
+            />
+
+            <h1
+                class="text-2xl md:text-3xl font-semibold tracking-tight mb-2 text-slate-900"
+            >
+                {category.title}
+            </h1>
+            <p class="text-sm text-slate-500 mb-6">{category.description}</p>
+
+            {
+                posts.length === 0 ? (
+                    <p class="text-sm text-slate-400">
+                        Lessons coming soon in this path.
+                    </p>
+                ) : (
+                    <div class="space-y-4">
+                        {posts.map((post) => (
+                            <a
+                                href={`/learn/${post.slug}`}
+                                class="block rounded-xl border border-slate-200 bg-white p-4 hover:border-indigo-500 hover:shadow-sm transition-all"
+                            >
+                                <p class="text-xs text-slate-500 mb-1">
+                                    {post.data.pubDate
+                                        ? new Date(
+                                              post.data.pubDate,
+                                          ).toLocaleDateString("en-US", {
+                                              year: "numeric",
+                                              month: "short",
+                                              day: "numeric",
+                                          })
+                                        : "Recently Updated"}{" "}
+                                    •{" "}
+                                    <span class="capitalize">
+                                        {post.data.level ?? "beginner"}
+                                    </span>
+                                </p>
+                                <h2 class="text-lg font-semibold text-slate-900 group-hover:text-indigo-600">
+                                    {post.data.title}
+                                </h2>
+                                {post.data.description && (
+                                    <p class="mt-1 text-sm text-slate-600">
+                                        {post.data.description}
+                                    </p>
+                                )}
+                            </a>
+                        ))}
+                    </div>
+                )
+            }
+        </section>
+    </div>
+</Layout>

@@ -1,0 +1,275 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="404 - Page Not Found" description="Oops! You seem to be lost in space.">
+  <section class="min-h-[80vh] flex items-center justify-center relative overflow-hidden bg-slate-900">
+    <!-- Stars Background -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+      <div class="stars"></div>
+      <div class="stars2"></div>
+      <div class="stars3"></div>
+    </div>
+
+    <div class="container mx-auto px-4 text-center relative z-10">
+      
+      <!-- Custom CSS/SVG Astronaut -->
+      <div class="astronaut-container mb-8 relative inline-block w-64 h-64 md:w-80 md:h-80">
+        <div class="astronaut animate-float">
+          <!-- Backpack -->
+          <div class="backpack"></div>
+          <!-- Body -->
+          <div class="body"></div>
+          <!-- Head -->
+          <div class="head">
+            <div class="helmet"></div>
+            <div class="visor"></div>
+          </div>
+          <!-- Arms -->
+          <div class="arm arm-left"></div>
+          <div class="arm arm-right"></div>
+          <!-- Legs -->
+          <div class="leg leg-left"></div>
+          <div class="leg leg-right"></div>
+        </div>
+        <!-- Planet -->
+        <div class="planet"></div>
+      </div>
+
+      <h1 class="text-6xl md:text-8xl font-black text-white mb-4 tracking-tight drop-shadow-lg">
+        4<span class="text-indigo-500">0</span>4
+      </h1>
+      
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-200 mb-6 drop-shadow-md">
+        Lost in the Void?
+      </h2>
+      
+      <p class="text-lg text-slate-400 mb-10 max-w-lg mx-auto leading-relaxed">
+        The coordinates you entered seem to lead to an empty sector of space. Let's guide you back to the station.
+      </p>
+
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-600 text-white font-bold hover:bg-indigo-500 transition-all hover:scale-105 shadow-lg shadow-indigo-500/25 relative z-20"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+          <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd" />
+        </svg>
+        Return to Home Base
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Astronaut Construction */
+  .astronaut-container {
+    perspective: 1000px;
+  }
+
+  .astronaut {
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -110px;
+    margin-left: -75px;
+    z-index: 10;
+  }
+
+  .head {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset -4px -4px 0px #e2e8f0;
+    z-index: 5;
+  }
+
+  .visor {
+    width: 60px;
+    height: 40px;
+    background: #334155;
+    border-radius: 40px 40px 20px 20px;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    overflow: hidden;
+  }
+
+  .visor::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 15px;
+    height: 5px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    transform: rotate(-45deg);
+  }
+
+  .body {
+    width: 70px;
+    height: 80px;
+    background: white;
+    border-radius: 20px;
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset -4px -4px 0px #e2e8f0;
+    z-index: 4;
+  }
+
+  .body::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 5px;
+  }
+
+  .backpack {
+    width: 90px;
+    height: 100px;
+    background: #cbd5e1;
+    border-radius: 20px;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .arm {
+    width: 20px;
+    height: 60px;
+    background: white;
+    border-radius: 20px;
+    position: absolute;
+    top: 80px;
+    z-index: 3;
+    box-shadow: inset -2px -2px 0px #e2e8f0;
+  }
+
+  .arm-left {
+    left: 25px;
+    transform: rotate(20deg);
+    transform-origin: top center;
+    animation: wave 4s ease-in-out infinite;
+  }
+
+  .arm-right {
+    right: 25px;
+    transform: rotate(-20deg);
+    transform-origin: top center;
+  }
+
+  .leg {
+    width: 25px;
+    height: 70px;
+    background: white;
+    border-radius: 20px;
+    position: absolute;
+    top: 145px;
+    z-index: 3;
+    box-shadow: inset -2px -2px 0px #e2e8f0;
+  }
+
+  .leg-left {
+    left: 45px;
+    transform: rotate(5deg);
+  }
+
+  .leg-right {
+    right: 45px;
+    transform: rotate(-5deg);
+  }
+
+  .planet {
+    width: 100px;
+    height: 100px;
+    background: #6366f1;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.8;
+    box-shadow: inset -10px -10px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    animation: pulse-glow 4s ease-in-out infinite alternate;
+  }
+
+  .planet::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+    height: 10px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50%;
+  }
+
+  /* Animations */
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: rotate(20deg); }
+    50% { transform: rotate(60deg); }
+  }
+
+  @keyframes pulse-glow {
+    from { box-shadow: 0 0 20px rgba(99, 102, 241, 0.2), inset -10px -10px 0px rgba(0,0,0,0.2); }
+    to { box-shadow: 0 0 40px rgba(99, 102, 241, 0.4), inset -10px -10px 0px rgba(0,0,0,0.2); }
+  }
+
+  /* Star Animations */
+  .stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    z-index: 0;
+  }
+
+  .stars { animation: move-stars 200s linear infinite; }
+  .stars2 { 
+    background: url(http://www.script-tutorials.com/demos/360/images/stars2.png) repeat top center;
+    animation: move-stars 150s linear infinite; 
+    z-index: 1;
+  }
+  .stars3 { 
+    background: url(http://www.script-tutorials.com/demos/360/images/stars3.png) repeat top center;
+    animation: move-stars 100s linear infinite; 
+    z-index: 2;
+  }
+
+  @keyframes move-stars {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+  }
+</style>

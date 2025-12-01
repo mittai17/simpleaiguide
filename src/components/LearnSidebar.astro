@@ -1,0 +1,83 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+
+interface Props {
+    activeSlug: string;
+    activeCategory: string;
+}
+
+type LearnPost = CollectionEntry<"learn">;
+
+const { activeSlug, activeCategory } = Astro.props;
+
+const allPosts = await getCollection("learn");
+
+const categories = [
+    { id: "ai-basics", title: "AI Basics" },
+    { id: "machine-learning", title: "Machine Learning" },
+    { id: "deep-learning", title: "Deep Learning" },
+    { id: "math-for-ai", title: "Math for AI" },
+    { id: "python-for-ai", title: "Python for AI" },
+];
+
+const groupedPosts = categories.map((cat) => ({
+    ...cat,
+    posts: allPosts
+        .filter((p) => p.data.category === cat.id)
+        .sort((a, b) => a.data.order - b.data.order),
+}));
+---
+
+<nav
+    class="space-y-8 h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar pr-4"
+>
+    {
+        groupedPosts.map(
+            (category: { title: string; posts: LearnPost[] }) =>
+                category.posts.length > 0 && (
+                    <div>
+                        <h3 class="font-bold text-slate-900 mb-3 px-2 uppercase tracking-wider text-xs flex items-center gap-2">
+                            {category.title}
+                            <span class="bg-slate-100 text-slate-500 text-[10px] px-1.5 py-0.5 rounded-full">
+                                {category.posts.length}
+                            </span>
+                        </h3>
+                        <ul class="space-y-1">
+                            {category.posts.map((post: LearnPost) => (
+                                <li>
+                                    <a
+                                        href={`/learn/${post.slug}`}
+                                        class:list={[
+                                            "block px-3 py-2 rounded-lg text-sm transition-all duration-200 border-l-2",
+                                            activeSlug === post.slug
+                                                ? "bg-indigo-50 text-indigo-700 font-medium border-indigo-600"
+                                                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-transparent hover:border-slate-200",
+                                        ]}
+                                    >
+                                        {post.data.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ),
+        )
+    }
+</nav>
+
+<style>
+    /* Custom scrollbar for the sidebar */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 20px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #94a3b8;
+    }
+</style>

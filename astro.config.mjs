@@ -3,10 +3,11 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mittai17.github.io',
+  site: 'https://mittai17.github.io/simpleaiguide',
   base: '/simpleaiguide/',
   integrations: [tailwind()],
   outDir: 'docs',
   build: {
+    outDir: 'docs',
   },
 });

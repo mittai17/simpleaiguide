@@ -6,4 +6,7 @@ export default defineConfig({
   site: 'https://mittai17.github.io',
   base: '/simpleaiguide/',
   integrations: [tailwind()],
+  outDir: 'docs',
+  build: {
+  },
 });

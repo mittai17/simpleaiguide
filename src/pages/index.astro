@@ -1,27 +1,37 @@
 ---
-import Layout from '../components/Layout.astro';
+import Layout from "../components/Layout.astro";
 ---
 
 <Layout title="Simple AI Guide - Fast, Modern Blog">
-	<section class="container mx-auto px-4 py-12 md:py-24 flex flex-col md:flex-row items-center gap-8 md:gap-16">
+	<section
+		class="container mx-auto px-4 py-12 md:py-24 flex flex-col md:flex-row items-center gap-8 md:gap-16"
+	>
 		<div class="flex-1 text-center md:text-left">
-			<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-slate-900">
+			<h1
+				class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-slate-900"
+			>
 				Learn AI the Simple Way
 			</h1>
-			
-			<p class="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto md:mx-0">
-				Simple AI Guide helps you understand AI, Machine Learning, and Deep Learning concepts in clear language, with real examples and zero unnecessary jargon.
+
+			<p
+				class="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto md:mx-0"
+			>
+				Simple AI Guide helps you understand AI, Machine Learning, and
+				Deep Learning concepts in clear language, with real examples and
+				zero unnecessary jargon.
 			</p>
 
-			<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-				<a 
-					href="/blog" 
+			<div
+				class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+			>
+				<a
+					href="/blog"
 					class="px-8 py-3.5 rounded-lg bg-slate-900 text-white font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20"
 				>
 					Start Learning
 				</a>
-				<a 
-					href="/about" 
+				<a
+					href="/about"
 					class="px-8 py-3.5 rounded-lg bg-white text-slate-700 font-semibold hover:bg-slate-50 transition-all border border-slate-200 hover:border-slate-300"
 				>
 					About This Site
@@ -30,33 +40,58 @@ import Layout from '../components/Layout.astro';
 		</div>
 
 		<div class="flex-1 relative w-full max-w-xl">
-			<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] -z-10"></div>
-			<img 
-				src="/assets/astronaut-laptop.png" 
-				alt="Astronaut using laptop" 
+			<div
+				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] -z-10"
+			>
+			</div>
+			<img
+				src="/simpleaiguide/assets/astronaut-laptop.png"
+				alt="Astronaut using laptop"
 				class="w-full mx-auto drop-shadow-2xl animate-float relative z-10"
 			/>
-			
+
 			<!-- Floating Elements Decoration -->
-			<div class="absolute top-10 left-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow hidden md:block z-20">
-				<div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
+			<div
+				class="absolute top-10 left-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow hidden md:block z-20"
+			>
+				<div
+					class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center"
+				>
 					<span class="text-xl">🚀</span>
 				</div>
 			</div>
-			<div class="absolute bottom-20 right-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow delay-700 hidden md:block z-20">
-				<div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+			<div
+				class="absolute bottom-20 right-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow delay-700 hidden md:block z-20"
+			>
+				<div
+					class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center"
+				>
 					<span class="text-xl">🪐</span>
 				</div>
 			</div>
 
 			<!-- New Space Elements -->
-			<div class="absolute top-0 right-10 w-12 h-12 bg-slate-800 rounded-full opacity-80 animate-float-delayed hidden lg:flex items-center justify-center border-2 border-slate-700 z-0">
+			<div
+				class="absolute top-0 right-10 w-12 h-12 bg-slate-800 rounded-full opacity-80 animate-float-delayed hidden lg:flex items-center justify-center border-2 border-slate-700 z-0"
+			>
 				<div class="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
 			</div>
-			<div class="absolute bottom-10 left-10 w-16 h-16 hidden lg:block opacity-60 animate-spin-slow pointer-events-none z-0">
-				<svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-slate-300">
-					<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
-					<path d="M12 16a4 4 0 100-8 4 4 0 000 8z" fill="currentColor"/>
+			<div
+				class="absolute bottom-10 left-10 w-16 h-16 hidden lg:block opacity-60 animate-spin-slow pointer-events-none z-0"
+			>
+				<svg
+					viewBox="0 0 24 24"
+					fill="none"
+					class="w-full h-full text-slate-300"
+				>
+					<path
+						d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-dasharray="4 4"></path>
+					<path
+						d="M12 16a4 4 0 100-8 4 4 0 000 8z"
+						fill="currentColor"></path>
 				</svg>
 			</div>
 		</div>
@@ -65,13 +100,24 @@ import Layout from '../components/Layout.astro';
 
 <style>
 	@keyframes float {
-		0% { transform: translateY(0px); }
-		50% { transform: translateY(-20px); }
-		100% { transform: translateY(0px); }
+		0% {
+			transform: translateY(0px);
+		}
+		50% {
+			transform: translateY(-20px);
+		}
+		100% {
+			transform: translateY(0px);
+		}
 	}
 	@keyframes bounce-slow {
-		0%, 100% { transform: translateY(0); }
-		50% { transform: translateY(-10px); }
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-10px);
+		}
 	}
 	.animate-float {
 		animation: float 6s ease-in-out infinite;

@@ -32,7 +32,10 @@ const nextPost =
         : null;
 ---
 
-<Layout title={`${post.data.title} - Learn AI`}>
+<Layout
+    title={`${post.data.title} - Learn AI`}
+    description={post.data.description}
+>
     <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Sidebar (Desktop: Left, Mobile: Hidden/Drawer) -->
@@ -48,7 +51,7 @@ const nextPost =
             <!-- Main Content -->
             <main class="flex-grow min-w-0">
                 <article
-                    class="prose prose-lg prose-slate max-w-none prose-pre:bg-slate-900 prose-pre:rounded-xl prose-pre:shadow-lg"
+                    class="prose prose-lg prose-slate max-w-none prose-pre:bg-slate-900 prose-pre:rounded-xl prose-pre:shadow-lg prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto prose-img:max-h-[400px] prose-img:w-auto"
                 >
                     <span
                         class="text-indigo-600 font-bold tracking-wider uppercase text-sm"

@@ -5,7 +5,7 @@ category: "ai-basics"
 level: "beginner"
 order: 10
 tags: ["ai", "project", "python", "linear-regression"]
-pubDate: 2025-12-02
+pubDate: 2025-12-01
 ---
 
 # 1.10 🏠 Your First AI Project: Predicting House Prices with 5 Lines of Code

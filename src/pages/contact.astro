@@ -100,18 +100,13 @@ import Layout from "../components/Layout.astro";
           method="POST"
           class="space-y-6 relative z-10"
         >
-          <input
-            type="hidden"
-            name="_subject"
-            value="New Submission from Simple AI Guide"
-          />
           <input type="hidden" name="_captcha" value="false" />
-          <!-- <input
+          <input
             type="hidden"
             name="_next"
             id="next-redirect"
             value="https://simpleaiguide.tech/contact"
-          /> -->
+          />
           <div>
             <label
               for="email"
@@ -131,42 +126,42 @@ import Layout from "../components/Layout.astro";
           <!-- ... (rest of form) ... -->
 
           <script>
-            /*
-    // Set dynamic redirect URL to support localhost and production
-    const nextInput = document.getElementById(
-      "next-redirect",
-    ) as HTMLInputElement;
-    if (nextInput) {
-      nextInput.value =
-        window.location.origin + window.location.pathname + "?submitted=true";
-    }
+            // Set dynamic redirect URL to support localhost and production
+            const nextInput = document.getElementById(
+              "next-redirect",
+            ) as HTMLInputElement;
+            if (nextInput) {
+              nextInput.value =
+                window.location.origin +
+                window.location.pathname +
+                "?submitted=true";
+            }
 
-    // Check for submitted parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("submitted") === "true") {
-      const modal = document.getElementById("success-modal");
-      const modalContent = modal?.querySelector("div:nth-child(2)");
-      const closeButton = document.getElementById("close-modal");
+            // Check for submitted parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get("submitted") === "true") {
+              const modal = document.getElementById("success-modal");
+              const modalContent = modal?.querySelector("div:nth-child(2)");
+              const closeButton = document.getElementById("close-modal");
 
-      if (modal && modalContent && closeButton) {
-        // Show modal
-        modal.classList.remove("opacity-0", "pointer-events-none");
-        modalContent.classList.remove("scale-90");
-        modalContent.classList.add("scale-100");
+              if (modal && modalContent && closeButton) {
+                // Show modal
+                modal.classList.remove("opacity-0", "pointer-events-none");
+                modalContent.classList.remove("scale-90");
+                modalContent.classList.add("scale-100");
 
-        // Clean URL
-        const newUrl = window.location.pathname;
-        window.history.replaceState({}, document.title, newUrl);
+                // Clean URL
+                const newUrl = window.location.pathname;
+                window.history.replaceState({}, document.title, newUrl);
 
-        // Close button handler
-        closeButton.addEventListener("click", () => {
-          modal.classList.add("opacity-0", "pointer-events-none");
-          modalContent.classList.remove("scale-100");
-          modalContent.classList.add("scale-90");
-        });
-      }
-    }
-    */
+                // Close button handler
+                closeButton.addEventListener("click", () => {
+                  modal.classList.add("opacity-0", "pointer-events-none");
+                  modalContent.classList.remove("scale-100");
+                  modalContent.classList.add("scale-90");
+                });
+              }
+            }
           </script>
 
           <style>

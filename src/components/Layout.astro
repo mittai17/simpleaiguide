@@ -118,5 +118,56 @@ const {
 				animation: spin-slow 120s linear infinite;
 			}
 		</style>
+		<!-- Konami Code Easter Egg -->
+		<div
+			id="rocket"
+			class="fixed bottom-10 -left-20 text-6xl transition-transform duration-[2000ms] ease-linear z-50 pointer-events-none"
+		>
+			🚀
+		</div>
+
+		<script>
+			const konamiCode = [
+				"ArrowUp",
+				"ArrowUp",
+				"ArrowDown",
+				"ArrowDown",
+				"ArrowLeft",
+				"ArrowRight",
+				"ArrowLeft",
+				"ArrowRight",
+				"b",
+				"a",
+			];
+			let konamiIndex = 0;
+
+			document.addEventListener("keydown", (e) => {
+				if (e.key === konamiCode[konamiIndex]) {
+					konamiIndex++;
+					if (konamiIndex === konamiCode.length) {
+						activateRocket();
+						konamiIndex = 0;
+					}
+				} else {
+					konamiIndex = 0;
+				}
+			});
+
+			function activateRocket() {
+				const rocket = document.getElementById("rocket");
+				if (rocket) {
+					rocket.style.transition = "none";
+					rocket.style.transform = "translate(0, 0) rotate(45deg)";
+					rocket.style.left = "-100px";
+					rocket.style.bottom = "50px";
+
+					// Force reflow
+					void rocket.offsetWidth;
+
+					rocket.style.transition = "all 3s ease-in-out";
+					rocket.style.transform = `translate(${window.innerWidth + 200}px, -${window.innerHeight + 200}px) rotate(45deg)`;
+				}
+			}
+		</script>
 	</body>
 </html>

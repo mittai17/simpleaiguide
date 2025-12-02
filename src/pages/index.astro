@@ -15,265 +15,387 @@ const learnModules = allLearn
 ---
 
 <Layout title="Simple AI Guide - Fast, Modern Blog">
+	<!-- Hero Section -->
 	<section
-		class="container mx-auto px-4 py-12 md:py-24 flex flex-col md:flex-row items-center gap-8 md:gap-16 relative overflow-hidden"
+		class="container mx-auto px-4 py-12 md:py-24 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden"
 	>
 		<Starfield />
-		<div class="flex-1 text-center md:text-left">
-			<h1
-				class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-slate-900"
+
+		<!-- Hero Text -->
+		<div class="flex-1 text-center lg:text-left z-10">
+			<div
+				class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold text-sm mb-6 animate-fade-in"
 			>
-				Learn AI: Not Rocket Science <span class="text-indigo-600"
+				🚀 The Missing Manual for AI
+			</div>
+			<h1
+				class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 leading-tight"
+			>
+				Learn AI: Not Rocket Science <span class="text-indigo-600 block"
 					>(But Close Enough)</span
 				>
 			</h1>
 
 			<p
-				class="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto md:mx-0"
+				class="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0"
 			>
 				We translate robot-speak into human. No alien decoder ring
-				required.
+				required. Master the basics, explore tools, and stay ahead.
 			</p>
 
 			<div
-				class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+				class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
 			>
 				<a
-					href="/blog"
-					class="px-8 py-3.5 rounded-lg bg-slate-900 text-white font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20"
+					href="/learn/ai-basics"
+					class="px-8 py-4 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20 hover:-translate-y-1"
 				>
-					Launch Mission
+					Start Learning Free
 				</a>
 				<a
 					href="/about"
-					class="px-8 py-3.5 rounded-lg bg-white text-slate-700 font-semibold hover:bg-slate-50 transition-all border border-slate-200 hover:border-slate-300"
+					class="px-8 py-4 rounded-xl bg-white text-slate-700 font-bold hover:bg-slate-50 transition-all border border-slate-200 hover:border-slate-300 hover:-translate-y-1"
 				>
-					<div
-						class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center"
-					>
-						<span class="text-xl">🚀</span>
-					</div>
+					About This Mission
 				</a>
-				<div
-					class="absolute bottom-20 right-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow delay-700 hidden md:block z-20"
-				>
-					<div
-						class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center"
-					>
-						<span class="text-xl">🪐</span>
-					</div>
-				</div>
-
-				<!-- New Space Elements -->
-				<div
-					class="absolute top-0 right-10 w-12 h-12 bg-slate-800 rounded-full opacity-80 animate-float-delayed hidden lg:flex items-center justify-center border-2 border-slate-700 z-0"
-				>
-					<div class="w-2 h-2 bg-red-500 rounded-full animate-ping">
-					</div>
-				</div>
-				<div
-					class="absolute bottom-10 left-10 w-16 h-16 hidden lg:block opacity-60 animate-spin-slow pointer-events-none z-0"
-				>
-					<svg
-						viewBox="0 0 24 24"
-						fill="none"
-						class="w-full h-full text-slate-300"
-					>
-						<path
-							d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-dasharray="4 4"></path>
-						<path
-							d="M12 16a4 4 0 100-8 4 4 0 000 8z"
-							fill="currentColor"></path>
-					</svg>
-				</div>
 			</div>
 		</div>
 
-		<!-- Mission Control Section -->
-		<section class="container mx-auto px-4 py-16 relative z-10">
+		<!-- Hero Featured Cards -->
+		<div class="flex-1 w-full max-w-md lg:max-w-lg relative z-10">
+			<div class="grid gap-6">
+				<!-- Featured Lesson Card -->
+				<a
+					href="/learn/ai-basics/module-1/1-1-what-is-ai"
+					class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100"
+				>
+					<div
+						class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-indigo-50 transition-transform group-hover:scale-150"
+					>
+					</div>
+					<div class="relative z-10">
+						<span
+							class="mb-2 inline-block rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-indigo-600"
+						>
+							Start Here
+						</span>
+						<h3
+							class="mb-2 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors"
+						>
+							What is Artificial Intelligence?
+						</h3>
+						<p class="text-sm text-slate-600">
+							The perfect starting point. Understand the core
+							concepts of AI in 5 minutes.
+						</p>
+					</div>
+				</a>
+
+				<!-- Featured Blog Card -->
+				<a
+					href="/blog/best-ai-tools/top-tools-2025"
+					class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100"
+				>
+					<div
+						class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-50 transition-transform group-hover:scale-150"
+					>
+					</div>
+					<div class="relative z-10">
+						<span
+							class="mb-2 inline-block rounded-full bg-purple-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-600"
+						>
+							Trending
+						</span>
+						<h3
+							class="mb-2 text-xl font-bold text-slate-900 group-hover:text-purple-600 transition-colors"
+						>
+							Best AI Tools for 2025
+						</h3>
+						<p class="text-sm text-slate-600">
+							Curated list of the most powerful AI tools you can
+							use right now.
+						</p>
+					</div>
+				</a>
+			</div>
+
+			<!-- Decorative Blobs -->
+			<div
+				class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-indigo-500/5 rounded-full blur-3xl"
+			>
+			</div>
+		</div>
+	</section>
+
+	<!-- Why Simple AI? Section -->
+	<section class="py-20 bg-slate-50 border-y border-slate-100">
+		<div class="container mx-auto px-4">
 			<div class="text-center mb-16">
-				<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-					Mission Control
+				<h2 class="text-3xl font-bold text-slate-900 mb-4">
+					Why This Guide?
 				</h2>
-				<p class="text-lg text-slate-600 max-w-2xl mx-auto">
-					Latest intelligence from our exploration. Choose your flight
-					path.
+				<p class="text-slate-600 max-w-2xl mx-auto">
+					Most AI resources are too technical or too hype-driven. We
+					take a different approach.
 				</p>
 			</div>
 
-			<div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-				<!-- Flight Training (Learn) -->
+			<div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 				<div
-					class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
+					class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow"
 				>
 					<div
-						class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-indigo-500/10"
+						class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-2xl mb-6 mx-auto"
 					>
+						🚫
 					</div>
-					<div class="flex items-center justify-between mb-8">
-						<h3
-							class="text-2xl font-bold text-slate-900 flex items-center gap-3"
-						>
-							<span
-								class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl"
-							>
-								👨‍🎓
-							</span>
-							Flight Training
-						</h3>
-						<a
-							href="/learn"
-							class="text-sm font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
-						>
-							View All <svg
-								class="w-4 h-4"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-								><path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-							>
-						</a>
-					</div>
-					<div class="space-y-4">
-						{
-							learnModules.map((module) => (
-								<a
-									href={`/learn/${module.slug}`}
-									class="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-100 hover:border-indigo-100"
-								>
-									<div class="flex items-center justify-between mb-2">
-										<span class="text-xs font-bold uppercase tracking-wider text-indigo-500">
-											{module.data.category.replace(
-												/-/g,
-												" ",
-											)}
-										</span>
-										{module.data.level && (
-											<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white text-slate-500 border border-slate-100">
-												{module.data.level}
-											</span>
-										)}
-									</div>
-									<h4 class="font-bold text-slate-900 mb-1">
-										{module.data.title}
-									</h4>
-									<p class="text-sm text-slate-600 line-clamp-2">
-										{module.data.description}
-									</p>
-								</a>
-							))
-						}
-					</div>
+					<h3 class="font-bold text-lg text-slate-900 mb-3">
+						Zero Jargon
+					</h3>
+					<p class="text-slate-600 text-sm">
+						We explain complex concepts in plain English. No PhD
+						required.
+					</p>
 				</div>
-
-				<!-- Captain's Log (Blog) -->
 				<div
-					class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
+					class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow"
 				>
 					<div
-						class="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-sky-500/10"
+						class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-2xl mb-6 mx-auto"
 					>
+						💸
 					</div>
-					<div class="flex items-center justify-between mb-8">
-						<h3
-							class="text-2xl font-bold text-slate-900 flex items-center gap-3"
-						>
-							<span
-								class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl"
-							>
-								📡
-							</span>
-							Captain's Log
-						</h3>
-						<a
-							href="/blog"
-							class="text-sm font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1"
-						>
-							View All <svg
-								class="w-4 h-4"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-								><path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-							>
-						</a>
+					<h3 class="font-bold text-lg text-slate-900 mb-3">
+						100% Free
+					</h3>
+					<p class="text-slate-600 text-sm">
+						Knowledge should be accessible. No paywalls, no
+						sign-ups.
+					</p>
+				</div>
+				<div
+					class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow"
+				>
+					<div
+						class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-2xl mb-6 mx-auto"
+					>
+						⚡
 					</div>
-					<div class="space-y-4">
-						{
-							latestPosts.map((post) => (
-								<a
-									href={`/blog/${post.slug}`}
-									class="block p-4 rounded-xl bg-slate-50 hover:bg-sky-50 transition-colors border border-slate-100 hover:border-sky-100"
-								>
-									<div class="flex items-center justify-between mb-2">
-										<span class="text-xs font-bold uppercase tracking-wider text-sky-500">
-											{post.data.category}
-										</span>
-										<time
-											datetime={post.data.pubDate.toISOString()}
-											class="text-xs text-slate-400"
-										>
-											{post.data.pubDate.toLocaleDateString(
-												"en-US",
-												{
-													month: "short",
-													day: "numeric",
-												},
-											)}
-										</time>
-									</div>
-									<h4 class="font-bold text-slate-900 mb-1">
-										{post.data.title}
-									</h4>
-									<p class="text-sm text-slate-600 line-clamp-2">
-										{post.data.description}
-									</p>
-								</a>
-							))
-						}
-					</div>
+					<h3 class="font-bold text-lg text-slate-900 mb-3">
+						Always Current
+					</h3>
+					<p class="text-slate-600 text-sm">
+						AI moves fast. We update our content weekly to keep you
+						ahead.
+					</p>
 				</div>
 			</div>
-		</section>
+		</div>
 	</section>
 
-	<style>
-		@keyframes float {
-			0% {
-				transform: translateY(0px);
+	<!-- Flight Training (Learn) Section -->
+	<section class="py-24 container mx-auto px-4">
+		<div
+			class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+		>
+			<div>
+				<span
+					class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block"
+					>Flight Training</span
+				>
+				<h2 class="text-3xl md:text-4xl font-bold text-slate-900">
+					Master the Basics
+				</h2>
+			</div>
+			<a
+				href="/learn"
+				class="text-indigo-600 font-bold hover:text-indigo-700 flex items-center gap-2 group"
+			>
+				View Full Curriculum
+				<svg
+					class="w-4 h-4 transition-transform group-hover:translate-x-1"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+				>
+			</a>
+		</div>
+
+		<div class="grid md:grid-cols-3 gap-8">
+			{
+				learnModules.map((module) => (
+					<a
+						href={`/learn/${module.slug}`}
+						class="group block p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-lg transition-all"
+					>
+						<div class="flex items-center justify-between mb-4">
+							<span class="text-xs font-bold uppercase tracking-wider text-indigo-500 bg-indigo-50 px-2 py-1 rounded-md">
+								{module.data.category.replace(/-/g, " ")}
+							</span>
+							{module.data.level && (
+								<span class="text-xs font-medium text-slate-400">
+									{module.data.level}
+								</span>
+							)}
+						</div>
+						<h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+							{module.data.title}
+						</h3>
+						<p class="text-slate-600 text-sm line-clamp-3 mb-4">
+							{module.data.description}
+						</p>
+						<span class="text-sm font-bold text-indigo-600 flex items-center gap-1">
+							Start Lesson{" "}
+							<svg
+								class="w-4 h-4"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9 5l7 7-7 7"
+								/>
+							</svg>
+						</span>
+					</a>
+				))
 			}
-			50% {
-				transform: translateY(-20px);
-			}
-			100% {
-				transform: translateY(0px);
-			}
-		}
-		@keyframes bounce-slow {
-			0%,
-			100% {
-				transform: translateY(0);
-			}
-			50% {
-				transform: translateY(-10px);
-			}
-		}
-		.animate-float {
-			animation: float 6s ease-in-out infinite;
-		}
-		.animate-bounce-slow {
-			animation: bounce-slow 4s ease-in-out infinite;
-		}
-	</style>
+		</div>
+	</section>
+
+	<!-- Captain's Log (Blog) Section -->
+	<section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+		<!-- Decorative Background -->
+		<div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+			<div
+				class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px]"
+			>
+			</div>
+			<div
+				class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px]"
+			>
+			</div>
+		</div>
+
+		<div class="container mx-auto px-4 relative z-10">
+			<div
+				class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+			>
+				<div>
+					<span
+						class="text-indigo-400 font-bold tracking-wider uppercase text-sm mb-2 block"
+						>Captain's Log</span
+					>
+					<h2 class="text-3xl md:text-4xl font-bold text-white">
+						Latest Intelligence
+					</h2>
+				</div>
+				<a
+					href="/blog"
+					class="text-indigo-400 font-bold hover:text-indigo-300 flex items-center gap-2 group"
+				>
+					Read All Articles
+					<svg
+						class="w-4 h-4 transition-transform group-hover:translate-x-1"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						><path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+					>
+				</a>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				{
+					latestPosts.map((post) => (
+						<a
+							href={`/blog/${post.slug}`}
+							class="group block p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all backdrop-blur-sm"
+						>
+							<div class="flex items-center justify-between mb-4">
+								<span class="text-xs font-bold uppercase tracking-wider text-indigo-400">
+									{post.data.category}
+								</span>
+								<time
+									datetime={post.data.pubDate.toISOString()}
+									class="text-xs text-slate-400"
+								>
+									{post.data.pubDate.toLocaleDateString(
+										"en-US",
+										{
+											month: "short",
+											day: "numeric",
+										},
+									)}
+								</time>
+							</div>
+							<h3 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
+								{post.data.title}
+							</h3>
+							<p class="text-slate-400 text-sm line-clamp-3 mb-4">
+								{post.data.description}
+							</p>
+							<span class="text-sm font-bold text-indigo-400 flex items-center gap-1">
+								Read Article{" "}
+								<svg
+									class="w-4 h-4"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M9 5l7 7-7 7"
+									/>
+								</svg>
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="py-20 container mx-auto px-4 text-center">
+		<div
+			class="bg-indigo-600 rounded-3xl p-12 md:p-20 relative overflow-hidden shadow-2xl"
+		>
+			<div
+				class="absolute top-0 left-0 w-full h-full bg-[url('/assets/noise.png')] opacity-10 mix-blend-overlay"
+			>
+			</div>
+			<div class="relative z-10 max-w-2xl mx-auto">
+				<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+					Ready to Launch?
+				</h2>
+				<p class="text-indigo-100 text-lg mb-10">
+					Join thousands of others mastering AI. No spam, just
+					knowledge.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a
+						href="/learn/ai-basics"
+						class="px-8 py-4 rounded-xl bg-white text-indigo-600 font-bold hover:bg-indigo-50 transition-all shadow-lg"
+					>
+						Start First Lesson
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 </Layout>

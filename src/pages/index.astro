@@ -1,6 +1,17 @@
 ---
 import Layout from "../components/Layout.astro";
 import Starfield from "../components/Starfield.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+const latestPosts = allPosts
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const allLearn = await getCollection("learn");
+const learnModules = allLearn
+	.sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
+	.slice(0, 3);
 ---
 
 <Layout title="Simple AI Guide - Fast, Modern Blog">
@@ -96,6 +107,161 @@ import Starfield from "../components/Starfield.astro";
 						d="M12 16a4 4 0 100-8 4 4 0 000 8z"
 						fill="currentColor"></path>
 				</svg>
+			</div>
+		</div>
+	</section>
+
+	<!-- Mission Control Section -->
+	<section class="container mx-auto px-4 py-16 relative z-10">
+		<div class="text-center mb-16">
+			<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+				Mission Control
+			</h2>
+			<p class="text-lg text-slate-600 max-w-2xl mx-auto">
+				Latest intelligence from our exploration. Choose your flight
+				path.
+			</p>
+		</div>
+
+		<div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+			<!-- Flight Training (Learn) -->
+			<div
+				class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
+			>
+				<div
+					class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-indigo-500/10"
+				>
+				</div>
+				<div class="flex items-center justify-between mb-8">
+					<h3
+						class="text-2xl font-bold text-slate-900 flex items-center gap-3"
+					>
+						<span
+							class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl"
+						>
+							👨‍🎓
+						</span>
+						Flight Training
+					</h3>
+					<a
+						href="/learn"
+						class="text-sm font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+					>
+						View All <svg
+							class="w-4 h-4"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							><path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+						>
+					</a>
+				</div>
+				<div class="space-y-4">
+					{
+						learnModules.map((module) => (
+							<a
+								href={`/learn/${module.data.category}/${module.slug}`}
+								class="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-100 hover:border-indigo-100"
+							>
+								<div class="flex items-center justify-between mb-2">
+									<span class="text-xs font-bold uppercase tracking-wider text-indigo-500">
+										{module.data.category.replace(
+											/-/g,
+											" ",
+										)}
+									</span>
+									{module.data.level && (
+										<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white text-slate-500 border border-slate-100">
+											{module.data.level}
+										</span>
+									)}
+								</div>
+								<h4 class="font-bold text-slate-900 mb-1">
+									{module.data.title}
+								</h4>
+								<p class="text-sm text-slate-600 line-clamp-2">
+									{module.data.description}
+								</p>
+							</a>
+						))
+					}
+				</div>
+			</div>
+
+			<!-- Captain's Log (Blog) -->
+			<div
+				class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
+			>
+				<div
+					class="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-sky-500/10"
+				>
+				</div>
+				<div class="flex items-center justify-between mb-8">
+					<h3
+						class="text-2xl font-bold text-slate-900 flex items-center gap-3"
+					>
+						<span
+							class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl"
+						>
+							📡
+						</span>
+						Captain's Log
+					</h3>
+					<a
+						href="/blog"
+						class="text-sm font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1"
+					>
+						View All <svg
+							class="w-4 h-4"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							><path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+						>
+					</a>
+				</div>
+				<div class="space-y-4">
+					{
+						latestPosts.map((post) => (
+							<a
+								href={`/blog/${post.slug}`}
+								class="block p-4 rounded-xl bg-slate-50 hover:bg-sky-50 transition-colors border border-slate-100 hover:border-sky-100"
+							>
+								<div class="flex items-center justify-between mb-2">
+									<span class="text-xs font-bold uppercase tracking-wider text-sky-500">
+										{post.data.category}
+									</span>
+									<time
+										datetime={post.data.pubDate.toISOString()}
+										class="text-xs text-slate-400"
+									>
+										{post.data.pubDate.toLocaleDateString(
+											"en-US",
+											{
+												month: "short",
+												day: "numeric",
+											},
+										)}
+									</time>
+								</div>
+								<h4 class="font-bold text-slate-900 mb-1">
+									{post.data.title}
+								</h4>
+								<p class="text-sm text-slate-600 line-clamp-2">
+									{post.data.description}
+								</p>
+							</a>
+						))
+					}
+				</div>
 			</div>
 		</div>
 	</section>

@@ -31,6 +31,8 @@ If you’ve ever had your bank call you to ask about a "suspicious transaction,"
 *   **Fraud Detection:** AI systems monitor millions of transactions per second. They learn your spending habits instantly. If your card is suddenly used in a country you’ve never visited, the AI flags it as an anomaly and blocks it to protect your money.
 *   **Algorithmic Trading:** On Wall Street, humans aren't the only ones trading anymore. High-frequency trading algorithms analyze news, market trends, and social media sentiment to buy and sell stocks in milliseconds, reacting faster than any human broker could.
 
+![AI in Finance: Algorithmic trading and fraud detection.](/images/learn/ai-basics/module-1-8-finance.png)
+
 ## 3. E-commerce: The Ultimate Personal Shopper 🛍️
 
 Ever feel like Amazon or Netflix *knows* you? That’s not a coincidence; it’s a Recommendation Engine.

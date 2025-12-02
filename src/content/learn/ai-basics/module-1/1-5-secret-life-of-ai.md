@@ -47,6 +47,9 @@ In this step, data scientists act as detectives, finding and fixing problems:
 *   **Filtering out noise:** Irrelevant data that might confuse the model.
 *   **Handling outliers:** These are data points that are wildly different from the rest. For example, if a dataset of human ages contains a "200-year-old human", it's clearly an error that needs to be removed.
 
+![A scientist meticulously cleans data, separating valid information from missing, duplicate, and outlier data points.](/images/learn/ai-basics/module-1-5-fig2.png)
+*<center>Figure 2: A scientist meticulously cleans data.</center>*
+
 ### Step 3: Feature Engineering
 
 Even clean data isn't always in a format an AI can understand. Machines speak numbers, not text or dates. Feature engineering is the art of translating raw data into a language the AI can learn from.
@@ -55,6 +58,9 @@ This involves creative transformations:
 *   **Convert "Date of Birth" → Age:** The model doesn't care *when* you were born, it cares *how old* you are.
 *   **Convert text → numerical vectors:** Words are turned into long lists of numbers that represent their meaning.
 *   **Resize images:** All images are made the same size so the AI can compare them easily.
+
+![Feature engineering transforms raw data like dates, text, and images into numerical formats that an AI algorithm can process.](/images/learn/ai-basics/module-1-5-fig3.png)
+*<center>Figure 3: Feature engineering transforms raw data.</center>*
 
 ### Step 4: Model Training
 
@@ -66,6 +72,9 @@ Different algorithms are used for different tasks:
 *   **Transformers** are the state-of-the-art for understanding and generating human language.
 
 Ultimately, training is a complex process of mathematical optimization, where the model tries to minimize the number of mistakes it makes.
+
+![An AI model (represented by a glowing brain) is trained in a server room, processing streams of data while its error rate decreases.](/images/learn/ai-basics/module-1-5-fig4.png)
+*<center>Figure 4: An AI model is trained in a server room.</center>*
 
 ### Step 5: Model Evaluation
 

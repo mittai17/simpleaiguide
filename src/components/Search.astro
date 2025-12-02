@@ -48,7 +48,7 @@
 
     try {
       console.log("Fetching search index...");
-      const res = await fetch("/simpleaiguide/api/search.json");
+      const res = await fetch("/api/search.json");
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       const data = await res.json();
       console.log("Search index fetched:", data.length, "items");
@@ -99,7 +99,7 @@
           searchResults.innerHTML = results
             .map(
               (result: any) => `
-            <a href="/simpleaiguide/${result.item.slug}" class="block p-4 hover:bg-slate-50 border-b border-slate-50 last:border-none transition-colors">
+            <a href="/${result.item.slug}" class="block p-4 hover:bg-slate-50 border-b border-slate-50 last:border-none transition-colors">
               <div class="flex items-center gap-2 mb-1">
                 <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">${result.item.type}</span>
               </div>

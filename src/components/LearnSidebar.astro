@@ -46,7 +46,7 @@ const groupedPosts = categories.map((cat) => ({
                             {category.posts.map((post: LearnPost) => (
                                 <li>
                                     <a
-                                        href={`/simpleaiguide/learn/${post.slug}`}
+                                        href={`/learn/${post.slug}`}
                                         class:list={[
                                             "block px-3 py-2 rounded-lg text-sm transition-all duration-200 border-l-2",
                                             activeSlug === post.slug

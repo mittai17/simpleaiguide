@@ -1,0 +1,31 @@
+<div
+    id="scroll-progress-container"
+    class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-[100]"
+>
+    <div
+        id="scroll-progress-bar"
+        class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 w-0 transition-all duration-100 ease-out relative"
+    >
+        <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-xl transform rotate-45"
+        >
+            🚀
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("scroll", () => {
+        const winScroll =
+            document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+
+        const progressBar = document.getElementById("scroll-progress-bar");
+        if (progressBar) {
+            progressBar.style.width = scrolled + "%";
+        }
+    });
+</script>

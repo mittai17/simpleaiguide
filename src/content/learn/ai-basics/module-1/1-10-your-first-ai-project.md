@@ -86,3 +86,10 @@ When you run this code, the computer doesn't just guess. It performs the AI Life
 This is a simple example, but it represents the foundation of Machine Learning. Whether it’s predicting house prices, stock market trends, or the weather, the core concept remains the same: **Data + Algorithm = Prediction**.
 
 You just wrote your first piece of AI code. Congratulations!
+
+<MCQ
+  question="In our house price prediction model, what did the .fit() command do?"
+  options={["It made the model exercise", "It trained the model to find the pattern between size and price", "It predicted the price of a new house", "It deleted the data"]}
+  correct="It trained the model to find the pattern between size and price"
+  explanation="The .fit() method is the training step where the algorithm learns the relationship (pattern) between the input data (size) and the target (price)."
+/>

@@ -58,4 +58,11 @@ An AI system is a sophisticated prediction engine. It has no understanding of wh
 
 **It is no more "conscious" than a toaster.**
 
+<MCQ
+  question="Does AI currently possess consciousness or emotions?"
+  options={["Yes, it feels happy when you are polite", "No, it is just math and algorithms predicting words", "Yes, but only advanced models like ChatGPT", "Maybe, scientists are not sure"]}
+  correct="No, it is just math and algorithms predicting words"
+  explanation="AI has no feelings, desires, or awareness. It simply predicts the next word based on statistical patterns."
+/>
+
 ![Debunking AI myths: It's math, not magic.](/images/learn/ai-basics/module-1-9.png)

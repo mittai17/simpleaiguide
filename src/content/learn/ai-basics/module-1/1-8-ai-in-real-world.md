@@ -64,3 +64,10 @@ The "one-size-fits-all" classroom model is outdated. AI allows for learning that
 ## Conclusion
 
 AI is not "coming soon"—it is already the invisible layer of intelligence powering our daily lives. Whether it's diagnosing a disease or recommending your next favorite movie, these "Real-World Use Cases" prove that AI is the most powerful tool humanity has built since the internet.
+
+<MCQ
+  question="How is AI primarily used in the Finance industry today?"
+  options={["To print more money", "To detect fraud and perform algorithmic trading", "To replace all human bank tellers", "To design new currency notes"]}
+  correct="To detect fraud and perform algorithmic trading"
+  explanation="AI analyzes millions of transactions to spot fraud instantly and executes high-speed trades based on market data."
+/>

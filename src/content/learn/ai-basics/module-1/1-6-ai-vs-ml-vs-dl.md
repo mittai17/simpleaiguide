@@ -63,3 +63,10 @@ Over time, the algorithm improves automatically through experience (data).
 While standard ML algorithms are powerful, they often struggle with complex, unstructured data like images, audio, and text. Deep Learning solves this by using **[Neural Networks](/learn/ai-basics/module-1/1-7-neural-networks)**—layers of algorithms that process data in a hierarchy.
 
 **Simple Definition:** DL = ML that uses multi-layered neural networks to learn from vast amounts of complex data.
+
+<MCQ
+  question="If AI is a Russian Nesting Doll, which is the smallest, most specialized doll inside?"
+  options={["Artificial Intelligence", "Machine Learning", "Deep Learning", "Data Science"]}
+  correct="Deep Learning"
+  explanation="Deep Learning is a specialized subset of Machine Learning, which itself is a subset of the broader field of Artificial Intelligence."
+/>

@@ -48,3 +48,10 @@ A neural network doesn't know anything when it's first created. It learns throug
 This cycle is repeated millions of times across a massive dataset. Slowly but surely, the network tunes its trillions of weights until it gets really, really good at its job.
 
 This is a high-level overview. The mathematical magic of backpropagation and gradient descent is a deep topic that we will explore fully in **[Module 7 (Deep Learning)](/learn/deep-learning)**. For now, just remember: a neural network is a powerful, brain-inspired machine that learns from its own mistakes.
+
+<MCQ
+  question="What is the role of the 'Hidden Layers' in a Neural Network?"
+  options={["To receive the raw input data", "To give the final prediction", "To perform calculations and identify features", "To hide the data from hackers"]}
+  correct="To perform calculations and identify features"
+  explanation="Hidden layers are where the network processes information, identifying patterns and features before passing them to the output layer."
+/>

@@ -39,21 +39,6 @@ Artificial General Intelligence (AGI), or Strong AI, represents a significant le
 Unlike ANI, which is limited to a single domain, AGI would be able to generalize its learning and adapt to new and unforeseen situations. It would be capable of reasoning, planning, and creative thought. The development of AGI is a primary goal for many AI researchers (like those at **[OpenAI](https://openai.com/)**), but it is widely considered to be a long-term objective that we are not yet close to achieving.
 
 The robot in the image below visually represents the versatility of AGI, demonstrating its ability to engage in diverse activities like reading a book and playing a musical instrument.
-
-![A visual representation of Strong AI: A versatile robot capable of multiple tasks.](/images/learn/ai-basics/strong-ai-versatile.png)
-*<center>A visual representation of Strong AI: A versatile robot capable of multiple tasks.</center>*
-
-## 3. Super Intelligence (ASI)
-
-Artificial Super Intelligence (ASI) is the most advanced form of AI, a hypothetical intelligence that vastly surpasses the brightest human minds across all fields, including scientific creativity, general wisdom, and social skills.
-
-ASI would not just be a faster or more powerful version of AGI; it would be a completely different order of intelligence. Its cognitive capabilities would be beyond human comprehension, allowing it to solve problems that are currently impossible for us. The development of ASI is a topic of much debate and speculation, with some experts viewing it as a potential existential risk to humanity.
-
-The image below provides a conceptual illustration of ASI, with a colossal, glowing brain symbolizing an intelligence far greater than our own.
-
-![A conceptual illustration of Super Intelligence, surpassing human capabilities.](/images/learn/ai-basics/super-ai-brain.png)
-*<center>A conceptual illustration of Super Intelligence, surpassing human capabilities.</center>*
-
 ---
 
 **In conclusion**, while the term "AI" is used broadly, it's important to distinguish between these three types. We live in the era of Weak AI, with Strong AI as a distant future goal and Super Intelligence as a theoretical possibility. Each step in this journey brings new possibilities and challenges, shaping the future of technology and humanity itself.

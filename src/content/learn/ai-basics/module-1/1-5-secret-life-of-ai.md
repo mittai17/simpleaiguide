@@ -99,4 +99,11 @@ An AI model can be deployed in many ways:
 
 The world is constantly changing, and an AI model that isn't updated will quickly become obsolete. The final step is a continuous cycle of monitoring the model's performance in the real world, collecting new data, and retraining it to improve its accuracy and adaptability over time.
 
+<MCQ
+  question="What is the correct order of the AI Lifecycle?"
+  options={["Train -> Deploy -> Collect Data", "Collect Data -> Clean Data -> Train Model -> Deploy", "Deploy -> Train -> Test", "Guess -> Hope -> Pray"]}
+  correct="Collect Data -> Clean Data -> Train Model -> Deploy"
+  explanation="AI starts with data collection and cleaning, followed by training, testing, and finally deployment."
+/>
+
 Understanding this lifecycle is key to demystifying AI. It's not magic; it's a rigorous, iterative process of engineering, mathematics, and continuous learning.

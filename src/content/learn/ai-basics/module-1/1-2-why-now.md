@@ -35,6 +35,21 @@ Having fuel is useless if you don't have an engine powerful enough to burn it.
 
 In the past, computers processed information linearly (one step at a time). This was too slow for AI, which needs to analyze millions of possibilities instantly. Enter the new era of hardware:
 
+*   **GPUs (Graphics Processing Units):** Originally designed for video games, these chips are incredible at doing many math problems at the exact same time. This follows **[Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)**, which predicted computing power would double every two years.
+*   **TPUs (Tensor Processing Units):** Chips custom-built by Google specifically for machine learning.
+
+These chips allow machines to process billions of calculations per second. What used to take a supercomputer weeks to learn can now be done in hours.
+
+## Force 3: Advanced Algorithms (The Architecture)
+
+You have the fuel (**[Big Data](https://www.oracle.com/big-data/what-is-big-data/)**) and the engine (Computers). Now, you need the design.
+
+For a long time, we tried to teach computers by giving them strict rules. Now, we use Advanced Algorithms that mimic nature:
+
+*   **[Neural Networks](/learn/ai-basics/module-1/1-7-neural-networks):** Inspired by the human brain, these algorithms create webs of connections that strengthen as they learn.
+*   **Transformers:** The technology behind ChatGPT, which allows AI to understand the context of a sentence, not just individual words.
+*   **Reinforcement Learning:** A method where AI learns by trial and error, getting "rewards" for good decisions (like a dog learning a trick).
+
 ---
 
 ### The Formula for the Revolution
@@ -53,3 +68,10 @@ This unique combination is why AI is no longer just a "science project." It is w
 *   🗣️ **Natural Language:** Translating languages and writing text instantly.
 
 We are currently living through the biggest technological shift since the internet—and it’s all because of data, speed, and better math.
+
+<MCQ
+  question="Which of the following is NOT a reason for the recent AI boom?"
+  options={["Better Algorithms (Deep Learning)", "More Computing Power (GPUs)", "The invention of the first computer", "Massive amounts of Data (Big Data)"]}
+  correct="The invention of the first computer"
+  explanation="The first computer was invented long ago. The recent boom is driven by the convergence of better algorithms, powerful hardware (GPUs), and massive datasets."
+/>

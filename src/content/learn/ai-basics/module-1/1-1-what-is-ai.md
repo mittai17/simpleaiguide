@@ -18,6 +18,19 @@ Is it a robot? Is it a search engine? Is it a super-brain that will take our job
 
 In this guide, we are going to strip away the sci-fi hype and look at the scientific reality. Here is the deep, clear explanation of what AI really is.
 
+## The Core Definition
+
+At its simplest level:
+
+> **AI = Giving machines the ability to think and act intelligently.**
+
+But that definition is a bit too shallow. To be precise, **[Artificial Intelligence (AI)](https://plato.stanford.edu/entries/artificial-intelligence/)** is a scientific discipline that enables machines to simulate human intelligence.
+
+When we say "simulate human intelligence," we don't mean the machine has feelings. We mean it can perform specific cognitive tasks, such as:
+
+*   **Understanding information** (processing text or voice)
+*   **Learning from experience** (improving over time without new code)
+*   **Recognizing patterns** (spotting a face in a crowd or a trend in stock prices)
 *   **Making decisions** (choosing the best route on a GPS)
 *   **Solving problems** (winning a game of Chess)
 *   **Adapting to new situations** (handling a road closure in self-driving mode)
@@ -65,3 +78,10 @@ This is the difference between **[Narrow AI](/learn/ai-basics/module-1/1-4-types
 *   **What is it?** A simulation of human intelligence (learning, reasoning, solving).
 *   **How does it work?** Through math, logic, and data—not magic.
 *   **Is it dangerous?** It is a powerful tool, but it is not a conscious being plotting against us.
+
+<MCQ
+  question="What is the core definition of Artificial Intelligence?"
+  options={["A robot that looks like a human", "The simulation of human intelligence by machines", "A computer that can feel emotions", "A database of all human knowledge"]}
+  correct="The simulation of human intelligence by machines"
+  explanation="AI is fundamentally about machines mimicking cognitive functions like learning and problem-solving, not necessarily having a body or emotions."
+/>

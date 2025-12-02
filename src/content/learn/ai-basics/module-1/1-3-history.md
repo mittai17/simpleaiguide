@@ -10,7 +10,7 @@ pubDate: 2025-12-01
 
 # 1.3 📜 A Complete History: The Evolution of Artificial Intelligence
 
-![AI Timeline Evolution](/assets/learn/ai-basics/ai-timeline.png)
+![AI Timeline Evolution](/images/learn/ai-basics/ai-timeline.png)
 
 The journey of Artificial Intelligence (AI) is a fascinating story of ambition, setbacks, and incredible breakthroughs. Let's take a walk through time to see how we got from simple questions to the powerful AI we know today.
 

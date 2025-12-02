@@ -10,7 +10,7 @@ pubDate: 2025-12-01
 
 # 1.1 🧠 What is Artificial Intelligence?
 
-![Human Brain vs AI Brain](/assets/learn/ai-basics/human-vs-ai.png)
+![Human Brain vs AI Brain](/images/learn/ai-basics/human-vs-ai.png)
 
 If you turn on the news or open social media, you will hear about Artificial Intelligence (AI). It is everywhere. But if you ask ten different people what AI actually is, you will likely get ten different answers.
 

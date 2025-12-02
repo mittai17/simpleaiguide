@@ -96,10 +96,16 @@ import Layout from "../components/Layout.astro";
         </div>
 
         <form
-          action="https://formspree.io/contact@simpleaiguide.tech"
+          action="https://formsubmit.co/contact@simpleaiguide.tech"
           method="POST"
           class="space-y-6 relative z-10"
         >
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Submission from Simple AI Guide"
+          />
+          <input type="hidden" name="_captcha" value="false" />
           <div>
             <label
               for="email"

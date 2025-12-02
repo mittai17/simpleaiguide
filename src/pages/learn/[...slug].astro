@@ -39,6 +39,7 @@ const nextPost =
     <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Sidebar (Desktop: Left, Mobile: Hidden/Drawer) -->
+            <!-- Sidebar (Desktop: Left) -->
             <aside class="hidden lg:block w-64 flex-shrink-0">
                 <div class="sticky top-24">
                     <LearnSidebar
@@ -47,6 +48,107 @@ const nextPost =
                     />
                 </div>
             </aside>
+
+            <!-- Mobile Sidebar Toggle & Drawer -->
+            <div class="lg:hidden w-full mb-6">
+                <button
+                    id="course-menu-btn"
+                    class="flex items-center justify-between w-full px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm text-slate-700 font-medium hover:border-indigo-300 transition-colors"
+                >
+                    <span class="flex items-center gap-2">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                            ></path>
+                        </svg>
+                        Course Menu
+                    </span>
+                    <span class="text-xs text-slate-400">Tap to navigate</span>
+                </button>
+            </div>
+
+            <div
+                id="mobile-course-menu"
+                class="fixed inset-0 z-[60] bg-slate-900/50 backdrop-blur-sm hidden transition-opacity duration-300"
+            >
+                <div
+                    class="absolute left-0 top-0 bottom-0 w-3/4 max-w-xs bg-white shadow-2xl p-6 overflow-y-auto transform transition-transform duration-300 -translate-x-full"
+                    id="mobile-menu-content"
+                >
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="font-bold text-lg text-slate-900">
+                            Navigation
+                        </h2>
+                        <button
+                            id="close-course-menu"
+                            class="p-2 text-slate-400 hover:text-slate-900 transition-colors"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-6 h-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <LearnSidebar
+                        activeSlug={post.slug}
+                        activeCategory={post.data.category}
+                    />
+                </div>
+            </div>
+
+            <script>
+                const btn = document.getElementById("course-menu-btn");
+                const menu = document.getElementById("mobile-course-menu");
+                const menuContent = document.getElementById(
+                    "mobile-menu-content",
+                );
+                const closeBtn = document.getElementById("close-course-menu");
+
+                function openMenu() {
+                    menu?.classList.remove("hidden");
+                    // Small delay to allow display:block to apply before transition
+                    setTimeout(() => {
+                        menu?.classList.remove("opacity-0");
+                        menuContent?.classList.remove("-translate-x-full");
+                    }, 10);
+                }
+
+                function closeMenu() {
+                    menu?.classList.add("opacity-0");
+                    menuContent?.classList.add("-translate-x-full");
+                    setTimeout(() => {
+                        menu?.classList.add("hidden");
+                    }, 300);
+                }
+
+                btn?.addEventListener("click", openMenu);
+                closeBtn?.addEventListener("click", closeMenu);
+
+                // Close on outside click
+                menu?.addEventListener("click", (e) => {
+                    if (e.target === menu) {
+                        closeMenu();
+                    }
+                });
+            </script>
 
             <!-- Main Content -->
             <main class="flex-grow min-w-0">

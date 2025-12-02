@@ -36,7 +36,7 @@ When we see an AI beat a grandmaster at Chess or write a perfect poem, it's easy
 
 ### ✔ Truth: AI is only good at narrow tasks.
 
-This is the difference between "Narrow AI" and "General AI."
+This is the difference between "**[Narrow AI](/learn/ai-basics/module-1/1-4-types-of-ai)**" and "**General AI**."
 
 Today, we only have **Narrow AI**. This means an AI model is trained to do one specific thing perfectly. An AI that plays chess is a genius at chess, but it cannot write a poem. An AI that diagnoses diseases cannot drive a car.
 
@@ -54,7 +54,7 @@ It is crucial to remember that AI is not magic; it is math.
 
 When you chat with an AI like ChatGPT and it says, "I am happy to help," it does not feel happiness. It is simply predicting that "I am happy to help" is the most statistically probable sequence of words to follow your request, based on the massive amount of human text it has been trained on.
 
-An AI system is a sophisticated prediction engine. It has no understanding of what it is saying. It has no desires, no fears, and no awareness of its own existence.
+An AI system is a sophisticated prediction engine. It has no understanding of what it is saying. It has no desires, no fears, and no awareness of its own existence (a concept known as **[Sentience](https://plato.stanford.edu/entries/consciousness/)**).
 
 **It is no more "conscious" than a toaster.**
 

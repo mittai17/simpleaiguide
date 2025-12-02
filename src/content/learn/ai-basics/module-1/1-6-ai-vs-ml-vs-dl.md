@@ -47,10 +47,19 @@ This includes:
 ### 2. Machine Learning (The Smart Subset)
 **"Learning from Experience"**
 
-Machine Learning (ML) is a subset of AI. It was the massive shift that happened when we stopped trying to *tell* computers what to do and started *teaching* them how to figure it out.
+**[Machine Learning (ML)](/learn/machine-learning)** is a subset of AI. It was the massive shift that happened when we stopped trying to *tell* computers what to do and started *teaching* them how to figure it out.
 
 In ML, we don't write rules like "If the photo has whiskers, it is a cat." Instead, we feed the computer thousands of photos of cats and dogs and say, "Find the pattern."
 
 Over time, the algorithm improves automatically through experience (data).
 
 **Simple Definition:** ML = AI that improves automatically by looking at data, without being explicitly programmed for every scenario.
+
+### 3. Deep Learning (The Powerful Core)
+**"Thinking Like a Brain"**
+
+**[Deep Learning (DL)](/learn/deep-learning)** is a specialized subset of Machine Learning. It is inspired by the structure of the human brain.
+
+While standard ML algorithms are powerful, they often struggle with complex, unstructured data like images, audio, and text. Deep Learning solves this by using **[Neural Networks](/learn/ai-basics/module-1/1-7-neural-networks)**—layers of algorithms that process data in a hierarchy.
+
+**Simple Definition:** DL = ML that uses multi-layered neural networks to learn from vast amounts of complex data.

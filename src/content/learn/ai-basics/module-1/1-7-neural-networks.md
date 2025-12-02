@@ -12,9 +12,9 @@ pubDate: 2025-12-02
 
 You've probably heard the term "Neural Network" thrown around in conversations about AI, often followed by a vague wave of the hand and a mutter about "brain-like computing." It sounds sci-fi, almost magical. But here's the secret: at its core, a neural network is just a really, really clever way of doing math.
 
-A **Neural Network** is an algorithm architecture inspired by the biological structure of the human brain. Just as our brains are made up of billions of interconnected neurons, these artificial networks are composed of layers of "nodes" (artificial neurons) that work together to solve a problem.
+A **[Neural Network](https://www.ibm.com/topics/neural-networks)** is an algorithm architecture inspired by the biological structure of the human brain. Just as our brains are made up of billions of interconnected neurons, these artificial networks are composed of layers of "nodes" (artificial neurons) that work together to solve a problem.
 
-It is the fundamental building block of modern Deep Learning.
+It is the fundamental building block of modern **[Deep Learning](/learn/deep-learning)**.
 
 ## The Anatomy of a Neural Network
 
@@ -47,4 +47,4 @@ A neural network doesn't know anything when it's first created. It learns throug
 
 This cycle is repeated millions of times across a massive dataset. Slowly but surely, the network tunes its trillions of weights until it gets really, really good at its job.
 
-This is a high-level overview. The mathematical magic of backpropagation and gradient descent is a deep topic that we will explore fully in Module 7. For now, just remember: a neural network is a powerful, brain-inspired machine that learns from its own mistakes.
+This is a high-level overview. The mathematical magic of backpropagation and gradient descent is a deep topic that we will explore fully in **[Module 7 (Deep Learning)](/learn/deep-learning)**. For now, just remember: a neural network is a powerful, brain-inspired machine that learns from its own mistakes.

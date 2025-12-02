@@ -12,7 +12,7 @@ pubDate: 2025-12-01
 
 If you’ve made it this far, you might be thinking, "Okay, the theory is cool, but how do I actually build AI?"
 
-Many beginners assume building AI requires thousands of lines of complex code and a PhD in mathematics. That is a myth. Thanks to modern libraries like Python’s scikit-learn, you can build a working Machine Learning model in just a few lines.
+Many beginners assume building AI requires thousands of lines of complex code and a PhD in mathematics. That is a myth. Thanks to modern libraries like **[Python](https://www.python.org/)**'s scikit-learn, you can build a working **[Machine Learning](/learn/machine-learning)** model in just a few lines.
 
 Let’s get our hands dirty. We are going to build a simple AI that learns a pattern and predicts house prices.
 

@@ -16,7 +16,7 @@ The journey of Artificial Intelligence (AI) is a fascinating story of ambition, 
 
 ### 1950 – The Birth of a New Idea
 
-The story begins with a question. In 1950, the brilliant mathematician and computer scientist **Alan Turing** published a paper titled *Computing Machinery and Intelligence*, in which he famously asked:
+The story begins with a question. In 1950, the brilliant mathematician and computer scientist **[Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing)** published a paper titled *Computing Machinery and Intelligence*, in which he famously asked:
 
 > **“Can machines think?”**
 
@@ -28,17 +28,17 @@ The early decades of AI research were dominated by **"Rule-Based Systems."** The
 
 ### 1990s – The Machine Learning Era Begins
 
-The 1990s saw a pivotal shift. AI researchers began to move away from manual rules and towards having computers learn from data themselves. This was the beginning of the **Machine Learning** era.
+The 1990s saw a pivotal shift. AI researchers began to move away from manual rules and towards having computers learn from data themselves. This was the beginning of the **[Machine Learning](/learn/machine-learning)** era.
 
 Powerful new algorithms were invented, including Support Vector Machines (SVMs), Decision Trees, Bayesian Networks, and early neural networks. This change made AI far more adaptable and powerful.
 
 ### 2012 – The Deep Learning Explosion
 
-The real turning point came in 2012. A deep neural network named **AlexNet** competed in the ImageNet competition, a contest to recognize thousands of different objects in images. AlexNet won by a huge margin, demonstrating the immense power of **Deep Learning**.
+The real turning point came in 2012. A deep neural network named **AlexNet** competed in the ImageNet competition, a contest to recognize thousands of different objects in images. AlexNet won by a huge margin, demonstrating the immense power of **[Deep Learning](/learn/deep-learning)**.
 
 ### 2017-Present – Transformers and the Modern AI Brain
 
-In 2017, researchers at Google published a paper introducing a new type of neural network architecture called the **Transformer**. This breakthrough is the foundation for all the modern AI assistants we know today.
+In 2017, researchers at Google published a paper introducing a new type of neural network architecture called the **[Transformer](https://arxiv.org/abs/1706.03762)**. This breakthrough is the foundation for all the modern AI assistants we know today.
 
 The Transformer architecture led to the creation of **Large Language Models (LLMs)** like GPT, BERT, Claude, Gemini, and LLaMA.
 

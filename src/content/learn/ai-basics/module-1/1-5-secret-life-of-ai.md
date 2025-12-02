@@ -52,7 +52,7 @@ In this step, data scientists act as detectives, finding and fixing problems:
 
 ### Step 3: Feature Engineering
 
-Even clean data isn't always in a format an AI can understand. Machines speak numbers, not text or dates. Feature engineering is the art of translating raw data into a language the AI can learn from.
+Even clean data isn't always in a format an AI can understand. Machines speak numbers, not text or dates. Feature engineering is the art of translating raw data into a language the AI can learn from (often done by a **[Data Scientist](https://www.ibm.com/topics/data-science)**).
 
 This involves creative transformations:
 *   **Convert "Date of Birth" → Age:** The model doesn't care *when* you were born, it cares *how old* you are.
@@ -67,8 +67,8 @@ This involves creative transformations:
 Now, the magic happens. We feed our prepared data into an algorithm. The goal of training is for the model to find mathematical patterns in the data. It's a process of trial and error, repeated millions of times, until the model can make accurate predictions.
 
 Different algorithms are used for different tasks:
-*   **Linear Regression** is great for finding simple trends (like predicting house prices).
-*   **Neural Networks** and **CNNs** (Convolutional Neural Networks) excel at learning complex patterns in images.
+*   **Linear Regression** is great for finding simple trends (like predicting house prices - see **[Module 1.10](/learn/ai-basics/module-1/1-10-your-first-ai-project)**).
+*   **[Neural Networks](/learn/ai-basics/module-1/1-7-neural-networks)** and **CNNs** (Convolutional Neural Networks) excel at learning complex patterns in images.
 *   **Transformers** are the state-of-the-art for understanding and generating human language.
 
 Ultimately, training is a complex process of mathematical optimization, where the model tries to minimize the number of mistakes it makes.

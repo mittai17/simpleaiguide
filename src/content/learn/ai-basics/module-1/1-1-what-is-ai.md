@@ -24,7 +24,7 @@ At its simplest level:
 
 > **AI = Giving machines the ability to think and act intelligently.**
 
-But that definition is a bit too shallow. To be precise, **Artificial Intelligence (AI)** is a scientific discipline that enables machines to simulate human intelligence.
+But that definition is a bit too shallow. To be precise, **[Artificial Intelligence (AI)](https://plato.stanford.edu/entries/artificial-intelligence/)** is a scientific discipline that enables machines to simulate human intelligence.
 
 When we say "simulate human intelligence," we don't mean the machine has feelings. We mean it can perform specific cognitive tasks, such as:
 
@@ -55,7 +55,7 @@ To build a modern AI system, researchers combine knowledge from:
 
 *   **Computer Science** (The code)
 *   **Mathematics & Statistics** (The probability and patterns)
-*   **Neuroscience** (Inspiration from how the human brain works)
+*   **Neuroscience** (Inspiration from how the human brain works - see [Module 1.7](/learn/ai-basics/module-1/1-7-neural-networks))
 *   **Cognitive Science** (Understanding thinking)
 *   **Data Science** (Processing the information)
 *   **Linguistics** (Understanding language)
@@ -71,7 +71,7 @@ Current AI is incredibly good at *one thing* but terrible at everything else.
 *   An AI that plays Chess cannot tell you the weather.
 *   An AI that drives a car cannot write an email.
 
-This is the difference between **Narrow AI** (what we have now) and **General AI** (what we see in movies). We are masters of Narrow AI, but we are still very far from machines that possess true, human-like general intelligence.
+This is the difference between **[Narrow AI](/learn/ai-basics/module-1/1-4-types-of-ai)** (what we have now) and **General AI** (what we see in movies). We are masters of Narrow AI, but we are still very far from machines that possess true, human-like general intelligence.
 
 ### Summary
 

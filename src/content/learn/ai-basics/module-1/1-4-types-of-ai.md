@@ -16,7 +16,7 @@ Artificial Intelligence (AI) is one of the most transformative technologies of o
 
 Artificial Narrow Intelligence (ANI), also known as Weak AI, is the most common form of AI we encounter today. In fact, **99% of all current AI applications fall under this category**. ANI is designed to perform one specific, well-defined task. It excels in its designated area but lacks the cognitive abilities to generalize its knowledge to other domains.
 
-A key characteristic of ANI is that it does not "think" in the way humans do. It operates based on a set of pre-programmed rules and algorithms, and its capabilities are strictly limited to the data it has been trained on.
+A key characteristic of ANI is that it does not "think" in the way humans do. It operates based on a set of pre-programmed rules and algorithms (often using **[Machine Learning](/learn/machine-learning)**), and its capabilities are strictly limited to the data it has been trained on.
 
 **Common examples of ANI include:**
 
@@ -25,6 +25,7 @@ A key characteristic of ANI is that it does not "think" in the way humans do. It
 *   **Siri & Alexa:** Virtual assistants that can understand and respond to voice commands.
 *   **Tesla Autopilot:** An advanced driver-assistance system.
 *   **Recommendation Engines:** The systems used by Netflix and YouTube to suggest content.
+*   **[AlphaGo](https://deepmind.google/technologies/alphago/):** The first computer program to defeat a professional human Go player.
 
 The robot in the image below perfectly illustrates this concept: it is highly skilled at playing chess, but it cannot perform any other task.
 
@@ -35,7 +36,7 @@ The robot in the image below perfectly illustrates this concept: it is highly sk
 
 Artificial General Intelligence (AGI), or Strong AI, represents a significant leap forward. AGI is a theoretical form of AI that possesses human-like intelligence and cognitive abilities. An AGI system would have the capacity to understand, learn, and apply knowledge to solve a wide variety of tasks, much like a human being.
 
-Unlike ANI, which is limited to a single domain, AGI would be able to generalize its learning and adapt to new and unforeseen situations. It would be capable of reasoning, planning, and creative thought. The development of AGI is a primary goal for many AI researchers, but it is widely considered to be a long-term objective that we are not yet close to achieving.
+Unlike ANI, which is limited to a single domain, AGI would be able to generalize its learning and adapt to new and unforeseen situations. It would be capable of reasoning, planning, and creative thought. The development of AGI is a primary goal for many AI researchers (like those at **[OpenAI](https://openai.com/)**), but it is widely considered to be a long-term objective that we are not yet close to achieving.
 
 The robot in the image below visually represents the versatility of AGI, demonstrating its ability to engage in diverse activities like reading a book and playing a musical instrument.
 

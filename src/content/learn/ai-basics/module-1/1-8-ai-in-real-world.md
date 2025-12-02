@@ -18,8 +18,8 @@ From the hospital room to the stock market, algorithms are making decisions that
 
 Healthcare is perhaps the most critical area where AI is making an impact. It’s not about replacing doctors; it’s about giving them superpowers.
 
-*   **Cancer Detection:** AI algorithms, specifically Deep Learning models, are trained on millions of X-rays and MRI scans. They can spot early signs of tumors that are too small or faint for the human eye to catch, significantly increasing survival rates.
-*   **Drug Discovery:** Developing a new medicine usually takes over a decade. AI can simulate molecular interactions at lightning speed, predicting which chemical combinations might cure a disease before a physical lab test is ever run.
+*   **Cancer Detection:** AI algorithms, specifically **[Deep Learning](/learn/deep-learning)** models, are trained on millions of X-rays and MRI scans. They can spot early signs of tumors that are too small or faint for the human eye to catch, significantly increasing survival rates.
+*   **[Drug Discovery](https://www.nature.com/articles/d41586-023-03172-6):** Developing a new medicine usually takes over a decade. AI can simulate molecular interactions at lightning speed, predicting which chemical combinations might cure a disease before a physical lab test is ever run.
 *   **Robotic Surgery:** Surgeons use AI-powered robot arms that can perform incredibly delicate cuts with a level of steadiness and precision no human hand can match.
 
 ![AI in healthcare: Robotic surgery and digital diagnostics.](/images/learn/ai-basics/module-1-8.png)
@@ -29,7 +29,7 @@ Healthcare is perhaps the most critical area where AI is making an impact. It’
 If you’ve ever had your bank call you to ask about a "suspicious transaction," you have interacted with AI.
 
 *   **Fraud Detection:** AI systems monitor millions of transactions per second. They learn your spending habits instantly. If your card is suddenly used in a country you’ve never visited, the AI flags it as an anomaly and blocks it to protect your money.
-*   **Algorithmic Trading:** On Wall Street, humans aren't the only ones trading anymore. High-frequency trading algorithms analyze news, market trends, and social media sentiment to buy and sell stocks in milliseconds, reacting faster than any human broker could.
+*   **[Algorithmic Trading](https://www.investopedia.com/articles/active-trading/101014/basics-algorithmic-trading-concepts-and-examples.asp):** On Wall Street, humans aren't the only ones trading anymore. High-frequency trading algorithms analyze news, market trends, and social media sentiment to buy and sell stocks in milliseconds, reacting faster than any human broker could.
 
 ![AI in Finance: Algorithmic trading and fraud detection.](/images/learn/ai-basics/module-1-8-finance.png)
 

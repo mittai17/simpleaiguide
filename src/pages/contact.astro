@@ -109,6 +109,7 @@ import Layout from "../components/Layout.astro";
           <input
             type="hidden"
             name="_next"
+            id="next-redirect"
             value="https://simpleaiguide.tech/contact"
           />
           <div>
@@ -228,6 +229,15 @@ import Layout from "../components/Layout.astro";
   </div>
 
   <script>
+    // Set dynamic redirect URL to support localhost and production
+    const nextInput = document.getElementById(
+      "next-redirect",
+    ) as HTMLInputElement;
+    if (nextInput) {
+      nextInput.value =
+        window.location.origin + window.location.pathname + "?submitted=true";
+    }
+
     // Check for submitted parameter
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("submitted") === "true") {

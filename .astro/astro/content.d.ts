@@ -1,4 +1,15 @@
 declare module 'astro:content' {
+	interface Render {
+		'.mdx': Promise<{
+			Content: import('astro').MDXContent;
+			headings: import('astro').MarkdownHeading[];
+			remarkPluginFrontmatter: Record<string, any>;
+			components: import('astro').MDXInstance<{}>['components'];
+		}>;
+	}
+}
+
+declare module 'astro:content' {
 	interface RenderResult {
 		Content: import('astro/runtime/server/index.js').AstroComponentFactory;
 		headings: import('astro').MarkdownHeading[];
@@ -157,76 +168,76 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "learn": {
-"ai-basics/module-1/1-1-what-is-ai.md": {
-	id: "ai-basics/module-1/1-1-what-is-ai.md";
+"ai-basics/module-1/1-1-what-is-ai.mdx": {
+	id: "ai-basics/module-1/1-1-what-is-ai.mdx";
   slug: "ai-basics/module-1/1-1-what-is-ai";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-10-your-first-ai-project.md": {
-	id: "ai-basics/module-1/1-10-your-first-ai-project.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-10-your-first-ai-project.mdx": {
+	id: "ai-basics/module-1/1-10-your-first-ai-project.mdx";
   slug: "ai-basics/module-1/1-10-your-first-ai-project";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-2-why-now.md": {
-	id: "ai-basics/module-1/1-2-why-now.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-2-why-now.mdx": {
+	id: "ai-basics/module-1/1-2-why-now.mdx";
   slug: "ai-basics/module-1/1-2-why-now";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-3-history.md": {
-	id: "ai-basics/module-1/1-3-history.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-3-history.mdx": {
+	id: "ai-basics/module-1/1-3-history.mdx";
   slug: "ai-basics/module-1/1-3-history";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-4-types-of-ai.md": {
-	id: "ai-basics/module-1/1-4-types-of-ai.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-4-types-of-ai.mdx": {
+	id: "ai-basics/module-1/1-4-types-of-ai.mdx";
   slug: "ai-basics/module-1/1-4-types-of-ai";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-5-secret-life-of-ai.md": {
-	id: "ai-basics/module-1/1-5-secret-life-of-ai.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-5-secret-life-of-ai.mdx": {
+	id: "ai-basics/module-1/1-5-secret-life-of-ai.mdx";
   slug: "ai-basics/module-1/1-5-secret-life-of-ai";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-6-ai-vs-ml-vs-dl.md": {
-	id: "ai-basics/module-1/1-6-ai-vs-ml-vs-dl.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-6-ai-vs-ml-vs-dl.mdx": {
+	id: "ai-basics/module-1/1-6-ai-vs-ml-vs-dl.mdx";
   slug: "ai-basics/module-1/1-6-ai-vs-ml-vs-dl";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-7-neural-networks.md": {
-	id: "ai-basics/module-1/1-7-neural-networks.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-7-neural-networks.mdx": {
+	id: "ai-basics/module-1/1-7-neural-networks.mdx";
   slug: "ai-basics/module-1/1-7-neural-networks";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-8-ai-in-real-world.md": {
-	id: "ai-basics/module-1/1-8-ai-in-real-world.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-8-ai-in-real-world.mdx": {
+	id: "ai-basics/module-1/1-8-ai-in-real-world.mdx";
   slug: "ai-basics/module-1/1-8-ai-in-real-world";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
-"ai-basics/module-1/1-9-myths-about-ai.md": {
-	id: "ai-basics/module-1/1-9-myths-about-ai.md";
+} & { render(): Render[".mdx"] };
+"ai-basics/module-1/1-9-myths-about-ai.mdx": {
+	id: "ai-basics/module-1/1-9-myths-about-ai.mdx";
   slug: "ai-basics/module-1/1-9-myths-about-ai";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
 "machine-learning/what-is-ml.md": {
 	id: "machine-learning/what-is-ml.md";
   slug: "machine-learning/what-is-ml";

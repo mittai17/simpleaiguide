@@ -33,13 +33,13 @@ const relatedPosts = allPosts
 <Layout title={post.data.title}>
 	<div class="container mx-auto px-4 py-12 md:py-24">
 		<div class="flex flex-col lg:flex-row gap-12">
-			<!-- Table of Contents (Left Sidebar on Desktop) -->
-			<aside class="hidden lg:block w-64 flex-shrink-0 order-1">
+			<!-- Table of Contents (Right Sidebar on Desktop) -->
+			<aside class="hidden lg:block w-64 flex-shrink-0 order-2">
 				<TableOfContents headings={headings} />
 			</aside>
 
 			<!-- Main Content -->
-			<article class="w-full lg:flex-1 max-w-none order-2">
+			<article class="w-full lg:flex-1 max-w-none order-1">
 				<header class="mb-10 text-center lg:text-left">
 					<div
 						class="flex items-center justify-center lg:justify-start gap-4 text-sm text-slate-500 mb-4"

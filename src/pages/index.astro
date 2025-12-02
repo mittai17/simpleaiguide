@@ -48,250 +48,232 @@ const learnModules = allLearn
 					href="/about"
 					class="px-8 py-3.5 rounded-lg bg-white text-slate-700 font-semibold hover:bg-slate-50 transition-all border border-slate-200 hover:border-slate-300"
 				>
-					About This Site
+					<div
+						class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center"
+					>
+						<span class="text-xl">🚀</span>
+					</div>
 				</a>
-			</div>
-		</div>
-
-		<div class="flex-1 relative w-full max-w-xl">
-			<div
-				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] -z-10"
-			>
-			</div>
-			<img
-				src="/assets/ai-hero.png"
-				alt="Futuristic AI Brain Illustration"
-				class="w-full mx-auto drop-shadow-2xl animate-float relative z-10"
-			/>
-
-			<!-- Floating Elements Decoration -->
-			<div
-				class="absolute top-10 left-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow hidden md:block z-20"
-			>
 				<div
-					class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center"
+					class="absolute bottom-20 right-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow delay-700 hidden md:block z-20"
 				>
-					<span class="text-xl">🚀</span>
-				</div>
-			</div>
-			<div
-				class="absolute bottom-20 right-0 p-4 bg-white rounded-xl shadow-lg animate-bounce-slow delay-700 hidden md:block z-20"
-			>
-				<div
-					class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center"
-				>
-					<span class="text-xl">🪐</span>
-				</div>
-			</div>
-
-			<!-- New Space Elements -->
-			<div
-				class="absolute top-0 right-10 w-12 h-12 bg-slate-800 rounded-full opacity-80 animate-float-delayed hidden lg:flex items-center justify-center border-2 border-slate-700 z-0"
-			>
-				<div class="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
-			</div>
-			<div
-				class="absolute bottom-10 left-10 w-16 h-16 hidden lg:block opacity-60 animate-spin-slow pointer-events-none z-0"
-			>
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					class="w-full h-full text-slate-300"
-				>
-					<path
-						d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-dasharray="4 4"></path>
-					<path
-						d="M12 16a4 4 0 100-8 4 4 0 000 8z"
-						fill="currentColor"></path>
-				</svg>
-			</div>
-		</div>
-	</section>
-
-	<!-- Mission Control Section -->
-	<section class="container mx-auto px-4 py-16 relative z-10">
-		<div class="text-center mb-16">
-			<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-				Mission Control
-			</h2>
-			<p class="text-lg text-slate-600 max-w-2xl mx-auto">
-				Latest intelligence from our exploration. Choose your flight
-				path.
-			</p>
-		</div>
-
-		<div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-			<!-- Flight Training (Learn) -->
-			<div
-				class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
-			>
-				<div
-					class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-indigo-500/10"
-				>
-				</div>
-				<div class="flex items-center justify-between mb-8">
-					<h3
-						class="text-2xl font-bold text-slate-900 flex items-center gap-3"
+					<div
+						class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center"
 					>
-						<span
-							class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl"
-						>
-							👨‍🎓
-						</span>
-						Flight Training
-					</h3>
-					<a
-						href="/learn"
-						class="text-sm font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+						<span class="text-xl">🪐</span>
+					</div>
+				</div>
+
+				<!-- New Space Elements -->
+				<div
+					class="absolute top-0 right-10 w-12 h-12 bg-slate-800 rounded-full opacity-80 animate-float-delayed hidden lg:flex items-center justify-center border-2 border-slate-700 z-0"
+				>
+					<div class="w-2 h-2 bg-red-500 rounded-full animate-ping">
+					</div>
+				</div>
+				<div
+					class="absolute bottom-10 left-10 w-16 h-16 hidden lg:block opacity-60 animate-spin-slow pointer-events-none z-0"
+				>
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						class="w-full h-full text-slate-300"
 					>
-						View All <svg
-							class="w-4 h-4"
-							fill="none"
+						<path
+							d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
 							stroke="currentColor"
-							viewBox="0 0 24 24"
-							><path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-						>
-					</a>
+							stroke-width="2"
+							stroke-dasharray="4 4"></path>
+						<path
+							d="M12 16a4 4 0 100-8 4 4 0 000 8z"
+							fill="currentColor"></path>
+					</svg>
 				</div>
-				<div class="space-y-4">
-					{
-						learnModules.map((module) => (
-							<a
-								href={`/learn/${module.slug}`}
-								class="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-100 hover:border-indigo-100"
+			</div>
+		</div>
+
+		<!-- Mission Control Section -->
+		<section class="container mx-auto px-4 py-16 relative z-10">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+					Mission Control
+				</h2>
+				<p class="text-lg text-slate-600 max-w-2xl mx-auto">
+					Latest intelligence from our exploration. Choose your flight
+					path.
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+				<!-- Flight Training (Learn) -->
+				<div
+					class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
+				>
+					<div
+						class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-indigo-500/10"
+					>
+					</div>
+					<div class="flex items-center justify-between mb-8">
+						<h3
+							class="text-2xl font-bold text-slate-900 flex items-center gap-3"
+						>
+							<span
+								class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl"
 							>
-								<div class="flex items-center justify-between mb-2">
-									<span class="text-xs font-bold uppercase tracking-wider text-indigo-500">
-										{module.data.category.replace(
-											/-/g,
-											" ",
-										)}
-									</span>
-									{module.data.level && (
-										<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white text-slate-500 border border-slate-100">
-											{module.data.level}
+								👨‍🎓
+							</span>
+							Flight Training
+						</h3>
+						<a
+							href="/learn"
+							class="text-sm font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+						>
+							View All <svg
+								class="w-4 h-4"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								><path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+							>
+						</a>
+					</div>
+					<div class="space-y-4">
+						{
+							learnModules.map((module) => (
+								<a
+									href={`/learn/${module.slug}`}
+									class="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 transition-colors border border-slate-100 hover:border-indigo-100"
+								>
+									<div class="flex items-center justify-between mb-2">
+										<span class="text-xs font-bold uppercase tracking-wider text-indigo-500">
+											{module.data.category.replace(
+												/-/g,
+												" ",
+											)}
 										</span>
-									)}
-								</div>
-								<h4 class="font-bold text-slate-900 mb-1">
-									{module.data.title}
-								</h4>
-								<p class="text-sm text-slate-600 line-clamp-2">
-									{module.data.description}
-								</p>
-							</a>
-						))
-					}
-				</div>
-			</div>
-
-			<!-- Captain's Log (Blog) -->
-			<div
-				class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
-			>
-				<div
-					class="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-sky-500/10"
-				>
-				</div>
-				<div class="flex items-center justify-between mb-8">
-					<h3
-						class="text-2xl font-bold text-slate-900 flex items-center gap-3"
-					>
-						<span
-							class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl"
-						>
-							📡
-						</span>
-						Captain's Log
-					</h3>
-					<a
-						href="/blog"
-						class="text-sm font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1"
-					>
-						View All <svg
-							class="w-4 h-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							><path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-						>
-					</a>
-				</div>
-				<div class="space-y-4">
-					{
-						latestPosts.map((post) => (
-							<a
-								href={`/blog/${post.slug}`}
-								class="block p-4 rounded-xl bg-slate-50 hover:bg-sky-50 transition-colors border border-slate-100 hover:border-sky-100"
-							>
-								<div class="flex items-center justify-between mb-2">
-									<span class="text-xs font-bold uppercase tracking-wider text-sky-500">
-										{post.data.category}
-									</span>
-									<time
-										datetime={post.data.pubDate.toISOString()}
-										class="text-xs text-slate-400"
-									>
-										{post.data.pubDate.toLocaleDateString(
-											"en-US",
-											{
-												month: "short",
-												day: "numeric",
-											},
+										{module.data.level && (
+											<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white text-slate-500 border border-slate-100">
+												{module.data.level}
+											</span>
 										)}
-									</time>
-								</div>
-								<h4 class="font-bold text-slate-900 mb-1">
-									{post.data.title}
-								</h4>
-								<p class="text-sm text-slate-600 line-clamp-2">
-									{post.data.description}
-								</p>
-							</a>
-						))
-					}
+									</div>
+									<h4 class="font-bold text-slate-900 mb-1">
+										{module.data.title}
+									</h4>
+									<p class="text-sm text-slate-600 line-clamp-2">
+										{module.data.description}
+									</p>
+								</a>
+							))
+						}
+					</div>
+				</div>
+
+				<!-- Captain's Log (Blog) -->
+				<div
+					class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-all"
+				>
+					<div
+						class="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-sky-500/10"
+					>
+					</div>
+					<div class="flex items-center justify-between mb-8">
+						<h3
+							class="text-2xl font-bold text-slate-900 flex items-center gap-3"
+						>
+							<span
+								class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl"
+							>
+								📡
+							</span>
+							Captain's Log
+						</h3>
+						<a
+							href="/blog"
+							class="text-sm font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1"
+						>
+							View All <svg
+								class="w-4 h-4"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								><path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+							>
+						</a>
+					</div>
+					<div class="space-y-4">
+						{
+							latestPosts.map((post) => (
+								<a
+									href={`/blog/${post.slug}`}
+									class="block p-4 rounded-xl bg-slate-50 hover:bg-sky-50 transition-colors border border-slate-100 hover:border-sky-100"
+								>
+									<div class="flex items-center justify-between mb-2">
+										<span class="text-xs font-bold uppercase tracking-wider text-sky-500">
+											{post.data.category}
+										</span>
+										<time
+											datetime={post.data.pubDate.toISOString()}
+											class="text-xs text-slate-400"
+										>
+											{post.data.pubDate.toLocaleDateString(
+												"en-US",
+												{
+													month: "short",
+													day: "numeric",
+												},
+											)}
+										</time>
+									</div>
+									<h4 class="font-bold text-slate-900 mb-1">
+										{post.data.title}
+									</h4>
+									<p class="text-sm text-slate-600 line-clamp-2">
+										{post.data.description}
+									</p>
+								</a>
+							))
+						}
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	</section>
-</Layout>
 
-<style>
-	@keyframes float {
-		0% {
-			transform: translateY(0px);
+	<style>
+		@keyframes float {
+			0% {
+				transform: translateY(0px);
+			}
+			50% {
+				transform: translateY(-20px);
+			}
+			100% {
+				transform: translateY(0px);
+			}
 		}
-		50% {
-			transform: translateY(-20px);
+		@keyframes bounce-slow {
+			0%,
+			100% {
+				transform: translateY(0);
+			}
+			50% {
+				transform: translateY(-10px);
+			}
 		}
-		100% {
-			transform: translateY(0px);
+		.animate-float {
+			animation: float 6s ease-in-out infinite;
 		}
-	}
-	@keyframes bounce-slow {
-		0%,
-		100% {
-			transform: translateY(0);
+		.animate-bounce-slow {
+			animation: bounce-slow 4s ease-in-out infinite;
 		}
-		50% {
-			transform: translateY(-10px);
-		}
-	}
-	.animate-float {
-		animation: float 6s ease-in-out infinite;
-	}
-	.animate-bounce-slow {
-		animation: bounce-slow 4s ease-in-out infinite;
-	}
-</style>
+	</style>
+</Layout>

@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("learn");
+console.log("--- DEBUG INFO ---");
+console.log("Total posts:", posts.length);
+posts.forEach((p) => {
+    console.log(
+        `Slug: ${p.slug}, Category: ${p.data.category}, Order: ${p.data.order}`,
+    );
+});
+console.log("--- END DEBUG INFO ---");
+---
+
+<html>
+    <body>
+        <h1>Debug Page</h1>
+        <p>Check server console for output.</p>
+    </body>
+</html>

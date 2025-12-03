@@ -238,13 +238,48 @@ declare module 'astro:content' {
   collection: "learn";
   data: InferEntrySchema<"learn">
 } & { render(): Render[".mdx"] };
-"machine-learning/what-is-ml.md": {
-	id: "machine-learning/what-is-ml.md";
-  slug: "machine-learning/what-is-ml";
+"machine-learning/module-2/2-1-what-is-ml.mdx": {
+	id: "machine-learning/module-2/2-1-what-is-ml.mdx";
+  slug: "machine-learning/module-2/2-1-what-is-ml";
   body: string;
   collection: "learn";
   data: InferEntrySchema<"learn">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
+"machine-learning/module-2/2-2-why-ml-matters.mdx": {
+	id: "machine-learning/module-2/2-2-why-ml-matters.mdx";
+  slug: "machine-learning/module-2/2-2-why-ml-matters";
+  body: string;
+  collection: "learn";
+  data: InferEntrySchema<"learn">
+} & { render(): Render[".mdx"] };
+"machine-learning/module-2/2-3-history-of-ml.mdx": {
+	id: "machine-learning/module-2/2-3-history-of-ml.mdx";
+  slug: "machine-learning/module-2/2-3-history-of-ml";
+  body: string;
+  collection: "learn";
+  data: InferEntrySchema<"learn">
+} & { render(): Render[".mdx"] };
+"machine-learning/module-2/2-4-ml-vs-traditional.mdx": {
+	id: "machine-learning/module-2/2-4-ml-vs-traditional.mdx";
+  slug: "machine-learning/module-2/2-4-ml-vs-traditional";
+  body: string;
+  collection: "learn";
+  data: InferEntrySchema<"learn">
+} & { render(): Render[".mdx"] };
+"machine-learning/module-2/2-5-why-ml-works.mdx": {
+	id: "machine-learning/module-2/2-5-why-ml-works.mdx";
+  slug: "machine-learning/module-2/2-5-why-ml-works";
+  body: string;
+  collection: "learn";
+  data: InferEntrySchema<"learn">
+} & { render(): Render[".mdx"] };
+"machine-learning/module-2/2-6-types-of-ml.mdx": {
+	id: "machine-learning/module-2/2-6-types-of-ml.mdx";
+  slug: "machine-learning/module-2/2-6-types-of-ml";
+  body: string;
+  collection: "learn";
+  data: InferEntrySchema<"learn">
+} & { render(): Render[".mdx"] };
 };
 
 	};

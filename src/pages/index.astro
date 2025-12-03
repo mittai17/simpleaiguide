@@ -9,10 +9,6 @@ const latestPosts = allPosts
 	.slice(0, 3);
 
 const allLearn = await getCollection("learn");
-console.log(
-	"DEBUG SLUGS:",
-	allLearn.map((p) => p.slug),
-);
 const learnModules = allLearn
 	.sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
 	.slice(0, 3);
@@ -71,62 +67,74 @@ const learnModules = allLearn
 		<!-- Hero Featured Cards -->
 		<div class="flex-1 w-full max-w-md lg:max-w-lg relative z-10">
 			<!-- Mobile: Horizontal Scroll Snap, Desktop: Grid -->
-			<div
-				class="flex md:grid md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 gap-5 no-scrollbar"
-			>
-				<!-- Featured Lesson Card -->
-				<a
-					href="/learn/ai-basics/module-1/1-1-what-is-ai"
-					class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg md:shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100 min-w-[85%] md:min-w-0 snap-center"
+			<div class="relative">
+				<div
+					class="flex md:grid md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 gap-5 no-scrollbar"
 				>
-					<div
-						class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-indigo-50 transition-transform group-hover:scale-150"
+					<!-- Featured Lesson Card -->
+					<a
+						href="/learn/ai-basics/module-1/1-1-what-is-ai"
+						class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg md:shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100 min-w-[85%] md:min-w-0 snap-center"
 					>
-					</div>
-					<div class="relative z-10">
-						<span
-							class="mb-2 inline-block rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-indigo-600"
+						<div
+							class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-indigo-50 transition-transform group-hover:scale-150"
 						>
-							Start Here
-						</span>
-						<h3
-							class="mb-2 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors"
-						>
-							What is Artificial Intelligence?
-						</h3>
-						<p class="text-sm text-slate-600">
-							The perfect starting point. Understand the core
-							concepts of AI in 5 minutes.
-						</p>
-					</div>
-				</a>
+						</div>
+						<div class="relative z-10">
+							<span
+								class="mb-2 inline-block rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-indigo-600"
+							>
+								Start Here
+							</span>
+							<h3
+								class="mb-2 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors"
+							>
+								What is Artificial Intelligence?
+							</h3>
+							<p class="text-sm text-slate-600">
+								The perfect starting point. Understand the core
+								concepts of AI in 5 minutes.
+							</p>
+						</div>
+					</a>
 
-				<!-- Featured Blog Card -->
-				<a
-					href="/blog/best-ai-tools/i-tried-289-ai-tools"
-					class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg md:shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100 min-w-[85%] md:min-w-0 snap-center"
-				>
-					<div
-						class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-50 transition-transform group-hover:scale-150"
+					<!-- Featured Blog Card -->
+					<a
+						href="/blog/best-ai-tools/i-tried-289-ai-tools"
+						class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg md:shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100 min-w-[85%] md:min-w-0 snap-center"
 					>
-					</div>
-					<div class="relative z-10">
-						<span
-							class="mb-2 inline-block rounded-full bg-purple-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-600"
+						<div
+							class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-50 transition-transform group-hover:scale-150"
 						>
-							Trending
-						</span>
-						<h3
-							class="mb-2 text-xl font-bold text-slate-900 group-hover:text-purple-600 transition-colors"
-						>
-							I Tried 289 AI Tools
-						</h3>
-						<p class="text-sm text-slate-600">
-							The best tools for making money online in 2025.
-							Tested and verified.
-						</p>
-					</div>
-				</a>
+						</div>
+						<div class="relative z-10">
+							<span
+								class="mb-2 inline-block rounded-full bg-purple-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-600"
+							>
+								Trending
+							</span>
+							<h3
+								class="mb-2 text-xl font-bold text-slate-900 group-hover:text-purple-600 transition-colors"
+							>
+								I Tried 289 AI Tools
+							</h3>
+							<p class="text-sm text-slate-600">
+								The best tools for making money online in 2025.
+								Tested and verified.
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- Mobile Scroll Hint -->
+				<div
+					class="md:hidden absolute bottom-0 left-0 w-full flex justify-center pointer-events-none"
+				>
+					<span
+						class="text-xs text-slate-400 bg-white/80 backdrop-blur px-3 py-1 rounded-full shadow-sm border border-slate-100"
+					>
+						Swipe to explore →
+					</span>
+				</div>
 			</div>
 
 			<!-- Decorative Blobs -->

@@ -182,27 +182,62 @@ const links = [
     class="fixed inset-0 z-40 bg-white md:hidden transition-all duration-300 ease-in-out opacity-0 invisible translate-x-full"
   >
     <div class="flex flex-col h-full pt-24 px-6 pb-8 overflow-y-auto">
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
         <a
           href="/"
-          class="text-2xl font-bold text-slate-900 py-5 border-b border-slate-100"
-          >Home</a
+          class="flex items-center gap-3 text-xl font-bold text-slate-900 py-4 px-2 border-b border-slate-50 hover:bg-slate-50 rounded-xl transition-colors"
         >
-
-        <!-- Learn Accordion -->
-        <div class="border-b border-slate-100 py-5">
-          <button
-            class="flex items-center justify-between w-full text-2xl font-bold text-slate-900 focus:outline-none accordion-btn"
-            data-target="learn-accordion"
-          >
-            Learn
+          <span class="p-2 bg-indigo-50 rounded-lg text-indigo-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="2"
               stroke="currentColor"
-              class="w-6 h-6 transition-transform duration-300"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+              ></path>
+            </svg>
+          </span>
+          Home
+        </a>
+
+        <!-- Learn Accordion -->
+        <div class="border-b border-slate-50 py-2">
+          <button
+            class="flex items-center justify-between w-full text-xl font-bold text-slate-900 focus:outline-none accordion-btn p-2 hover:bg-slate-50 rounded-xl transition-colors"
+            data-target="learn-accordion"
+          >
+            <div class="flex items-center gap-3">
+              <span class="p-2 bg-emerald-50 rounded-lg text-emerald-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.216 50.59 50.59 0 00-2.658.813m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+                  ></path>
+                </svg>
+              </span>
+              Learn
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5 text-slate-400 transition-transform duration-300"
             >
               <path
                 stroke-linecap="round"
@@ -214,30 +249,32 @@ const links = [
             id="learn-accordion"
             class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <div class="flex flex-col gap-4 pt-6 pl-2">
+            <div
+              class="flex flex-col gap-2 pt-2 pl-4 border-l-2 border-slate-100 ml-6 my-2"
+            >
               <a
                 href="/learn/ai-basics"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >AI Basics</a
               >
               <a
                 href="/learn/machine-learning"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Machine Learning</a
               >
               <a
                 href="/learn/deep-learning"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Deep Learning</a
               >
               <a
                 href="/learn/python-for-ai"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Python for AI</a
               >
               <a
                 href="/learn/math-for-ai"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Math for AI</a
               >
             </div>
@@ -245,19 +282,37 @@ const links = [
         </div>
 
         <!-- Blog Accordion -->
-        <div class="border-b border-slate-100 py-5">
+        <div class="border-b border-slate-50 py-2">
           <button
-            class="flex items-center justify-between w-full text-2xl font-bold text-slate-900 focus:outline-none accordion-btn"
+            class="flex items-center justify-between w-full text-xl font-bold text-slate-900 focus:outline-none accordion-btn p-2 hover:bg-slate-50 rounded-xl transition-colors"
             data-target="blog-accordion"
           >
-            Blog
+            <div class="flex items-center gap-3">
+              <span class="p-2 bg-purple-50 rounded-lg text-purple-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                  ></path>
+                </svg>
+              </span>
+              Blog
+            </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="2"
               stroke="currentColor"
-              class="w-6 h-6 transition-transform duration-300"
+              class="w-5 h-5 text-slate-400 transition-transform duration-300"
             >
               <path
                 stroke-linecap="round"
@@ -269,30 +324,32 @@ const links = [
             id="blog-accordion"
             class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <div class="flex flex-col gap-4 pt-6 pl-2">
+            <div
+              class="flex flex-col gap-2 pt-2 pl-4 border-l-2 border-slate-100 ml-6 my-2"
+            >
               <a
                 href="/blog/best-ai-tools"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Best AI Tools</a
               >
               <a
                 href="/blog/comparisons"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Comparisons</a
               >
               <a
                 href="/blog/prompt-engineering"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Prompt Engineering</a
               >
               <a
                 href="/blog/automation"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >Automation</a
               >
               <a
                 href="/blog/news"
-                class="text-xl font-medium text-slate-600 hover:text-indigo-600"
+                class="text-lg font-medium text-slate-600 hover:text-indigo-600 py-2 px-2 rounded-lg hover:bg-slate-50"
                 >AI News</a
               >
             </div>
@@ -301,14 +358,48 @@ const links = [
 
         <a
           href="/about"
-          class="text-2xl font-bold text-slate-900 py-5 border-b border-slate-100"
-          >About</a
+          class="flex items-center gap-3 text-xl font-bold text-slate-900 py-4 px-2 border-b border-slate-50 hover:bg-slate-50 rounded-xl transition-colors"
         >
+          <span class="p-2 bg-blue-50 rounded-lg text-blue-600">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+              ></path>
+            </svg>
+          </span>
+          About
+        </a>
         <a
           href="/contact"
-          class="text-2xl font-bold text-slate-900 py-5 border-b border-slate-100"
-          >Contact</a
+          class="flex items-center gap-3 text-xl font-bold text-slate-900 py-4 px-2 border-b border-slate-50 hover:bg-slate-50 rounded-xl transition-colors"
         >
+          <span class="p-2 bg-orange-50 rounded-lg text-orange-600">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+              ></path>
+            </svg>
+          </span>
+          Contact
+        </a>
       </div>
 
       <div class="mt-8">

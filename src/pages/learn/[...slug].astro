@@ -63,26 +63,33 @@ const nextPost =
             <div class="lg:hidden w-full mb-6">
                 <button
                     id="course-menu-btn"
-                    class="flex items-center justify-between w-full px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm text-slate-700 font-medium hover:border-indigo-300 transition-colors"
+                    class="flex items-center justify-between w-full px-5 py-4 bg-white border border-slate-200 rounded-xl shadow-sm text-slate-900 font-bold hover:border-indigo-300 hover:shadow-md transition-all active:scale-[0.99]"
                 >
-                    <span class="flex items-center gap-2">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-5 h-5"
+                    <span class="flex items-center gap-3">
+                        <span
+                            class="p-1.5 bg-indigo-50 rounded-lg text-indigo-600"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                            ></path>
-                        </svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                class="w-5 h-5"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                                ></path>
+                            </svg>
+                        </span>
                         Course Menu
                     </span>
-                    <span class="text-xs text-slate-400">Tap to navigate</span>
+                    <span
+                        class="text-xs font-medium text-slate-500 bg-slate-50 px-2 py-1 rounded-md border border-slate-100"
+                        >Tap to navigate</span
+                    >
                 </button>
             </div>
 

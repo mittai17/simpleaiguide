@@ -9,6 +9,10 @@ const latestPosts = allPosts
 	.slice(0, 3);
 
 const allLearn = await getCollection("learn");
+console.log(
+	"DEBUG SLUGS:",
+	allLearn.map((p) => p.slug),
+);
 const learnModules = allLearn
 	.sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
 	.slice(0, 3);

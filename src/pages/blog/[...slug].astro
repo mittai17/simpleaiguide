@@ -32,8 +32,8 @@ const relatedPosts = allPosts
 ---
 
 <Layout title={post.data.title}>
-	<div class="container mx-auto px-4 py-12 md:py-24">
-		<div class="flex flex-col lg:flex-row gap-8">
+	<div class="container-custom py-12 md:py-20">
+		<div class="flex flex-col lg:flex-row gap-12">
 			<!-- Sidebar (Left) -->
 			<Sidebar
 				currentSlug={post.slug}
@@ -42,18 +42,26 @@ const relatedPosts = allPosts
 
 			<!-- Table of Contents (Right Sidebar on Desktop) -->
 			<aside class="hidden xl:block w-64 flex-shrink-0 order-3">
-				<TableOfContents headings={headings} />
+				<div class="sticky top-24">
+					<TableOfContents headings={headings} />
+				</div>
 			</aside>
 
 			<!-- Main Content -->
 			<article class="w-full lg:flex-1 max-w-none order-2 min-w-0">
-				<header class="mb-10 text-center lg:text-left">
+				<header class="mb-12 text-center">
 					<div
-						class="flex items-center justify-center lg:justify-start gap-4 text-sm text-slate-500 mb-4"
+						class="flex items-center justify-center gap-4 text-sm text-slate-500 mb-6"
 					>
+						<span
+							class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 font-bold text-xs uppercase tracking-wider"
+						>
+							{post.data.category}
+						</span>
+						<span>•</span>
 						<time
 							datetime={post.data.pubDate.toISOString()}
-							class="text-indigo-600 font-medium"
+							class="font-medium"
 						>
 							{
 								post.data.pubDate.toLocaleDateString("en-US", {
@@ -67,15 +75,13 @@ const relatedPosts = allPosts
 						<span>{readingTime} min read</span>
 					</div>
 					<h1
-						class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-slate-900"
+						class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-slate-900 max-w-4xl mx-auto"
 					>
 						{post.data.title}
 					</h1>
 
 					<!-- Social Share -->
-					<div
-						class="flex items-center justify-center lg:justify-start gap-3 mb-8"
-					>
+					<div class="flex items-center justify-center gap-3 mb-8">
 						<span
 							class="text-xs font-bold text-slate-400 uppercase tracking-wider"
 							>Share:</span
@@ -85,6 +91,7 @@ const relatedPosts = allPosts
 							target="_blank"
 							rel="noopener noreferrer"
 							class="p-2 rounded-full bg-slate-100 hover:bg-[#1DA1F2] hover:text-white transition-colors text-slate-600"
+							aria-label="Share on Twitter"
 						>
 							<svg
 								class="w-4 h-4"
@@ -101,6 +108,7 @@ const relatedPosts = allPosts
 							target="_blank"
 							rel="noopener noreferrer"
 							class="p-2 rounded-full bg-slate-100 hover:bg-[#4267B2] hover:text-white transition-colors text-slate-600"
+							aria-label="Share on Facebook"
 						>
 							<svg
 								class="w-4 h-4"
@@ -118,6 +126,7 @@ const relatedPosts = allPosts
 							target="_blank"
 							rel="noopener noreferrer"
 							class="p-2 rounded-full bg-slate-100 hover:bg-[#0077b5] hover:text-white transition-colors text-slate-600"
+							aria-label="Share on LinkedIn"
 						>
 							<svg
 								class="w-4 h-4"
@@ -134,13 +143,13 @@ const relatedPosts = allPosts
 				</header>
 
 				<div
-					class="prose prose-lg prose-slate max-w-none prose-headings:text-slate-900 prose-a:text-indigo-600 hover:prose-a:text-indigo-700 prose-img:rounded-xl"
+					class="prose prose-lg prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-a:text-indigo-600 hover:prose-a:text-indigo-700 prose-img:rounded-2xl prose-img:shadow-lg"
 				>
 					<Content components={{ YouTubeEmbed }} />
 				</div>
 
 				<!-- Post-Content Ad -->
-				<AdPlaceholder label="Sponsored Content" className="mt-12" />
+				<AdPlaceholder label="Sponsored Content" className="mt-16" />
 
 				<!-- Related Posts -->
 				<RelatedPosts posts={relatedPosts} />

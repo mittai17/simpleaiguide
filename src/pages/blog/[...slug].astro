@@ -4,6 +4,7 @@ import Sidebar from "../../components/Sidebar.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import AdPlaceholder from "../../components/AdPlaceholder.astro";
 import RelatedPosts from "../../components/RelatedPosts.astro";
+import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -135,7 +136,7 @@ const relatedPosts = allPosts
 				<div
 					class="prose prose-lg prose-slate max-w-none prose-headings:text-slate-900 prose-a:text-indigo-600 hover:prose-a:text-indigo-700 prose-img:rounded-xl"
 				>
-					<Content />
+					<Content components={{ YouTubeEmbed }} />
 				</div>
 
 				<!-- Post-Content Ad -->

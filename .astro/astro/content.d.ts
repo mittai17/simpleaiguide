@@ -159,6 +159,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"best-ai-tools/the-agentic-shift.mdx": {
+	id: "best-ai-tools/the-agentic-shift.mdx";
+  slug: "best-ai-tools/the-agentic-shift";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "welcome.md": {
 	id: "welcome.md";
   slug: "welcome";

@@ -52,11 +52,42 @@ const {
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
 		<meta
 			property="twitter:image"
 			content={new URL("/social-image.png", Astro.site)}
 		/>
+
+		<!-- Schema.org JSON-LD -->
+		<script type="application/ld+json" is:inline>
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "WebSite",
+						"@id": "https://simpleaiguide.tech/#website",
+						"url": "https://simpleaiguide.tech/",
+						"name": "Simple AI Guide",
+						"description": "Learn Artificial Intelligence for free. A step-by-step guide to AI, Machine Learning, and tools like ChatGPT.",
+						"publisher": {
+							"@id": "https://simpleaiguide.tech/#organization"
+						}
+					},
+					{
+						"@type": "Organization",
+						"@id": "https://simpleaiguide.tech/#organization",
+						"name": "Simple AI Guide",
+						"url": "https://simpleaiguide.tech/",
+						"logo": {
+							"@type": "ImageObject",
+							"url": "https://simpleaiguide.tech/assets/logo.png",
+							"width": 512,
+							"height": 512
+						},
+						"sameAs": ["https://twitter.com/simpleaiguide"]
+					}
+				]
+			}
+		</script>
 	</head>
 	<body
 		class="bg-white text-slate-900 min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 relative overflow-x-hidden"

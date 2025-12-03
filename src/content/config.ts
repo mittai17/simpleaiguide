@@ -11,6 +11,7 @@ const blogCollection = defineCollection({
         category: z.string().default('Uncategorized'),
         tags: z.array(z.string()).default([]),
         featured: z.boolean().default(false),
+        keyTakeaways: z.array(z.string()).optional(),
     }),
 });
 
@@ -23,6 +24,7 @@ const learnCollection = defineCollection({
         tags: z.array(z.string()).default([]),
         level: z.string().optional(),
         pubDate: z.string().or(z.date()).optional().transform((val) => val ? new Date(val) : undefined),
+        keyTakeaways: z.array(z.string()).optional(),
     })
 });
 

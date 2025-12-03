@@ -64,7 +64,9 @@ const nextPost =
             <!-- Sidebar (Desktop: Left, Mobile: Hidden/Drawer) -->
             <!-- Sidebar (Desktop: Left) -->
             <aside class="hidden lg:block w-64 flex-shrink-0">
-                <div class="sticky top-24">
+                <div
+                    class="sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar"
+                >
                     <LearnSidebar
                         activeSlug={post.slug}
                         activeCategory={post.data.category}

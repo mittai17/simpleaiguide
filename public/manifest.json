@@ -1,0 +1,21 @@
+{
+    "name": "Simple AI Guide",
+    "short_name": "SimpleAI",
+    "description": "Learn Artificial Intelligence for free. A step-by-step guide to AI, Machine Learning, and tools like ChatGPT.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4f46e5",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

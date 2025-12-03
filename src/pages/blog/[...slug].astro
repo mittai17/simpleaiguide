@@ -79,7 +79,9 @@ const relatedPosts = allPosts
 
 			<!-- Table of Contents (Right Sidebar on Desktop) -->
 			<aside class="hidden xl:block w-64 flex-shrink-0 order-3">
-				<div class="sticky top-24">
+				<div
+					class="sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar"
+				>
 					<TableOfContents headings={headings} />
 				</div>
 			</aside>

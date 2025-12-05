@@ -33,7 +33,22 @@ const {
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
 			rel="stylesheet"
 		/>
-		<title>{title}</title>
+		<title>{title} | Simple AI Guide</title>
+
+		<!-- Google Analytics (GA4) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+		></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-XXXXXXXXXX");
+		</script>
 
 		<!-- Canonical URL -->
 		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
@@ -79,7 +94,7 @@ const {
 						"url": "https://simpleaiguide.tech/",
 						"logo": {
 							"@type": "ImageObject",
-							"url": "https://simpleaiguide.tech/assets/logo.png",
+							"url": "https://simpleaiguide.tech/assets/logo.webp",
 							"width": 512,
 							"height": 512
 						},

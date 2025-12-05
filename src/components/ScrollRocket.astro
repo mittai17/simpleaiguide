@@ -1,15 +1,26 @@
 <div
     id="scroll-progress-container"
-    class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-[100]"
+    class="fixed top-0 left-0 w-full h-1 bg-slate-100 z-40"
 >
     <div
         id="scroll-progress-bar"
         class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 w-0 transition-all duration-100 ease-out relative"
     >
         <div
-            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-xl transform rotate-45"
+            id="rocket-icon"
+            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-xl transform rotate-45 opacity-0 transition-opacity duration-300"
         >
-            🚀
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-5 h-5 text-indigo-600"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M9.315 7.584C12.195 3.883 16.695 1.5 21.75 1.5a.75.75 0 01.75.75c0 5.056-2.383 9.555-6.084 12.436h.008c.64.223 1.243.51 1.782.85l2.975 1.886a.75.75 0 01.09 1.15l-1.35 1.35a.75.75 0 01-1.15.09l-1.886-2.975a7.383 7.383 0 01-.85-1.782v.008c-2.881 3.7-7.38 6.084-12.436 6.084a.75.75 0 01-.75-.75c0-5.056 2.383-9.555 6.084-12.436V7.584zm-2.55 6.4c-2.028 1.99-4.28 3.3-6.765 3.765a.75.75 0 01-.83-.496c-.167-.458-.09-.968.202-1.36 1.117-1.496 2.57-2.779 4.252-3.755.306-.178.674-.15.955.07l2.186 1.776zM15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                    clip-rule="evenodd"></path>
+            </svg>
         </div>
     </div>
 </div>
@@ -31,9 +42,20 @@
                 const progressBar = document.getElementById(
                     "scroll-progress-bar",
                 );
+                const rocketIcon = document.getElementById("rocket-icon");
+
                 if (progressBar) {
                     progressBar.style.width = scrolled + "%";
                 }
+
+                if (rocketIcon) {
+                    if (scrolled > 1) {
+                        rocketIcon.classList.remove("opacity-0");
+                    } else {
+                        rocketIcon.classList.add("opacity-0");
+                    }
+                }
+
                 ticking = false;
             });
 

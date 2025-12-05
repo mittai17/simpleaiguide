@@ -7,17 +7,23 @@ interface Crumb {
 const { items } = Astro.props as { items: Crumb[] };
 ---
 
-<nav class="mb-4 text-xs text-slate-400">
+<nav class="mb-4 text-xs text-slate-400 flex items-center flex-wrap gap-1">
     {
         items.map((item, index) => (
             <>
-                {index > 0 && <span class="mx-1 text-slate-600">/</span>}
+                {index > 0 && <span class="text-slate-600">/</span>}
                 {item.href ? (
-                    <a href={item.href} class="hover:text-sky-300">
+                    <a
+                        href={item.href}
+                        class="hover:text-sky-300 whitespace-nowrap"
+                    >
                         {item.label}
                     </a>
                 ) : (
-                    <span class="text-slate-300 truncate block max-w-[150px] sm:max-w-none">
+                    <span
+                        class="text-slate-300 truncate max-w-[150px] sm:max-w-xs"
+                        title={item.label}
+                    >
                         {item.label}
                     </span>
                 )}

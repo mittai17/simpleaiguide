@@ -166,13 +166,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"welcome.md": {
-	id: "welcome.md";
-  slug: "welcome";
+"comparisons/stop-using-chatgpt-2025.mdx": {
+	id: "comparisons/stop-using-chatgpt-2025.mdx";
+  slug: "comparisons/stop-using-chatgpt-2025";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
 };
 "learn": {
 "ai-basics/module-1/1-1-what-is-ai.mdx": {

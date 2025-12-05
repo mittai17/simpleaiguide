@@ -15,17 +15,29 @@
 </div>
 
 <script>
-    window.addEventListener("scroll", () => {
-        const winScroll =
-            document.body.scrollTop || document.documentElement.scrollTop;
-        const height =
-            document.documentElement.scrollHeight -
-            document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
+    let ticking = false;
 
-        const progressBar = document.getElementById("scroll-progress-bar");
-        if (progressBar) {
-            progressBar.style.width = scrolled + "%";
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const winScroll =
+                    document.body.scrollTop ||
+                    document.documentElement.scrollTop;
+                const height =
+                    document.documentElement.scrollHeight -
+                    document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+
+                const progressBar = document.getElementById(
+                    "scroll-progress-bar",
+                );
+                if (progressBar) {
+                    progressBar.style.width = scrolled + "%";
+                }
+                ticking = false;
+            });
+
+            ticking = true;
         }
     });
 </script>

@@ -5,6 +5,8 @@ import TableOfContents from "../../components/TableOfContents.astro";
 import AdPlaceholder from "../../components/AdPlaceholder.astro";
 import RelatedPosts from "../../components/RelatedPosts.astro";
 import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import MobileTableOfContents from "../../components/MobileTableOfContents.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -63,7 +65,7 @@ const relatedPosts = allPosts
 		})}
 	/>
 
-	<div class="container-custom py-12 md:py-20">
+	<div class="container-custom py-8 md:py-20">
 		<div class="flex flex-col lg:flex-row gap-12">
 			<!-- Sidebar (Left) -->
 			<aside class="hidden lg:block w-1/4 flex-shrink-0">
@@ -88,7 +90,17 @@ const relatedPosts = allPosts
 
 			<!-- Main Content -->
 			<article class="w-full lg:flex-1 max-w-none order-2 min-w-0">
-				<header class="mb-12 text-center">
+				<div class="mb-8">
+					<Breadcrumbs
+						items={[
+							{ label: "Home", href: "/" },
+							{ label: "Blog", href: "/blog" },
+							{ label: post.data.title },
+						]}
+					/>
+				</div>
+
+				<header class="mb-8 md:mb-12 text-center">
 					<div
 						class="flex items-center justify-center gap-4 text-sm text-slate-500 mb-6"
 					>
@@ -114,10 +126,13 @@ const relatedPosts = allPosts
 						<span>{readingTime} min read</span>
 					</div>
 					<h1
-						class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-slate-900 max-w-4xl mx-auto"
+						class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-slate-900 max-w-4xl mx-auto"
 					>
 						{post.data.title}
 					</h1>
+
+					<!-- Mobile Table of Contents -->
+					<MobileTableOfContents headings={headings} />
 
 					<!-- Social Share -->
 					<div class="flex items-center justify-center gap-3 mb-8">

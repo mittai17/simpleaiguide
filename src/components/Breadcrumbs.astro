@@ -17,7 +17,9 @@ const { items } = Astro.props as { items: Crumb[] };
                         {item.label}
                     </a>
                 ) : (
-                    <span class="text-slate-300">{item.label}</span>
+                    <span class="text-slate-300 truncate block max-w-[150px] sm:max-w-none">
+                        {item.label}
+                    </span>
                 )}
             </>
         ))

@@ -1,0 +1,10 @@
+﻿
+> simple-ai-guide@0.0.1 build
+> astro build
+
+12:59:08 [types] Generated 409ms
+12:59:08 [build] output: "static"
+12:59:08 [build] directory: C:\Users\ggiri\Documents\new-vs-code\website\docs\
+12:59:08 [build] Collecting build info...
+12:59:08 [build] Γ£ô Completed in 457ms.
+12:59:08 [build] Building static entrypoints...

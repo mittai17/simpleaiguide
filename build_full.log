@@ -1,0 +1,18 @@
+
+> simple-ai-guide@0.0.1 build
+> astro build
+
+X [ERROR] The build was canceled
+
+13:00:30 [types] Generated 582ms
+13:00:30 [build] output: "static"
+13:00:30 [build] directory: C:\Users\ggiri\Documents\new-vs-code\website\docs\
+13:00:30 [build] Collecting build info...
+13:00:30 [build] ✓ Completed in 650ms.
+13:00:30 [build] Building static entrypoints...
+13:00:31 [ERROR] [vite] [31mx[39m Build failed in 1.96s
+Could not resolve "../../../../components/YouTubeEmbed.astro" from "src/content/blog/comparisons/stop-using-chatgpt-2025.mdx"
+file: C:/Users/ggiri/Documents/new-vs-code/website/src/content/blog/comparisons/stop-using-chatgpt-2025.mdx
+  Stack trace:
+    at getRollupError (file:///C:/Users/ggiri/Documents/new-vs-code/website/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at ModuleLoader.handleInvalidResolvedId (file:///C:/Users/ggiri/Documents/new-vs-code/website/node_modules/rollup/dist/es/shared/node-entry.js:21590:24)

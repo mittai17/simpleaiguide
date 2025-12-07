@@ -7,7 +7,12 @@ html {
 }
 
 body {
-    @apply bg-white text-slate-900;
+    @apply bg-white text-slate-900 font-body antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+::selection {
+    @apply bg-indigo-500/30 text-indigo-900;
 }
 
 /* Custom scrollbar globally */

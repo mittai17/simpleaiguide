@@ -50,16 +50,16 @@ const learnModules = allLearn
 				class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start w-full"
 			>
 				<a
-					href="/learn/ai-basics"
+					href="/blog"
 					class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-bold hover:from-indigo-500 hover:to-indigo-400 transition-all shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-1 flex justify-center"
 				>
-					Start Learning Free
+					Read Latest Articles
 				</a>
 				<a
-					href="/about"
+					href="/learn/ai-basics"
 					class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-slate-700 font-bold hover:bg-slate-50 transition-all border border-slate-200 hover:border-slate-300 hover:-translate-y-1 flex justify-center"
 				>
-					About This Mission
+					Start Free Course
 				</a>
 			</div>
 		</div>
@@ -249,84 +249,6 @@ const learnModules = allLearn
 		</div>
 	</section>
 
-	<!-- Flight Training (Learn) Section -->
-	<section class="py-24 container mx-auto px-4">
-		<div
-			class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
-		>
-			<div>
-				<span
-					class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block"
-					>Flight Training</span
-				>
-				<h2 class="text-3xl md:text-4xl font-bold text-slate-900">
-					Master the Basics
-				</h2>
-			</div>
-			<a
-				href="/learn"
-				class="text-indigo-600 font-bold hover:text-indigo-700 flex items-center gap-2 group"
-			>
-				View Full Curriculum
-				<svg
-					class="w-4 h-4 transition-transform group-hover:translate-x-1"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-				>
-			</a>
-		</div>
-
-		<div class="grid md:grid-cols-3 gap-8">
-			{
-				learnModules.map((module) => (
-					<a
-						href={`/learn/${module.slug}`}
-						class="group block p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-lg transition-all"
-					>
-						<div class="flex items-center justify-between mb-4">
-							<span class="text-xs font-bold uppercase tracking-wider text-indigo-500 bg-indigo-50 px-2 py-1 rounded-md">
-								{module.data.category.replace(/-/g, " ")}
-							</span>
-							{module.data.level && (
-								<span class="text-xs font-medium text-slate-400">
-									{module.data.level}
-								</span>
-							)}
-						</div>
-						<h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
-							{module.data.title}
-						</h3>
-						<p class="text-slate-600 text-sm line-clamp-3 mb-4">
-							{module.data.description}
-						</p>
-						<span class="text-sm font-bold text-indigo-600 flex items-center gap-1">
-							Start Lesson{" "}
-							<svg
-								class="w-4 h-4"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M9 5l7 7-7 7"
-								/>
-							</svg>
-						</span>
-					</a>
-				))
-			}
-		</div>
-	</section>
-
 	<!-- Captain's Log (Blog) Section -->
 	<section class="py-24 bg-slate-900 text-white relative overflow-hidden">
 		<!-- Decorative Background -->
@@ -426,6 +348,84 @@ const learnModules = allLearn
 		</div>
 	</section>
 
+	<!-- Flight Training (Learn) Section -->
+	<section class="py-24 container mx-auto px-4">
+		<div
+			class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+		>
+			<div>
+				<span
+					class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block"
+					>Flight Training</span
+				>
+				<h2 class="text-3xl md:text-4xl font-bold text-slate-900">
+					Master the Basics
+				</h2>
+			</div>
+			<a
+				href="/learn"
+				class="text-indigo-600 font-bold hover:text-indigo-700 flex items-center gap-2 group"
+			>
+				View Full Curriculum
+				<svg
+					class="w-4 h-4 transition-transform group-hover:translate-x-1"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+				>
+			</a>
+		</div>
+
+		<div class="grid md:grid-cols-3 gap-8">
+			{
+				learnModules.map((module) => (
+					<a
+						href={`/learn/${module.slug}`}
+						class="group block p-6 rounded-2xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-lg transition-all"
+					>
+						<div class="flex items-center justify-between mb-4">
+							<span class="text-xs font-bold uppercase tracking-wider text-indigo-500 bg-indigo-50 px-2 py-1 rounded-md">
+								{module.data.category.replace(/-/g, " ")}
+							</span>
+							{module.data.level && (
+								<span class="text-xs font-medium text-slate-400">
+									{module.data.level}
+								</span>
+							)}
+						</div>
+						<h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+							{module.data.title}
+						</h3>
+						<p class="text-slate-600 text-sm line-clamp-3 mb-4">
+							{module.data.description}
+						</p>
+						<span class="text-sm font-bold text-indigo-600 flex items-center gap-1">
+							Start Lesson{" "}
+							<svg
+								class="w-4 h-4"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9 5l7 7-7 7"
+								/>
+							</svg>
+						</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
 	<!-- CTA Section -->
 	<section class="py-20 container mx-auto px-4 text-center">
 		<div
@@ -445,10 +445,10 @@ const learnModules = allLearn
 				</p>
 				<div class="flex flex-col sm:flex-row gap-4 justify-center">
 					<a
-						href="/learn/ai-basics"
+						href="/blog"
 						class="px-8 py-4 rounded-xl bg-white text-indigo-600 font-bold hover:bg-indigo-50 transition-all shadow-lg"
 					>
-						Start First Lesson
+						Browse All Articles
 					</a>
 				</div>
 			</div>

@@ -34,9 +34,9 @@ body {
     background-color: #94a3b8;
 }
 
-/* FORCE SINGLE COLUMN FOR BLOG POSTS - NUCLEAR OPTION */
+/* DISABLE COLUMNS FOR BLOG POSTS */
 article .prose,
 .prose {
-    column-count: 1 !important;
-    columns: 1 !important;
+    column-count: auto !important;
+    columns: auto !important;
 }

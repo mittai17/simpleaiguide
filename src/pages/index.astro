@@ -145,6 +145,105 @@ const learnModules = allLearn
 		</div>
 	</section>
 
+	<!-- Captain's Log (Blog) Section -->
+	<section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+		<!-- Decorative Background -->
+		<div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+			<div
+				class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px]"
+			>
+			</div>
+			<div
+				class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px]"
+			>
+			</div>
+		</div>
+
+		<div class="container mx-auto px-4 relative z-10">
+			<div
+				class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+			>
+				<div>
+					<span
+						class="text-indigo-400 font-bold tracking-wider uppercase text-sm mb-2 block"
+						>Captain's Log</span
+					>
+					<h2 class="text-3xl md:text-4xl font-bold text-white">
+						Latest Intelligence
+					</h2>
+				</div>
+				<a
+					href="/blog"
+					class="text-indigo-400 font-bold hover:text-indigo-300 flex items-center gap-2 group"
+				>
+					Read All Articles
+					<svg
+						class="w-4 h-4 transition-transform group-hover:translate-x-1"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						><path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+					>
+				</a>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				{
+					latestPosts.map((post) => (
+						<a
+							href={`/blog/${post.slug}`}
+							class="group block p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all backdrop-blur-sm"
+						>
+							<div class="flex items-center justify-between mb-4">
+								<span class="text-xs font-bold uppercase tracking-wider text-indigo-400">
+									{post.data.category}
+								</span>
+								<time
+									datetime={post.data.pubDate.toISOString()}
+									class="text-xs text-slate-400"
+								>
+									{post.data.pubDate.toLocaleDateString(
+										"en-US",
+										{
+											month: "short",
+											day: "numeric",
+										},
+									)}
+								</time>
+							</div>
+							<h3 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
+								{post.data.title}
+							</h3>
+							<p class="text-slate-400 text-sm line-clamp-3 mb-4">
+								{post.data.description}
+							</p>
+							<span class="text-sm font-bold text-indigo-400 flex items-center gap-1">
+								Read Article{" "}
+								<svg
+									class="w-4 h-4"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M9 5l7 7-7 7"
+									/>
+								</svg>
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
 	<!-- Why Simple AI? Section -->
 	<section class="py-20 bg-slate-50 border-y border-slate-100">
 		<div class="container mx-auto px-4">
@@ -245,105 +344,6 @@ const learnModules = allLearn
 						ahead.
 					</p>
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Captain's Log (Blog) Section -->
-	<section class="py-24 bg-slate-900 text-white relative overflow-hidden">
-		<!-- Decorative Background -->
-		<div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-			<div
-				class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px]"
-			>
-			</div>
-			<div
-				class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px]"
-			>
-			</div>
-		</div>
-
-		<div class="container mx-auto px-4 relative z-10">
-			<div
-				class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
-			>
-				<div>
-					<span
-						class="text-indigo-400 font-bold tracking-wider uppercase text-sm mb-2 block"
-						>Captain's Log</span
-					>
-					<h2 class="text-3xl md:text-4xl font-bold text-white">
-						Latest Intelligence
-					</h2>
-				</div>
-				<a
-					href="/blog"
-					class="text-indigo-400 font-bold hover:text-indigo-300 flex items-center gap-2 group"
-				>
-					Read All Articles
-					<svg
-						class="w-4 h-4 transition-transform group-hover:translate-x-1"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-						><path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-					>
-				</a>
-			</div>
-
-			<div class="grid md:grid-cols-3 gap-8">
-				{
-					latestPosts.map((post) => (
-						<a
-							href={`/blog/${post.slug}`}
-							class="group block p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all backdrop-blur-sm"
-						>
-							<div class="flex items-center justify-between mb-4">
-								<span class="text-xs font-bold uppercase tracking-wider text-indigo-400">
-									{post.data.category}
-								</span>
-								<time
-									datetime={post.data.pubDate.toISOString()}
-									class="text-xs text-slate-400"
-								>
-									{post.data.pubDate.toLocaleDateString(
-										"en-US",
-										{
-											month: "short",
-											day: "numeric",
-										},
-									)}
-								</time>
-							</div>
-							<h3 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
-								{post.data.title}
-							</h3>
-							<p class="text-slate-400 text-sm line-clamp-3 mb-4">
-								{post.data.description}
-							</p>
-							<span class="text-sm font-bold text-indigo-400 flex items-center gap-1">
-								Read Article{" "}
-								<svg
-									class="w-4 h-4"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M9 5l7 7-7 7"
-									/>
-								</svg>
-							</span>
-						</a>
-					))
-				}
 			</div>
 		</div>
 	</section>

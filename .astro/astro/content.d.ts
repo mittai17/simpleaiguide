@@ -180,6 +180,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"news/ai-news-openai-code-red-apple-clara-2025.mdx": {
+	id: "news/ai-news-openai-code-red-apple-clara-2025.mdx";
+  slug: "news/ai-news-openai-code-red-apple-clara-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "prompt-engineering/master-prompt-engineering-2025.mdx": {
 	id: "prompt-engineering/master-prompt-engineering-2025.mdx";
   slug: "prompt-engineering/master-prompt-engineering-2025";

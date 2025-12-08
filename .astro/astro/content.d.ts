@@ -180,6 +180,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"prompt-engineering/master-prompt-engineering-2025.mdx": {
+	id: "prompt-engineering/master-prompt-engineering-2025.mdx";
+  slug: "prompt-engineering/master-prompt-engineering-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 };
 "learn": {
 "ai-basics/module-1/1-1-what-is-ai.mdx": {

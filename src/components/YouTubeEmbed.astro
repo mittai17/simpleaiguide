@@ -7,7 +7,7 @@ interface Props {
 
 const { id, title, startTime } = Astro.props;
 
-const src = `https://www.youtube-nocookie.com/embed/${id}${startTime ? `?start=${startTime}` : ""}`;
+const src = `https://www.youtube.com/embed/${id}${startTime ? `?start=${startTime}` : ""}`;
 ---
 
 <div

@@ -39,5 +39,4 @@ article .prose,
 .prose {
     column-count: 1 !important;
     columns: 1 !important;
-    max-width: 100% !important;
 }

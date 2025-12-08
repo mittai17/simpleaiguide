@@ -61,6 +61,33 @@ const nextPost =
                 "@id": `https://simpleaiguide.tech/learn/${post.slug}`,
             },
             image: "https://simpleaiguide.tech/social-image.png",
+            speakable: {
+                "@type": "SpeakableSpecification",
+                cssSelector: ["h1", ".prose > p:first-of-type"],
+            },
+            breadcrumb: {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Home",
+                        item: "https://simpleaiguide.tech/",
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: "Learn",
+                        item: "https://simpleaiguide.tech/learn",
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 3,
+                        name: post.data.title,
+                        item: `https://simpleaiguide.tech/learn/${post.slug}`,
+                    },
+                ],
+            },
         })}
     />
 

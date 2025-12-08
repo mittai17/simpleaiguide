@@ -77,6 +77,10 @@ const prevPost =
 					image: post.data.heroImage
 						? `https://simpleaiguide.tech${post.data.heroImage}`
 						: "https://simpleaiguide.tech/social-image.png",
+					speakable: {
+						"@type": "SpeakableSpecification",
+						cssSelector: ["h1", ".prose > p:first-of-type"],
+					},
 				},
 				{
 					"@type": "BreadcrumbList",

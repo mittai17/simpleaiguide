@@ -180,6 +180,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"comparisons/stop-wasting-money-top-6-all-in-one-ai-tools-2025.mdx": {
+	id: "comparisons/stop-wasting-money-top-6-all-in-one-ai-tools-2025.mdx";
+  slug: "comparisons/stop-wasting-money-top-6-all-in-one-ai-tools-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "news/ai-news-openai-code-red-apple-clara-2025.mdx": {
 	id: "news/ai-news-openai-code-red-apple-clara-2025.mdx";
   slug: "news/ai-news-openai-code-red-apple-clara-2025";

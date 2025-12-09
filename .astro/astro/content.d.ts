@@ -194,6 +194,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"news/geoffrey-hinton-ai-warning-2025.mdx": {
+	id: "news/geoffrey-hinton-ai-warning-2025.mdx";
+  slug: "news/geoffrey-hinton-ai-warning-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "prompt-engineering/master-prompt-engineering-2025.mdx": {
 	id: "prompt-engineering/master-prompt-engineering-2025.mdx";
   slug: "prompt-engineering/master-prompt-engineering-2025";

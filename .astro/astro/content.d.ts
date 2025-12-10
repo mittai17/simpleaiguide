@@ -194,6 +194,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"news/apple-claraara-ai.mdx": {
+	id: "news/apple-claraara-ai.mdx";
+  slug: "news/apple-claraara-ai";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "news/geoffrey-hinton-ai-warning-2025.mdx": {
 	id: "news/geoffrey-hinton-ai-warning-2025.mdx";
   slug: "news/geoffrey-hinton-ai-warning-2025";

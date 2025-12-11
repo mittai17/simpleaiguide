@@ -82,5 +82,74 @@ const encodedTitle = encodeURIComponent(title);
                 >LinkedIn</span
             >
         </a>
+
+        <div class="w-px h-6 bg-slate-300 mx-1"></div>
+
+        <!-- Copy Link -->
+        <button
+            id="copy-link-btn"
+            class="p-3 rounded-full text-slate-500 hover:text-white hover:bg-slate-700 transition-all duration-300 relative group"
+            aria-label="Copy Link"
+        >
+            <svg
+                id="link-icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-5 h-5"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+                ></path>
+            </svg>
+            <svg
+                id="check-icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-5 h-5 hidden text-green-400"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"></path>
+            </svg>
+            <!-- Tooltip -->
+            <span
+                id="copy-tooltip"
+                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-900 text-white text-[10px] font-bold rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none"
+                >Copy Link</span
+            >
+        </button>
     </div>
 </div>
+
+<script>
+    const copyBtn = document.getElementById("copy-link-btn");
+    const linkIcon = document.getElementById("link-icon");
+    const checkIcon = document.getElementById("check-icon");
+    const tooltip = document.getElementById("copy-tooltip");
+
+    copyBtn?.addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+
+            // Visual feedback
+            linkIcon?.classList.add("hidden");
+            checkIcon?.classList.remove("hidden");
+            if (tooltip) tooltip.innerText = "Copied!";
+
+            setTimeout(() => {
+                linkIcon?.classList.remove("hidden");
+                checkIcon?.classList.add("hidden");
+                if (tooltip) tooltip.innerText = "Copy Link";
+            }, 2000);
+        } catch (err) {
+            console.error("Failed to copy text: ", err);
+        }
+    });
+</script>

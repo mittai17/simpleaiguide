@@ -13,6 +13,10 @@ export default defineConfig({
       [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
     ]
   },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
+  },
   outDir: 'docs',
   build: {
     outDir: 'docs',

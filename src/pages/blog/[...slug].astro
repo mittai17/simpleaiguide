@@ -8,6 +8,7 @@ import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import MobileTableOfContents from "../../components/MobileTableOfContents.astro";
 import Newsletter from "../../components/Newsletter.astro";
+import Comments from "../../components/Comments.astro";
 import FloatingShare from "../../components/FloatingShare.astro";
 import { getCollection } from "astro:content";
 
@@ -452,6 +453,9 @@ const prevPost =
 
 				<!-- Newsletter -->
 				<Newsletter />
+
+				<!-- Comments -->
+				<Comments />
 
 				<!-- Related Posts -->
 				<RelatedPosts posts={relatedPosts} />

@@ -1,136 +1,232 @@
-<div class="relative group">
-  <div class="relative">
-    <input
-      type="text"
-      id="search-input"
-      placeholder="Scan the galaxy for knowledge..."
-      class="w-full md:w-64 pl-10 pr-4 py-2 rounded-lg bg-slate-100 border-none focus:ring-2 focus:ring-indigo-500 text-slate-900 placeholder-slate-500 transition-all"
-    />
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-      ></path>
-    </svg>
-  </div>
-
-  <div
-    id="search-results"
-    class="absolute top-full right-0 mt-2 w-full md:w-96 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden hidden z-[100]"
+<button
+  id="search-trigger"
+  class="relative group p-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+  aria-label="Open Search"
+>
+  <!-- Icon -->
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+    class="w-6 h-6"
   >
-    <!-- Results will be injected here -->
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+    ></path>
+  </svg>
+
+  <!-- Tooltip / Cmd K Hint -->
+  <span
+    class="hidden md:block absolute top-[120%] left-1/2 -translate-x-1/2 px-2 py-1 text-[10px] font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 dark:text-slate-400 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-slate-200 dark:border-slate-700"
+  >
+    Cmd K
+  </span>
+</button>
+
+<!-- Full Screen Modal Overlay -->
+<div
+  id="search-modal"
+  class="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm opacity-0 invisible transition-all duration-200 flex items-start justify-center pt-[15vh] px-4"
+>
+  <!-- Modal Content -->
+  <div
+    class="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-95 transition-all duration-200 flex flex-col max-h-[70vh]"
+    id="search-container"
+  >
+    <!-- Header / Input -->
+    <div
+      class="flex items-center gap-3 p-4 border-b border-slate-100 dark:border-slate-800"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="w-6 h-6 text-slate-400"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+        ></path>
+      </svg>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search articles, guides, or tutorials..."
+        class="flex-1 bg-transparent text-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none"
+        autocomplete="off"
+      />
+      <button
+        id="close-search"
+        class="p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xs font-bold px-2 border border-slate-200 dark:border-slate-700"
+      >
+        ESC
+      </button>
+    </div>
+
+    <!-- Results / Empty State -->
+    <div
+      id="search-results"
+      class="overflow-y-auto p-2 scrollbar-hide min-h-[100px]"
+    >
+      <!-- Initial State Hints -->
+      <div
+        id="search-hints"
+        class="p-8 text-center text-slate-500 dark:text-slate-400"
+      >
+        <p class="text-sm">Type to start searching...</p>
+        <div class="flex gap-2 justify-center mt-4">
+          <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
+            >Tools</span
+          >
+          <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
+            >Comparisons</span
+          >
+          <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
+            >News</span
+          >
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
   import Fuse from "fuse.js";
 
+  // DOM Elements
+  const trigger = document.getElementById("search-trigger");
+  const modal = document.getElementById("search-modal");
+  const container = document.getElementById("search-container");
+  const input = document.getElementById("search-input") as HTMLInputElement;
+  const closeBtn = document.getElementById("close-search");
+  const resultsContainer = document.getElementById("search-results");
+  const hints = document.getElementById("search-hints");
+
   let fuse: Fuse<any> | null = null;
-  let isLoading = false;
-  const searchInput = document.getElementById(
-    "search-input",
-  ) as HTMLInputElement | null;
-  const searchResults = document.getElementById("search-results");
+  let isOpen = false;
+  let isDataLoaded = false;
 
-  // Fetch search data once on hover or focus
-  let dataFetched = false;
-  async function initSearch() {
-    if (dataFetched || isLoading) return;
-    isLoading = true;
+  // --- State Management ---
+  function openModal() {
+    isOpen = true;
+    modal?.classList.remove("opacity-0", "invisible");
+    container?.classList.remove("scale-95");
+    container?.classList.add("scale-100");
+    document.body.style.overflow = "hidden";
+    input?.focus();
 
-    try {
-      console.log("Fetching search index...");
-      const res = await fetch("/api/search.json");
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-      const data = await res.json();
-      console.log("Search index fetched:", data.length, "items");
+    if (!isDataLoaded) loadSearchIndex();
+  }
 
-      fuse = new Fuse(data, {
-        keys: ["title", "description"],
-        threshold: 0.4,
-      });
-
-      dataFetched = true;
-    } catch (error) {
-      console.error("Error fetching search index:", error);
-    } finally {
-      isLoading = false;
-      // Trigger search if user already typed something
-      if (searchInput && searchInput.value) {
-        searchInput.dispatchEvent(new Event("input"));
-      }
+  function closeModal() {
+    isOpen = false;
+    modal?.classList.add("opacity-0", "invisible");
+    container?.classList.remove("scale-100");
+    container?.classList.add("scale-95");
+    document.body.style.overflow = "";
+    if (input) input.value = "";
+    if (resultsContainer) resultsContainer.innerHTML = "";
+    if (hints) {
+      resultsContainer?.appendChild(hints);
+      hints.classList.remove("hidden");
     }
   }
 
-  if (searchInput) {
-    searchInput.addEventListener("focus", initSearch);
-    searchInput.addEventListener("mouseenter", initSearch);
+  // --- Event Listeners ---
+  trigger?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
 
-    searchInput.addEventListener("input", (e) => {
-      const target = e.target as HTMLInputElement;
-      const query = target.value;
+  // Click outside
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
 
-      if (isLoading && searchResults) {
-        searchResults.classList.remove("hidden");
-        searchResults.innerHTML =
-          '<div class="p-4 text-center text-slate-500 text-sm">Loading...</div>';
-        return;
-      }
+  // Keyboard Shortcuts
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      if (!isOpen) openModal();
+      else closeModal();
+    }
+    if (e.key === "Escape" && isOpen) {
+      closeModal();
+    }
+  });
 
-      if (!fuse) {
-        // If fuse is missing but not loading, try init again (retry)
-        initSearch();
-        return;
-      }
+  // --- Search Logic ---
+  async function loadSearchIndex() {
+    try {
+      const res = await fetch("/api/search.json");
+      if (!res.ok) throw new Error("Failed to load index");
+      const data = await res.json();
 
-      const results = fuse.search(query).slice(0, 5); // Limit to 5 results
-
-      if (searchResults) {
-        if (query.length > 0 && results.length > 0) {
-          searchResults.classList.remove("hidden");
-          searchResults.innerHTML = results
-            .map(
-              (result: any) => `
-            <a href="/${result.item.slug}" class="block p-4 hover:bg-slate-50 border-b border-slate-50 last:border-none transition-colors">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">${result.item.type}</span>
-              </div>
-              <h4 class="font-bold text-slate-900 text-sm mb-1">${result.item.title}</h4>
-              <p class="text-xs text-slate-500 line-clamp-2">${result.item.description}</p>
-            </a>
-          `,
-            )
-            .join("");
-        } else if (query.length > 0 && results.length === 0) {
-          searchResults.classList.remove("hidden");
-          searchResults.innerHTML = `
-            <div class="p-4 text-center text-slate-500 text-sm">
-              No results found for "${query}"
-            </div>
-          `;
-        } else {
-          searchResults.classList.add("hidden");
-        }
-      }
-    });
+      fuse = new Fuse(data, {
+        keys: ["title", "description", "tags"],
+        threshold: 0.3,
+      });
+      isDataLoaded = true;
+      console.log("Search Index Loaded");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  // Close results when clicking outside
-  document.addEventListener("click", (e) => {
-    if (searchInput && searchResults && e.target instanceof Node) {
-      if (
-        !searchInput.contains(e.target) &&
-        !searchResults.contains(e.target)
-      ) {
-        searchResults.classList.add("hidden");
+  input?.addEventListener("input", (e) => {
+    const query = (e.target as HTMLInputElement).value;
+
+    if (!query) {
+      if (hints) hints.classList.remove("hidden");
+      if (resultsContainer) {
+        // Clear results but keep hints if possible, or just re-append hints
+        resultsContainer.innerHTML = "";
+        if (hints) resultsContainer.appendChild(hints);
+      }
+      return;
+    }
+
+    if (hints) hints.classList.add("hidden");
+
+    if (!fuse) return;
+
+    const results = fuse.search(query).slice(0, 8); // Top 8 results
+
+    if (resultsContainer) {
+      if (results.length === 0) {
+        resultsContainer.innerHTML = `
+                    <div class="p-8 text-center text-slate-500 dark:text-slate-400">
+                        <p>No results found for "${query}"</p>
+                    </div>
+                 `;
+      } else {
+        resultsContainer.innerHTML = results
+          .map(
+            (result: any) => `
+                    <a href="/${result.item.slug}" class="block p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-400 px-2 py-0.5 rounded-full">
+                                ${result.item.collection || "Post"}
+                            </span>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-slate-300 group-hover:text-indigo-500 transition-colors">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                            ${result.item.title}
+                        </h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">
+                            ${result.item.description}
+                        </p>
+                    </a>
+                `,
+          )
+          .join("");
       }
     }
   });

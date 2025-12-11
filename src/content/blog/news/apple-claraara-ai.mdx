@@ -64,7 +64,7 @@ Apple’s research calls this issue the **broken gradient problem**.
 
 Claraara creates a single continuous latent space where both retriever and generator operate together.
 
-<Image src={image1} alt="Apple Claraara Architecture Diagram" />
+<Image src={image1} alt="Apple Claraara Architecture Diagram showing the flow from Long-context LLM to Condensed Memory" />
 
 This works because:
 
@@ -106,7 +106,7 @@ This avoids the classic compression failure where the model wastes capacity on t
 
 Each document becomes 4–32 learnable tokens, created by a **Mistral-7B** style [transformer](/learn/ai-basics/module-1/1-7-neural-networks) with LoRA adapters. These tokens store topic relevance, semantic patterns, latent meaning, and answer-supporting signals.
 
-<Image src={image2} alt="Claraara Memory Extraction Process" />
+<Image src={image2} alt="Claraara Memory Extraction Process visualizing how tokens are compressed" />
 
 ### 3. Query Reasoner + Generator (Shared Backbone)
 
@@ -132,7 +132,7 @@ This beats:
 
 This suggests that raw model reasoning ability is extremely strong.
 
-<Image src={image3} alt="Claraara Benchmark Comparison Chart" />
+<Image src={image3} alt="Claraara Benchmark Comparison Chart showing performance against standard RAG" />
 
 ## Installation Guide (Local Setup)
 

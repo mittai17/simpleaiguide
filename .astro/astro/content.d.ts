@@ -208,6 +208,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"news/titans-memory-architecture.mdx": {
+	id: "news/titans-memory-architecture.mdx";
+  slug: "news/titans-memory-architecture";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "prompt-engineering/master-prompt-engineering-2025.mdx": {
 	id: "prompt-engineering/master-prompt-engineering-2025.mdx";
   slug: "prompt-engineering/master-prompt-engineering-2025";

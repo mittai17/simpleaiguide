@@ -7,6 +7,8 @@ import RelatedPosts from "../../components/RelatedPosts.astro";
 import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import MobileTableOfContents from "../../components/MobileTableOfContents.astro";
+import Newsletter from "../../components/Newsletter.astro";
+import FloatingShare from "../../components/FloatingShare.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -107,6 +109,11 @@ const prevPost =
 				},
 			],
 		})}
+	/>
+
+	<FloatingShare
+		title={post.data.title}
+		url={`https://simpleaiguide.tech/blog/${post.slug}`}
 	/>
 
 	<div class="container mx-auto px-6 md:px-4 py-8">
@@ -442,6 +449,9 @@ const prevPost =
 						)
 					}
 				</div>
+
+				<!-- Newsletter -->
+				<Newsletter />
 
 				<!-- Related Posts -->
 				<RelatedPosts posts={relatedPosts} />

@@ -13,7 +13,7 @@ const encodedDesc = encodeURIComponent(description || "");
 ---
 
 <div
-    class="fixed bottom-0 left-0 w-full lg:static lg:w-auto z-40 bg-white/90 backdrop-blur border-t border-slate-200 lg:border-none lg:bg-transparent p-4 lg:p-0"
+    class="fixed bottom-0 left-0 w-full lg:static lg:w-auto z-40 bg-white/90 dark:bg-slate-900/80 backdrop-blur border-t border-slate-200 dark:border-slate-800 lg:border-none lg:bg-transparent p-4 lg:p-0 transition-colors"
 >
     <div
         class="flex lg:flex-col gap-4 justify-center lg:justify-start items-center"
@@ -28,7 +28,7 @@ const encodedDesc = encodeURIComponent(description || "");
             href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 rounded-full bg-slate-100 hover:bg-black hover:text-white text-slate-600 flex items-center justify-center transition-all shadow-sm hover:shadow-md"
+            class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-black hover:text-white text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all shadow-sm hover:shadow-md"
             aria-label="Share on Twitter"
         >
             <svg
@@ -49,7 +49,7 @@ const encodedDesc = encodeURIComponent(description || "");
             href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}&summary=${encodedDesc}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 rounded-full bg-slate-100 hover:bg-[#0077b5] hover:text-white text-slate-600 flex items-center justify-center transition-all shadow-sm hover:shadow-md"
+            class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-[#0077b5] hover:text-white text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all shadow-sm hover:shadow-md"
             aria-label="Share on LinkedIn"
         >
             <svg
@@ -70,7 +70,7 @@ const encodedDesc = encodeURIComponent(description || "");
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 rounded-full bg-slate-100 hover:bg-[#1877F2] hover:text-white text-slate-600 flex items-center justify-center transition-all shadow-sm hover:shadow-md"
+            class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-[#1877F2] hover:text-white text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all shadow-sm hover:shadow-md"
             aria-label="Share on Facebook"
         >
             <svg

@@ -5,6 +5,8 @@ import ScrollRocket from "./ScrollRocket.astro";
 import CookieConsent from "./CookieConsent.astro";
 import "../styles/global.css";
 
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
 	title: string;
 	description?: string;
@@ -23,6 +25,7 @@ const {
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="theme-color" content="#4f46e5" />
+		<ViewTransitions />
 
 		<!-- Theme Initialization -->
 		<script is:inline>
@@ -136,7 +139,7 @@ const {
 			crossorigin="anonymous"></script>
 	</head>
 	<body
-		class="bg-white text-slate-900 min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 relative overflow-x-hidden"
+		class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500/30 relative overflow-x-hidden"
 	>
 		<CookieConsent />
 		<ScrollRocket />

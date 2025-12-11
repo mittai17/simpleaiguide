@@ -26,11 +26,11 @@ import HolographicCard from "../components/HolographicCard.astro";
         Mission Briefing
       </div>
       <h1
-        class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-slate-900"
+        class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white"
       >
         The Crew Manifest
       </h1>
-      <p class="text-xl text-slate-600 leading-relaxed">
+      <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
         Just a bunch of carbon-based lifeforms explaining silicon-based
         intelligence. We believe AI shouldn't be reserved for wizards in ivory
         towers.
@@ -40,7 +40,7 @@ import HolographicCard from "../components/HolographicCard.astro";
     <!-- Mission Objectives (Goals Grid) -->
     <div class="mb-24 relative z-10">
       <h2
-        class="text-2xl font-bold text-center mb-12 text-slate-900 flex items-center justify-center gap-3"
+        class="text-2xl font-bold text-center mb-12 text-slate-900 dark:text-white flex items-center justify-center gap-3"
       >
         <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
         Core Directives
@@ -119,7 +119,9 @@ import HolographicCard from "../components/HolographicCard.astro";
 
     <!-- Mission Status (Roadmap) -->
     <div class="mb-24 max-w-4xl mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-12 text-slate-900">
+      <h2
+        class="text-2xl font-bold text-center mb-12 text-slate-900 dark:text-white"
+      >
         Mission Status
       </h2>
       <div
@@ -144,15 +146,17 @@ import HolographicCard from "../components/HolographicCard.astro";
             >
           </div>
           <div
-            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-100 shadow-sm"
+            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm"
           >
             <div class="flex items-center justify-between space-x-2 mb-1">
-              <div class="font-bold text-slate-900">Launch Phase</div>
+              <div class="font-bold text-slate-900 dark:text-white">
+                Launch Phase
+              </div>
               <time class="font-caveat font-medium text-indigo-500"
                 >Completed</time
               >
             </div>
-            <div class="text-slate-500 text-sm">
+            <div class="text-slate-500 dark:text-slate-400 text-sm">
               Initial deployment of Simple AI Guide. Core learning modules and
               blog infrastructure established.
             </div>
@@ -178,10 +182,12 @@ import HolographicCard from "../components/HolographicCard.astro";
             >
           </div>
           <div
-            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-100 shadow-sm"
+            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm"
           >
             <div class="flex items-center justify-between space-x-2 mb-1">
-              <div class="font-bold text-slate-900">Expansion Phase</div>
+              <div class="font-bold text-slate-900 dark:text-white">
+                Expansion Phase
+              </div>
               <time class="font-caveat font-medium text-indigo-500"
                 >In Progress</time
               >
@@ -203,10 +209,12 @@ import HolographicCard from "../components/HolographicCard.astro";
             <span class="text-xs font-bold">3</span>
           </div>
           <div
-            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl border border-slate-100 shadow-sm opacity-75"
+            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm opacity-75"
           >
             <div class="flex items-center justify-between space-x-2 mb-1">
-              <div class="font-bold text-slate-900">Community Phase</div>
+              <div class="font-bold text-slate-900 dark:text-white">
+                Community Phase
+              </div>
               <time class="font-caveat font-medium text-slate-400">Future</time>
             </div>
             <div class="text-slate-500 text-sm">
@@ -219,8 +227,10 @@ import HolographicCard from "../components/HolographicCard.astro";
 
     <!-- Contact CTA -->
     <div class="text-center max-w-2xl mx-auto relative z-10">
-      <h2 class="text-2xl font-bold mb-4 text-slate-900">Join the Mission</h2>
-      <p class="text-slate-600 mb-8">
+      <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
+        Join the Mission
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 mb-8">
         Have questions about the cosmos of AI? Our comms channels are open.
       </p>
       <a

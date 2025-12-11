@@ -2,84 +2,113 @@
 interface Props {
   title: string;
   description: string;
-  color?: 'indigo' | 'sky' | 'emerald' | 'purple' | 'pink';
+  color?: "indigo" | "sky" | "emerald" | "purple" | "pink";
 }
 
-const { title, description, color = 'indigo' } = Astro.props;
+const { title, description, color = "indigo" } = Astro.props;
 
 const colorStyles = {
   indigo: {
-    border: 'border-indigo-500/30',
-    glow: 'group-hover:shadow-indigo-500/20',
-    accent: 'bg-indigo-500',
-    text: 'text-indigo-300',
-    bg: 'bg-indigo-500/5'
+    border: "border-indigo-500/30",
+    glow: "group-hover:shadow-indigo-500/20",
+    accent: "bg-indigo-500",
+    text: "text-indigo-300",
+    bg: "bg-indigo-500/5",
   },
   sky: {
-    border: 'border-sky-500/30',
-    glow: 'group-hover:shadow-sky-500/20',
-    accent: 'bg-sky-500',
-    text: 'text-sky-300',
-    bg: 'bg-sky-500/5'
+    border: "border-sky-500/30",
+    glow: "group-hover:shadow-sky-500/20",
+    accent: "bg-sky-500",
+    text: "text-sky-300",
+    bg: "bg-sky-500/5",
   },
   emerald: {
-    border: 'border-emerald-500/30',
-    glow: 'group-hover:shadow-emerald-500/20',
-    accent: 'bg-emerald-500',
-    text: 'text-emerald-300',
-    bg: 'bg-emerald-500/5'
+    border: "border-emerald-500/30",
+    glow: "group-hover:shadow-emerald-500/20",
+    accent: "bg-emerald-500",
+    text: "text-emerald-300",
+    bg: "bg-emerald-500/5",
   },
   purple: {
-    border: 'border-purple-500/30',
-    glow: 'group-hover:shadow-purple-500/20',
-    accent: 'bg-purple-500',
-    text: 'text-purple-300',
-    bg: 'bg-purple-500/5'
+    border: "border-purple-500/30",
+    glow: "group-hover:shadow-purple-500/20",
+    accent: "bg-purple-500",
+    text: "text-purple-300",
+    bg: "bg-purple-500/5",
   },
   pink: {
-    border: 'border-pink-500/30',
-    glow: 'group-hover:shadow-pink-500/20',
-    accent: 'bg-pink-500',
-    text: 'text-pink-300',
-    bg: 'bg-pink-500/5'
-  }
+    border: "border-pink-500/30",
+    glow: "group-hover:shadow-pink-500/20",
+    accent: "bg-pink-500",
+    text: "text-pink-300",
+    bg: "bg-pink-500/5",
+  },
 };
 
 const styles = colorStyles[color];
 ---
 
-<div class={`relative group p-8 rounded-2xl border ${styles.border} bg-white/80 backdrop-blur-md overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${styles.glow}`}>
+<div
+  class={`relative group p-8 rounded-2xl border ${styles.border} bg-white/80 dark:bg-slate-900/80 backdrop-blur-md overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${styles.glow}`}
+>
   <!-- Holographic Scanline -->
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent translate-y-[-100%] group-hover:translate-y-[100%] transition-transform duration-1000 ease-in-out z-0 pointer-events-none"></div>
-  
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent translate-y-[-100%] group-hover:translate-y-[100%] transition-transform duration-1000 ease-in-out z-0 pointer-events-none"
+  >
+  </div>
+
   <!-- HUD Corners -->
-  <div class={`absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 ${styles.border} rounded-tl-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}></div>
-  <div class={`absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 ${styles.border} rounded-tr-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}></div>
-  <div class={`absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 ${styles.border} rounded-bl-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}></div>
-  <div class={`absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 ${styles.border} rounded-br-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}></div>
+  <div
+    class={`absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 ${styles.border} rounded-tl-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}
+  >
+  </div>
+  <div
+    class={`absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 ${styles.border} rounded-tr-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}
+  >
+  </div>
+  <div
+    class={`absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 ${styles.border} rounded-bl-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}
+  >
+  </div>
+  <div
+    class={`absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 ${styles.border} rounded-br-lg transition-all duration-300 group-hover:w-6 group-hover:h-6 opacity-50`}
+  >
+  </div>
 
   <!-- Content -->
   <div class="relative z-10">
     <!-- Icon Container with Hexagon Shape -->
-    <div class={`w-14 h-14 ${styles.bg} rounded-xl flex items-center justify-center mb-6 relative group-hover:scale-110 transition-transform duration-300`}>
-      <div class={`absolute inset-0 border ${styles.border} rounded-xl opacity-50 rotate-45 group-hover:rotate-90 transition-transform duration-700`}></div>
+    <div
+      class={`w-14 h-14 ${styles.bg} rounded-xl flex items-center justify-center mb-6 relative group-hover:scale-110 transition-transform duration-300`}
+    >
+      <div
+        class={`absolute inset-0 border ${styles.border} rounded-xl opacity-50 rotate-45 group-hover:rotate-90 transition-transform duration-700`}
+      >
+      </div>
       <div class="relative z-10">
         <slot name="icon" />
       </div>
     </div>
 
-    <h3 class="text-xl font-bold mb-3 text-slate-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:to-slate-600 transition-colors">
+    <h3
+      class="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:to-slate-600 dark:group-hover:from-white dark:group-hover:to-slate-300 transition-colors"
+    >
       {title}
     </h3>
-    
-    <p class="text-slate-600 leading-relaxed">
+
+    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
       {description}
     </p>
 
     <!-- Status Indicator -->
-    <div class="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-      <span class={`w-1.5 h-1.5 rounded-full ${styles.accent} animate-pulse`}></span>
-      <span class={`text-xs font-mono uppercase tracking-wider ${styles.text}`}>System Active</span>
+    <div
+      class="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0"
+    >
+      <span class={`w-1.5 h-1.5 rounded-full ${styles.accent} animate-pulse`}
+      ></span>
+      <span class={`text-xs font-mono uppercase tracking-wider ${styles.text}`}
+        >System Active</span
+      >
     </div>
   </div>
 </div>

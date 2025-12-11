@@ -23,7 +23,7 @@ const learnModules = allLearn
 	<section
 		class="container mx-auto px-4 py-10 md:py-24 flex flex-col lg:flex-row items-center gap-10 md:gap-12 relative overflow-hidden"
 	>
-		<Starfield />
+		<!-- Starfield Removed for Performance -->
 
 		<!-- Hero Text -->
 		<div class="flex-1 text-center lg:text-left z-10 w-full">
@@ -145,7 +145,7 @@ const learnModules = allLearn
 
 			<!-- Decorative Blobs -->
 			<div
-				class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-indigo-500/5 rounded-full blur-3xl"
+				class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-indigo-500/5 rounded-full"
 			>
 			</div>
 		</div>
@@ -154,13 +154,16 @@ const learnModules = allLearn
 	<!-- Captain's Log (Blog) Section -->
 	<section class="py-24 bg-slate-900 text-white relative overflow-hidden">
 		<!-- Decorative Background -->
-		<div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+		<!-- Decorative Background Optimized -->
+		<div
+			class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20"
+		>
 			<div
-				class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px]"
+				class="absolute top-0 right-0 w-[300px] h-[300px] bg-indigo-500/10 rounded-full"
 			>
 			</div>
 			<div
-				class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px]"
+				class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-purple-500/10 rounded-full"
 			>
 			</div>
 		</div>

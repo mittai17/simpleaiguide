@@ -115,7 +115,7 @@
 
             <p
                 id="error-message"
-                class="hidden mt-4 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg p-2 inline-block"
+                class="hidden mt-4 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg p-2"
             >
                 Something went wrong. Please try again.
             </p>
@@ -128,18 +128,24 @@
 </section>
 
 <script>
-    const form = document.getElementById("newsletter-form");
+    const form = document.getElementById(
+        "newsletter-form",
+    ) as HTMLFormElement | null;
     const successMsg = document.getElementById("newsletter-success");
     const errorMsg = document.getElementById("error-message");
     const footer = document.querySelector(".form-footer");
 
     // We use type assertion since we know these elements exist
-    const submitBtn = form?.querySelector('button[type="submit"]');
+    const submitBtn = form?.querySelector(
+        'button[type="submit"]',
+    ) as HTMLButtonElement | null;
     const btnText = submitBtn?.querySelector(".btn-text");
     const btnSpinner = submitBtn?.querySelector(".btn-spinner");
 
     form?.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        if (!form) return;
 
         // Reset states
         errorMsg?.classList.add("hidden");

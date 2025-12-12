@@ -23,7 +23,7 @@ const categories = [...new Set(posts.map((post) => post.data.category))].map(
 
 // Tags Logic
 const allTags = posts.map((post) => post.data.tags || []).flat();
-const tagCounts = allTags.reduce((acc, tag) => {
+const tagCounts = allTags.reduce<Record<string, number>>((acc, tag) => {
   acc[tag] = (acc[tag] || 0) + 1;
   return acc;
 }, {});
@@ -83,7 +83,7 @@ if (currentCategory) {
         categories.map((category) => (
           <li>
             <a
-              href={`/blog/${category.slug}`}
+              href={`/blog/category/${category.slug}`}
               class:list={[
                 "flex items-center justify-between group px-3 py-2 rounded-md text-sm transition-all duration-200",
                 currentCategory === category.name

@@ -20,6 +20,9 @@ const { count = 40 } = Astro.props;
         // Read count from data attribute or default to 40
         const count = parseInt(canvas.dataset.count || "40", 10);
 
+        let width = 0;
+        let height = 0;
+        let stars: { x: number; y: number; size: number; speed: number }[] = [];
         let lastWidth = window.innerWidth;
 
         const resize = () => {

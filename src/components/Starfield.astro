@@ -20,16 +20,34 @@ const { count = 40 } = Astro.props;
         // Read count from data attribute or default to 40
         const count = parseInt(canvas.dataset.count || "40", 10);
 
-        let width = 0;
-        let height = 0;
-        let stars: { x: number; y: number; size: number; speed: number }[] = [];
+        let lastWidth = window.innerWidth;
 
         const resize = () => {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            initStars();
+            const newWidth = window.innerWidth;
+            const newHeight = window.innerHeight;
+
+            // On mobile, scrolling often triggers resize due to URL bar hiding/showing.
+            // We only want to reset stars if the width changes (orientation change)
+            // or if the height change is significant (e.g. strict resize),
+            // avoiding jarring resets during scroll.
+            if (newWidth !== lastWidth) {
+                width = newWidth;
+                height = newHeight;
+                canvas.width = width;
+                canvas.height = height;
+                lastWidth = newWidth;
+                initStars();
+            } else {
+                // Just update dimensions without resetting stars if only height changed slightly
+                // or update canvas buffer size to match visual size to prevent scaling artifacts
+                if (Math.abs(canvas.height - newHeight) > 100) {
+                    height = newHeight;
+                    canvas.height = height;
+                    // We might lose stars at the bottom or have empty space,
+                    // but better than full reset.
+                    // Ideally we'd re-map stars, but skipping initStars is smoother.
+                }
+            }
         };
 
         const initStars = () => {
@@ -64,7 +82,12 @@ const { count = 40 } = Astro.props;
         };
 
         window.addEventListener("resize", resize);
-        resize();
+        // Initial setup
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        initStars();
         animate();
     }
 </script>

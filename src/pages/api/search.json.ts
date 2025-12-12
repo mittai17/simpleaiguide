@@ -38,18 +38,26 @@ export async function GET() {
     ];
 
     const searchItems = [
-        ...staticPages,
+        ...staticPages.map(page => ({
+            ...page,
+            tags: [],
+            category: 'Page'
+        })),
         ...blogPosts.map((post: any) => ({
             title: post.data.title,
             slug: `blog/${post.slug}`,
             type: 'post',
-            description: post.data.description
+            description: post.data.description,
+            tags: post.data.tags || [],
+            category: post.data.category || 'Blog'
         })),
         ...learnPosts.map((post: any) => ({
             title: post.data.title,
             slug: `learn/${post.slug}`,
             type: 'lesson',
-            description: post.data.description
+            description: post.data.description,
+            tags: [],
+            category: 'Learn' // Or specific learn category if available, simplified for now
         }))
     ];
 

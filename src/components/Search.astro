@@ -1,45 +1,47 @@
 <button
   id="search-trigger"
-  class="relative group p-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+  class="group flex items-center justify-between gap-3 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/50 rounded-lg text-slate-500 dark:text-slate-400 transition-all duration-200 w-full md:w-64"
   aria-label="Open Search"
 >
-  <!-- Icon -->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="2"
-    stroke="currentColor"
-    class="w-6 h-6"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-    ></path>
-  </svg>
+  <div class="flex items-center gap-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      class="w-4 h-4"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+      ></path>
+    </svg>
+    <span class="text-sm font-medium">Search...</span>
+  </div>
 
-  <!-- Tooltip / Cmd K Hint -->
+  <!-- Cmd K Hint -->
   <span
-    class="hidden md:block absolute top-[120%] left-1/2 -translate-x-1/2 px-2 py-1 text-[10px] font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 dark:text-slate-400 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-slate-200 dark:border-slate-700"
+    class="hidden md:flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold text-slate-500 bg-white dark:bg-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-600 shadow-sm"
   >
-    Cmd K
+    <span class="mr-0.5" id="cmd-key">Ctrl</span> K
   </span>
 </button>
 
 <!-- Full Screen Modal Overlay -->
 <div
   id="search-modal"
-  class="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm opacity-0 invisible transition-all duration-200 flex items-start justify-center pt-[15vh] px-4"
+  class="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm opacity-0 invisible transition-all duration-200 flex items-start justify-center pt-[10vh] px-4"
 >
   <!-- Modal Content -->
   <div
-    class="w-full max-w-2xl bg-white dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-95 transition-all duration-200 flex flex-col max-h-[70vh]"
+    class="w-full max-w-2xl bg-white dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-95 transition-all duration-200 flex flex-col max-h-[70vh] relative overflow-hidden"
     id="search-container"
   >
     <!-- Header / Input -->
     <div
-      class="flex items-center gap-3 p-4 border-b border-slate-100 dark:border-slate-800"
+      class="flex items-center gap-3 p-4 border-b border-slate-100 dark:border-slate-800 flex-shrink-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +49,7 @@
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke="currentColor"
-        class="w-6 h-6 text-slate-400"
+        class="w-6 h-6 text-indigo-500"
       >
         <path
           stroke-linecap="round"
@@ -58,41 +60,136 @@
       <input
         type="text"
         id="search-input"
-        placeholder="Search articles, guides, or tutorials..."
+        placeholder="Type to search..."
         class="flex-1 bg-transparent text-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none"
         autocomplete="off"
       />
       <button
         id="close-search"
-        class="p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xs font-bold px-2 border border-slate-200 dark:border-slate-700"
+        class="p-1.5 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xs font-bold border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
+        aria-label="Close"
       >
-        ESC
+        <kbd class="font-sans">ESC</kbd>
       </button>
     </div>
 
     <!-- Results / Empty State -->
     <div
-      id="search-results"
-      class="overflow-y-auto p-2 scrollbar-hide min-h-[100px]"
+      id="search-results-container"
+      class="overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent min-h-[300px]"
     >
-      <!-- Initial State Hints -->
-      <div
-        id="search-hints"
-        class="p-8 text-center text-slate-500 dark:text-slate-400"
-      >
-        <p class="text-sm">Type to start searching...</p>
-        <div class="flex gap-2 justify-center mt-4">
-          <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
-            >Tools</span
+      <!-- Loading State -->
+      <div id="search-loading" class="hidden text-center py-8">
+        <div
+          class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500"
+        >
+        </div>
+        <p class="mt-2 text-sm text-slate-500">Loading index...</p>
+      </div>
+
+      <!-- Initial / Recent Searches -->
+      <div id="search-initial-view" class="block">
+        <!-- Recent Searches List -->
+        <div id="recent-searches-section" class="mb-6 hidden">
+          <h3
+            class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3"
           >
-          <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
-            >Comparisons</span
+            Recent
+          </h3>
+          <ul id="recent-searches-list" class="space-y-1">
+            <!-- Populated via JS -->
+          </ul>
+        </div>
+
+        <!-- Suggestions -->
+        <div>
+          <h3
+            class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3"
           >
-          <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs"
-            >News</span
-          >
+            Suggested
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <button
+              class="suggestion-chip px-3 py-1.5 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-600 dark:text-slate-300 transition-colors"
+            >
+              AI Tools
+            </button>
+            <button
+              class="suggestion-chip px-3 py-1.5 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-600 dark:text-slate-300 transition-colors"
+            >
+              ChatGPT
+            </button>
+            <button
+              class="suggestion-chip px-3 py-1.5 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-600 dark:text-slate-300 transition-colors"
+            >
+              Machine Learning
+            </button>
+            <button
+              class="suggestion-chip px-3 py-1.5 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-600 dark:text-slate-300 transition-colors"
+            >
+              Python
+            </button>
+            <button
+              class="suggestion-chip px-3 py-1.5 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-600 dark:text-slate-300 transition-colors"
+            >
+              News
+            </button>
+          </div>
         </div>
       </div>
+
+      <!-- Active Results -->
+      <div id="search-hits" class="space-y-1 hidden"></div>
+
+      <!-- No Results -->
+      <div
+        id="no-results"
+        class="hidden py-12 text-center text-slate-500 dark:text-slate-400"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-12 h-12 mx-auto mb-4 text-slate-300 dark:text-slate-600"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          ></path>
+        </svg>
+        <p class="text-lg font-medium text-slate-900 dark:text-white">
+          No results found
+        </p>
+        <p class="text-sm">Try searching for something else.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div
+      class="px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400"
+    >
+      <div class="flex gap-4">
+        <span class="flex items-center gap-1">
+          <kbd
+            class="font-sans px-1.5 py-0.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded"
+            >↩</kbd
+          > to select
+        </span>
+        <span class="flex items-center gap-1">
+          <kbd
+            class="font-sans px-1.5 py-0.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded"
+            >↑</kbd
+          >
+          <kbd
+            class="font-sans px-1.5 py-0.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded"
+            >↓</kbd
+          > to navigate
+        </span>
+      </div>
+      <span>Simple AI Guide Search</span>
     </div>
   </div>
 </div>
@@ -100,21 +197,37 @@
 <script>
   import Fuse from "fuse.js";
 
-  // DOM Elements
+  // --- State ---
+  let fuse: Fuse<any> | null = null;
+  let isOpen = false;
+  let activeIndex = -1;
+  let results: any[] = [];
+  let recentSearches: any[] = [];
+
+  // --- DOM Elements ---
   const trigger = document.getElementById("search-trigger");
   const modal = document.getElementById("search-modal");
   const container = document.getElementById("search-container");
   const input = document.getElementById("search-input") as HTMLInputElement;
   const closeBtn = document.getElementById("close-search");
-  const resultsContainer = document.getElementById("search-results");
-  const hints = document.getElementById("search-hints");
 
-  let fuse: Fuse<any> | null = null;
-  let isOpen = false;
-  let isDataLoaded = false;
+  const hitsContainer = document.getElementById("search-hits");
+  const initialView = document.getElementById("search-initial-view");
+  const noResults = document.getElementById("no-results");
+  const loading = document.getElementById("search-loading");
 
-  // --- State Management ---
+  const recentSection = document.getElementById("recent-searches-section");
+  const recentList = document.getElementById("recent-searches-list");
+
+  // --- OS Detection ---
+  const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+  const cmdKeyLabel = document.getElementById("cmd-key");
+  if (cmdKeyLabel) cmdKeyLabel.textContent = isMac ? "Cmd" : "Ctrl";
+
+  // --- Functions ---
+
   function openModal() {
+    if (isOpen) return;
     isOpen = true;
     modal?.classList.remove("opacity-0", "invisible");
     container?.classList.remove("scale-95");
@@ -122,7 +235,19 @@
     document.body.style.overflow = "hidden";
     input?.focus();
 
-    if (!isDataLoaded) loadSearchIndex();
+    // Load local storage
+    loadRecentSearches();
+
+    // Reset UI
+    if (!input.value) {
+      showInitialView();
+    } else {
+      // trigger search again if value persists
+      handleSearch(input.value);
+    }
+
+    // Load Index if needed
+    if (!fuse) loadSearchIndex();
   }
 
   function closeModal() {
@@ -131,103 +256,256 @@
     container?.classList.remove("scale-100");
     container?.classList.add("scale-95");
     document.body.style.overflow = "";
-    if (input) input.value = "";
-    if (resultsContainer) resultsContainer.innerHTML = "";
-    if (hints) {
-      resultsContainer?.appendChild(hints);
-      hints.classList.remove("hidden");
-    }
+
+    // Optional: clear input on close? No, better UX to keep it or select on open.
+    // Let's clear for cleaner re-open
+    setTimeout(() => {
+      if (input) input.value = "";
+      showInitialView();
+    }, 200);
   }
 
-  // --- Event Listeners ---
-  trigger?.addEventListener("click", openModal);
-  closeBtn?.addEventListener("click", closeModal);
+  function showInitialView() {
+    hitsContainer?.classList.add("hidden");
+    noResults?.classList.add("hidden");
+    initialView?.classList.remove("hidden");
+    loadRecentSearches(); // Refresh UI
+  }
 
-  // Click outside
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
+  function showResultsView() {
+    initialView?.classList.add("hidden");
+    noResults?.classList.add("hidden");
+    hitsContainer?.classList.remove("hidden");
+  }
 
-  // Keyboard Shortcuts
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault();
-      if (!isOpen) openModal();
-      else closeModal();
-    }
-    if (e.key === "Escape" && isOpen) {
-      closeModal();
-    }
-  });
+  function showNoResults() {
+    initialView?.classList.add("hidden");
+    hitsContainer?.classList.add("hidden");
+    noResults?.classList.remove("hidden");
+  }
 
-  // --- Search Logic ---
   async function loadSearchIndex() {
+    // Show simple loader if taking time
+    // For now we assume fast load or background load
     try {
       const res = await fetch("/api/search.json");
       if (!res.ok) throw new Error("Failed to load index");
       const data = await res.json();
 
       fuse = new Fuse(data, {
-        keys: ["title", "description", "tags"],
-        threshold: 0.3,
+        keys: [
+          { name: "title", weight: 0.7 },
+          { name: "description", weight: 0.2 },
+          { name: "tags", weight: 0.4 },
+          { name: "category", weight: 0.3 },
+        ],
+        threshold: 0.4,
+        ignoreLocation: true,
       });
-      isDataLoaded = true;
       console.log("Search Index Loaded");
+
+      // If user already typed while loading
+      if (input.value && isOpen) handleSearch(input.value);
     } catch (err) {
       console.error(err);
     }
   }
 
-  input?.addEventListener("input", (e) => {
-    const query = (e.target as HTMLInputElement).value;
-
+  function handleSearch(query: string) {
     if (!query) {
-      if (hints) hints.classList.remove("hidden");
-      if (resultsContainer) {
-        // Clear results but keep hints if possible, or just re-append hints
-        resultsContainer.innerHTML = "";
-        if (hints) resultsContainer.appendChild(hints);
-      }
+      showInitialView();
+      results = [];
+      activeIndex = -1;
       return;
     }
 
-    if (hints) hints.classList.add("hidden");
+    if (!fuse) return; // Wait for load
 
-    if (!fuse) return;
+    const fuseResults = fuse.search(query).slice(0, 10);
+    results = fuseResults.map((r) => r.item);
 
-    const results = fuse.search(query).slice(0, 8); // Top 8 results
+    if (results.length === 0) {
+      showNoResults();
+    } else {
+      showResultsView();
+      renderResults();
+      activeIndex = 0; // Select first by default
+      updateActiveItem();
+    }
+  }
 
-    if (resultsContainer) {
-      if (results.length === 0) {
-        resultsContainer.innerHTML = `
-                    <div class="p-8 text-center text-slate-500 dark:text-slate-400">
-                        <p>No results found for "${query}"</p>
-                    </div>
-                 `;
-      } else {
-        resultsContainer.innerHTML = results
-          .map(
-            (result: any) => `
-                    <a href="/${result.item.slug}" class="block p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group">
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-400 px-2 py-0.5 rounded-full">
-                                ${result.item.collection || "Post"}
-                            </span>
-                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-slate-300 group-hover:text-indigo-500 transition-colors">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </div>
-                        <h4 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                            ${result.item.title}
+  function renderResults() {
+    if (!hitsContainer) return;
+    hitsContainer.innerHTML = results
+      .map((item, index) => {
+        // Icon based on type
+        let iconPath =
+          "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"; // Doc
+        if (item.category === "Learn")
+          iconPath =
+            "M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.216 50.59 50.59 0 00-2.658.813m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5";
+
+        return `
+        <a href="/${item.slug}" data-index="${index}" class="search-result-item block p-3 rounded-xl border border-transparent hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-700 transition-all group cursor-pointer ${index === 0 ? "bg-slate-50 dark:bg-slate-800 border-indigo-200 dark:border-indigo-900" : ""}">
+            <div class="flex items-start gap-4">
+                <div class="mt-1 p-2 bg-white dark:bg-slate-700/50 rounded-lg border border-slate-100 dark:border-slate-600 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="${iconPath}" />
+                    </svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 mb-0.5">
+                        <h4 class="font-bold text-slate-900 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                            ${item.title}
                         </h4>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">
-                            ${result.item.description}
-                        </p>
-                    </a>
-                `,
-          )
-          .join("");
+                        ${item.category ? `<span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-500">${item.category}</span>` : ""}
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">
+                        ${item.description}
+                    </p>
+                </div>
+                <div class="self-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-slate-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </div>
+            </div>
+        </a>
+    `;
+      })
+      .join("");
+
+    // Add click listeners to save recent
+    hitsContainer.querySelectorAll("a").forEach((el, idx) => {
+      el.addEventListener("click", () => {
+        saveToRecent(results[idx]);
+      });
+    });
+  }
+
+  function updateActiveItem() {
+    const items = hitsContainer?.querySelectorAll(".search-result-item");
+    if (!items) return;
+
+    items.forEach((item, index) => {
+      if (index === activeIndex) {
+        item.classList.add(
+          "bg-slate-50",
+          "dark:bg-slate-800",
+          "border-indigo-200",
+          "dark:border-indigo-900",
+        );
+        item.scrollIntoView({ block: "nearest" });
+      } else {
+        item.classList.remove(
+          "bg-slate-50",
+          "dark:bg-slate-800",
+          "border-indigo-200",
+          "dark:border-indigo-900",
+        );
+      }
+    });
+  }
+
+  // --- Recent Searches Logic ---
+  function loadRecentSearches() {
+    try {
+      const stored = localStorage.getItem("saig_recent_searches");
+      if (stored) {
+        recentSearches = JSON.parse(stored);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    if (recentSearches.length > 0 && recentSection && recentList) {
+      recentSection.classList.remove("hidden");
+      recentList.innerHTML = recentSearches
+        .map(
+          (item) => `
+            <a href="/${item.slug}" class="flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 group transition-colors">
+                <div class="flex items-center gap-3 overflow-hidden">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-slate-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-sm text-slate-700 dark:text-slate-300 truncate">${item.title}</span>
+                </div>
+                 <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Jump</span>
+            </a>
+        `,
+        )
+        .join("");
+    } else if (recentSection) {
+      recentSection.classList.add("hidden");
+    }
+  }
+
+  function saveToRecent(item: any) {
+    // Remove if exists
+    recentSearches = recentSearches.filter((i) => i.slug !== item.slug);
+    // Add to top
+    recentSearches.unshift(item);
+    // Keep max 5
+    recentSearches = recentSearches.slice(0, 5);
+    localStorage.setItem(
+      "saig_recent_searches",
+      JSON.stringify(recentSearches),
+    );
+  }
+
+  // --- Event Listeners ---
+
+  trigger?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      if (!isOpen) openModal();
+      else closeModal();
+    }
+
+    if (!isOpen) return;
+
+    if (e.key === "Escape") {
+      closeModal();
+    }
+
+    if (results.length > 0) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        activeIndex = (activeIndex + 1) % results.length;
+        updateActiveItem();
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        activeIndex = (activeIndex - 1 + results.length) % results.length;
+        updateActiveItem();
+      }
+      if (e.key === "Enter" && activeIndex >= 0) {
+        e.preventDefault();
+        const item = results[activeIndex];
+        saveToRecent(item);
+        window.location.href = `/${item.slug}`;
       }
     }
+  });
+
+  input?.addEventListener("input", (e) => {
+    handleSearch((e.target as HTMLInputElement).value);
+  });
+
+  // Handle suggestion chips
+  document.querySelectorAll(".suggestion-chip").forEach((chip) => {
+    chip.addEventListener("click", (e) => {
+      const text = (e.currentTarget as HTMLElement).innerText;
+      if (input) {
+        input.value = text;
+        handleSearch(text);
+      }
+    });
   });
 </script>

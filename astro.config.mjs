@@ -20,4 +20,10 @@ export default defineConfig({
   build: {
     outDir: 'docs',
   },
+  redirects: {
+    '/blog/best-ai-tools': '/blog/category/best-ai-tools',
+    '/blog/news': '/blog/category/news',
+    '/blog/comparisons': '/blog/category/comparisons',
+    '/blog/prompt-engineering': '/blog/category/prompt-engineering',
+  }
 });

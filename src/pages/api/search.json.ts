@@ -37,11 +37,35 @@ export async function GET() {
         }
     ];
 
+    // Extract unique categories
+    const categories = [...new Set(blogPosts.map((post: any) => post.data.category).filter(Boolean))];
+
+    // Extract unique tags (flatten array then Set)
+    const tags = [...new Set(blogPosts.flatMap((post: any) => post.data.tags || []).filter(Boolean))];
+
     const searchItems = [
         ...staticPages.map(page => ({
             ...page,
             tags: [],
             category: 'Page'
+        })),
+        // Add Categories as searchable items
+        ...categories.map(cat => ({
+            title: `${cat} (Category)`,
+            slug: `blog/category/${cat.toString().toLowerCase().replace(/\s+/g, '-')}`,
+            type: 'category',
+            description: `Browse all articles in the ${cat} category.`,
+            tags: [],
+            category: 'Category'
+        })),
+        // Add Tags as searchable items
+        ...tags.map(tag => ({
+            title: `#${tag} (Tag)`,
+            slug: `blog/tags/${tag.toString().toLowerCase().replace(/\s+/g, '-')}`,
+            type: 'tag',
+            description: `Browse all articles tagged with #${tag}.`,
+            tags: [tag],
+            category: 'Tag'
         })),
         ...blogPosts.map((post: any) => ({
             title: post.data.title,
@@ -57,7 +81,7 @@ export async function GET() {
             type: 'lesson',
             description: post.data.description,
             tags: [],
-            category: 'Learn' // Or specific learn category if available, simplified for now
+            category: 'Learn'
         }))
     ];
 

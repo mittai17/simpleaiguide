@@ -10,6 +10,8 @@ import MobileTableOfContents from "../../components/MobileTableOfContents.astro"
 import Newsletter from "../../components/Newsletter.astro";
 import Comments from "../../components/Comments.astro";
 import FloatingShare from "../../components/FloatingShare.astro";
+import ReadingProgress from "../../components/ReadingProgress.astro";
+import AuthorBio from "../../components/AuthorBio.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -53,6 +55,8 @@ const prevPost =
 	title={post.data.metaTitle ?? post.data.title}
 	description={post.data.description}
 >
+	<ReadingProgress />
+
 	<!-- Schema.org JSON-LD -->
 	<script
 		type="application/ld+json"
@@ -347,7 +351,7 @@ const prevPost =
 
 				<article class="w-full min-w-0">
 					<div
-						class="prose prose-slate dark:prose-invert max-w-4xl mx-auto prose-lg md:prose-xl prose-p:leading-relaxed prose-li:leading-relaxed prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-700 dark:prose-p:text-slate-200 prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-li:text-slate-700 dark:prose-li:text-slate-200 prose-pre:bg-slate-900 prose-pre:rounded-xl prose-pre:shadow-lg prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto prose-img:max-h-[500px] prose-img:w-auto prose-img:max-w-full prose-a:no-underline hover:prose-a:underline bg-white/50 dark:bg-slate-900/40 backdrop-blur-sm p-6 md:p-10 rounded-2xl border border-transparent dark:border-slate-800/50"
+						class="prose prose-slate dark:prose-invert max-w-4xl mx-auto prose-lg md:prose-xl prose-p:leading-relaxed prose-li:leading-relaxed prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-700 dark:prose-p:text-slate-200 prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-li:text-slate-700 dark:prose-li:text-slate-200 prose-pre:bg-slate-900 prose-pre:rounded-xl prose-pre:shadow-lg prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto prose-img:max-h-[500px] prose-img:w-auto prose-img:max-w-full prose-a:no-underline hover:prose-a:underline prose-blockquote:not-italic prose-blockquote:border-l-4 prose-blockquote:border-indigo-500 prose-blockquote:bg-indigo-50/50 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:text-slate-700 dark:prose-blockquote:text-slate-300 dark:prose-blockquote:bg-slate-800/30 bg-white/50 dark:bg-slate-900/40 backdrop-blur-sm p-6 md:p-10 rounded-2xl border border-transparent dark:border-slate-800/50"
 					>
 						{
 							post.data.keyTakeaways &&
@@ -378,6 +382,8 @@ const prevPost =
 								)
 						}
 						<Content components={{ YouTubeEmbed }} />
+
+						<AuthorBio />
 					</div>
 				</article>
 
@@ -471,4 +477,45 @@ const prevPost =
 			</aside>
 		</div>
 	</div>
+
+	<script>
+		// Copy Code Button Logic
+		const copyButtonLabel = "Copy";
+		const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+		for (const codeBlock of codeBlocks) {
+			const wrapper = document.createElement("div");
+			wrapper.style.position = "relative";
+
+			const copyButton = document.createElement("button");
+			copyButton.className =
+				"copy-code-btn absolute top-2 right-2 text-xs font-semibold py-1 px-2 rounded bg-slate-700 text-slate-300 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-indigo-600 hover:text-white";
+			copyButton.innerHTML = copyButtonLabel;
+
+			codeBlock.setAttribute("tabindex", "0");
+			codeBlock.appendChild(copyButton);
+
+			// wrap pre with a relative div to ensure button positioning works if pre styling is restrictive
+			// But existing styles make pre rounded and relative often. Checking 'prose'.
+			// Tailwind typography 'prose' doesn't make pre relative by default.
+			codeBlock.classList.add("relative", "group");
+
+			copyButton.addEventListener("click", async () => {
+				await copyCode(codeBlock, copyButton);
+			});
+		}
+
+		async function copyCode(block: HTMLElement, button: HTMLButtonElement) {
+			const code = block.querySelector("code");
+			const text = code?.innerText || "";
+
+			await navigator.clipboard.writeText(text);
+
+			// Visual feedback
+			button.innerText = "Copied!";
+			setTimeout(() => {
+				button.innerText = copyButtonLabel;
+			}, 700);
+		}
+	</script>
 </Layout>

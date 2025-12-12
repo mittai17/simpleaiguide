@@ -1,0 +1,44 @@
+---
+interface Props {
+    authorName?: string;
+    authorImage?: string;
+    authorBio?: string;
+}
+
+const {
+    authorName = "Simple AI Guide Team",
+    authorImage = "/images/author-team.png",
+    authorBio = "We are a team of AI enthusiasts and engineers dedicated to simplifying artificial intelligence for everyone. Our goal is to help you leverage AI tools to boost productivity and creativity.",
+} = Astro.props;
+---
+
+<div
+    class="flex items-center gap-4 p-6 mt-12 mb-8 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700"
+>
+    <div class="flex-shrink-0">
+        <div
+            class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-2xl overflow-hidden border-2 border-white shadow-sm"
+        >
+            <!-- If image exists use it, else generic icon -->
+            {
+                authorImage.includes("team") ? (
+                    <span class="text-indigo-600">🚀</span>
+                ) : (
+                    <img
+                        src={authorImage}
+                        alt={authorName}
+                        class="w-full h-full object-cover"
+                    />
+                )
+            }
+        </div>
+    </div>
+    <div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">
+            Written by {authorName}
+        </h3>
+        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            {authorBio}
+        </p>
+    </div>
+</div>

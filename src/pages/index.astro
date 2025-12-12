@@ -68,7 +68,9 @@ const learnModules = allLearn
 		</div>
 
 		<!-- Hero Featured Cards -->
-		<div class="flex-1 w-full max-w-md lg:max-w-lg relative z-10">
+		<div
+			class="flex-1 w-full max-w-md md:max-w-2xl lg:max-w-lg relative z-10"
+		>
 			<!-- Mobile: Horizontal Scroll Snap, Desktop: Grid -->
 			<div class="relative">
 				<div
@@ -201,7 +203,7 @@ const learnModules = allLearn
 				</a>
 			</div>
 
-			<div class="grid md:grid-cols-3 gap-8">
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{
 					latestPosts.map((post) => (
 						<a
@@ -271,7 +273,9 @@ const learnModules = allLearn
 				</p>
 			</div>
 
-			<div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+			<div
+				class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+			>
 				<HolographicCard
 					title="Zero Jargon"
 					description="We explain complex concepts in plain English. No PhD required."
@@ -375,7 +379,7 @@ const learnModules = allLearn
 			</a>
 		</div>
 
-		<div class="grid md:grid-cols-3 gap-8">
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{
 				learnModules.map((module) => (
 					<a

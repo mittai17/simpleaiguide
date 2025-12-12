@@ -30,11 +30,25 @@ const wordCount = post.body.split(/\s+/).length;
 const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
 // Fetch Related Posts (basic implementation: same category or latest)
+// Smarter Related Posts (Tag-based > Category-based)
 const allPosts = await getCollection("blog");
+const currentTags = post.data.tags || [];
+
 const relatedPosts = allPosts
-	.filter(
-		(p) => p.slug !== post.slug && p.data.category === post.data.category,
-	)
+	.filter((p) => p.slug !== post.slug)
+	.map((p) => {
+		let score = 0;
+		// Match Category (+1 point)
+		if (p.data.category === post.data.category) score += 1;
+
+		// Match Tags (+2 points per match)
+		const pTags = p.data.tags || [];
+		const matchingTags = pTags.filter((t) => currentTags.includes(t));
+		score += matchingTags.length * 2;
+
+		return { ...p, score };
+	})
+	.sort((a, b) => b.score - a.score) // Sort by relevance score
 	.slice(0, 3);
 
 // Previous/Next Post Logic (Sorted by Date)
@@ -382,6 +396,24 @@ const prevPost =
 								)
 						}
 						<Content components={{ YouTubeEmbed }} />
+
+						<Content components={{ YouTubeEmbed }} />
+
+						<!-- Tags -->
+						{
+							post.data.tags && (
+								<div class="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700 flex flex-wrap gap-2">
+									{post.data.tags.map((tag) => (
+										<a
+											href={`/blog/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+											class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full text-sm font-medium hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
+										>
+											#{tag}
+										</a>
+									))}
+								</div>
+							)
+						}
 
 						<AuthorBio />
 					</div>

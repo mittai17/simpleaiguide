@@ -21,7 +21,22 @@ const categories = [...new Set(posts.map((post) => post.data.category))].map(
   },
 );
 
-// Related Posts Logic
+// Tags Logic
+const allTags = posts.map((post) => post.data.tags || []).flat();
+const tagCounts = allTags.reduce((acc, tag) => {
+  acc[tag] = (acc[tag] || 0) + 1;
+  return acc;
+}, {});
+const tags = Object.entries(tagCounts)
+  .sort((a, b) => b[1] - a[1]) // Sort by count desc
+  .slice(0, 15) // Top 15 tags
+  .map(([name, count]) => ({
+    name,
+    slug: name.toLowerCase().replace(/\s+/g, "-"),
+    count,
+  }));
+
+// Related/Recent Posts Logic
 let relatedPosts = [];
 if (currentCategory) {
   // If on a post page, show posts from same category (excluding current)
@@ -39,12 +54,26 @@ if (currentCategory) {
 }
 ---
 
-<nav class="space-y-10 pr-2 pb-10">
+<nav class="space-y-8 pr-2 pb-10">
   <!-- Categories  -->
   <div>
     <h3
       class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs mb-4 flex items-center gap-2"
     >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-4 h-4 text-indigo-500"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
+        ></path>
+      </svg>
       Categories
     </h3>
     <ul
@@ -73,6 +102,45 @@ if (currentCategory) {
         ))
       }
     </ul>
+  </div>
+
+  <!-- Tags -->
+  <div>
+    <h3
+      class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs mb-4 flex items-center gap-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-4 h-4 text-indigo-500"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"
+        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 6h.008v.008H6V6z"></path>
+      </svg>
+      Popular Tags
+    </h3>
+    <div class="flex flex-wrap gap-2">
+      {
+        tags.map((tag) => (
+          <a
+            href={`/blog/tags/${tag.slug}`}
+            class="text-[10px] font-medium px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-indigo-600 transition-colors border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-indigo-400"
+          >
+            #{tag.name}
+          </a>
+        ))
+      }
+    </div>
   </div>
 
   <!-- Related/Latest Posts -->

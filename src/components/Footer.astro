@@ -3,46 +3,67 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class="bg-slate-900/50 dark:bg-slate-950/30 backdrop-blur-xl text-slate-300 py-12 relative overflow-hidden mt-auto border-t border-slate-800/50"
+  class="relative mt-auto border-t border-slate-200/50 dark:border-slate-800/50 bg-slate-50 dark:bg-slate-950 overflow-hidden"
 >
-  <!-- Decorative Background -->
-  <div
-    class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none"
-  >
+  <!-- Decorative Background Elements -->
+  <div class="absolute inset-0 pointer-events-none">
     <div
-      class="absolute -top-24 -left-24 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl"
+      class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px] opacity-0 dark:opacity-100 mix-blend-screen"
     >
     </div>
     <div
-      class="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"
+      class="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] opacity-0 dark:opacity-100 mix-blend-screen"
     >
     </div>
   </div>
 
-  <div class="container mx-auto px-6 lg:px-4 relative z-10">
-    <div class="grid lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
-      <!-- Brand & Mission -->
-      <div class="lg:col-span-1">
-        <a
-          href="/"
-          class="text-xl font-bold text-white mb-4 block tracking-tight"
-        >
-          Simple AI Guide
+  <div class="container mx-auto px-6 lg:px-4 py-16 relative z-10">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16"
+    >
+      <!-- Brand Column -->
+      <div class="lg:col-span-4">
+        <a href="/" class="flex items-center gap-2 mb-6 group">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+              ></path>
+            </svg>
+          </div>
+          <span
+            class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300"
+          >
+            Simple AI Guide
+          </span>
         </a>
-        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-          Demystifying artificial intelligence for everyone. Practical knowledge
-          to navigate the future.
+        <p
+          class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 max-w-sm"
+        >
+          Demystifying artificial intelligence for everyone. We turn complex
+          technology into practical, easy-to-understand guides for the future.
         </p>
         <div class="flex gap-3">
           <a
             href="https://github.com/mittai17/simpleaiguide"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white transition-all border border-slate-700 hover:border-indigo-500"
+            class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 transition-all shadow-sm"
             aria-label="GitHub"
           >
             <svg
-              class="w-4 h-4"
+              class="w-5 h-5"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -56,14 +77,14 @@ const currentYear = new Date().getFullYear();
           <a
             href="/rss.xml"
             target="_blank"
-            class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-orange-500 hover:text-white transition-all border border-slate-700 hover:border-orange-400"
+            class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-orange-50 dark:hover:bg-slate-800 hover:text-orange-500 dark:hover:text-orange-400 hover:border-orange-200 dark:hover:border-orange-900 transition-all shadow-sm"
             aria-label="RSS Feed"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              class="w-4 h-4"
+              class="w-5 h-5"
             >
               <path
                 d="M3.75 3a.75.75 0 00-.75.75v.5c0 .414.336.75.75.75H4c6.075 0 11 4.925 11 11v.25c0 .414.336.75.75.75h.5a.75.75 0 00.75-.75V16C17 8.82 11.18 3 4 3h-.25z"
@@ -77,155 +98,130 @@ const currentYear = new Date().getFullYear();
         </div>
       </div>
 
-      <!-- Links Grid -->
-      <div class="lg:col-span-2 grid grid-cols-2 gap-8">
-        <div>
-          <h3
-            class="text-white font-bold text-sm uppercase tracking-wider mb-4"
-          >
-            Explore
-          </h3>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <a
-                href="/learn"
-                class="text-slate-400 hover:text-indigo-400 transition-colors block py-1"
-                >Flight Training</a
-              >
-            </li>
-            <li>
-              <a
-                href="/blog"
-                class="text-slate-400 hover:text-indigo-400 transition-colors block py-1"
-                >Captain's Log</a
-              >
-            </li>
-            <li>
-              <a
-                href="/about"
-                class="text-slate-400 hover:text-indigo-400 transition-colors block py-1"
-                >Mission Briefing</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3
-            class="text-white font-bold text-sm uppercase tracking-wider mb-4"
-          >
-            Legal
-          </h3>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <a
-                href="/privacy-policy"
-                class="text-slate-400 hover:text-indigo-400 transition-colors block py-1"
-                >Privacy Protocol</a
-              >
-            </li>
-            <li>
-              <a
-                href="/terms"
-                class="text-slate-400 hover:text-indigo-400 transition-colors block py-1"
-                >Terms & Conditions</a
-              >
-            </li>
-            <li>
-              <a
-                href="/contact"
-                class="text-slate-400 hover:text-indigo-400 transition-colors block py-1"
-                >Contact Comms</a
-              >
-            </li>
-            <li>
-              <a
-                href="/disclaimer"
-                class="text-slate-400 hover:text-indigo-400 transition-colors block py-1"
-                >Disclaimer</a
-              >
-            </li>
-          </ul>
-        </div>
+      <!-- Links Column 1 -->
+      <div class="lg:col-span-2">
+        <h3
+          class="text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wider mb-6"
+        >
+          Learn
+        </h3>
+        <ul class="space-y-4">
+          <li>
+            <a
+              href="/learn/introduction-to-ai"
+              class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors"
+              >Intro to AI</a
+            >
+          </li>
+          <li>
+            <a
+              href="/learn/machine-learning"
+              class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors"
+              >Machine Learning</a
+            >
+          </li>
+          <li>
+            <a
+              href="/learn/generative-ai"
+              class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors"
+              >Generative AI</a
+            >
+          </li>
+        </ul>
       </div>
 
-      <!-- Newsletter -->
-      <div class="lg:col-span-1">
-        <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">
-          Stay Updated
+      <!-- Links Column 2 -->
+      <div class="lg:col-span-2">
+        <h3
+          class="text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wider mb-6"
+        >
+          Company
         </h3>
-        <p class="text-slate-400 text-xs mb-4">
-          Latest AI tools and guides, delivered to your inbox.
+        <ul class="space-y-4">
+          <li>
+            <a
+              href="/about"
+              class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a
+              href="/blog"
+              class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Newsletter Column -->
+      <div
+        class="lg:col-span-4 rounded-2xl bg-white dark:bg-slate-900 p-6 border border-slate-200 dark:border-slate-800 shadow-sm"
+      >
+        <h3 class="text-slate-900 dark:text-white font-bold text-lg mb-2">
+          Weekly Intelligence
+        </h3>
+        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">
+          Join 2,000+ readers getting the latest AI tools and tutorials
+          delivered to their inbox.
         </p>
-        <div class="flex flex-col gap-3">
-          <a
-            href="https://ggiridharan097.substack.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full px-4 py-2.5 rounded-lg bg-indigo-600 text-white text-sm font-bold hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-900/20 text-center flex items-center justify-center gap-2"
-          >
+        <a
+          href="https://ggiridharan097.substack.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block w-full text-center px-4 py-3 rounded-xl bg-indigo-600 text-white text-sm font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40 relative group overflow-hidden"
+        >
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            Subscribe on Substack
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
+              viewBox="0 0 20 20"
               fill="currentColor"
-              class="w-4 h-4"
+              class="w-4 h-4 group-hover:translate-x-1 transition-transform"
             >
               <path
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm.53 5.47a.75.75 0 00-1.06 0l-3 3a.75.75 0 101.06 1.06l1.72-1.72v5.69a.75.75 0 001.5 0v-5.69l1.72 1.72a.75.75 0 101.06-1.06l-3-3z"
-              ></path>
+                fill-rule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clip-rule="evenodd"></path>
             </svg>
-            Subscribe on Substack
-          </a>
-        </div>
+          </span>
+        </a>
       </div>
     </div>
 
+    <!-- Bottom Bar -->
     <div
-      class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs"
+      class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
     >
-      <div class="text-slate-500">
+      <div class="text-slate-500 text-sm order-2 md:order-1">
         &copy; {currentYear} Simple AI Guide. All rights reserved.
       </div>
 
-      <!-- Back to Top -->
-      <button
-        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-        class="group flex items-center gap-2 font-bold text-slate-400 hover:text-white transition-colors"
-      >
-        Back to Top
-        <span
-          class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center group-hover:bg-indigo-600 transition-colors"
+      <div class="flex flex-wrap gap-6 text-sm order-1 md:order-2">
+        <a
+          href="/privacy-policy"
+          class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >Privacy</a
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="w-3 h-3 group-hover:-translate-y-0.5 transition-transform"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </span>
-      </button>
+        <a
+          href="/terms"
+          class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >Terms</a
+        >
+        <a
+          href="/disclaimer"
+          class="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >Disclaimer</a
+        >
+      </div>
     </div>
   </div>
 </footer>
-
-<style>
-  @keyframes rocket-launch {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
-    100% {
-      transform: translateY(-20px);
-      opacity: 0;
-    }
-  }
-  .group:hover .group-hover\:animate-rocket-launch {
-    animation: rocket-launch 0.5s ease-in-out forwards;
-  }
-</style>

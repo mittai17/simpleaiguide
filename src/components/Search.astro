@@ -207,7 +207,11 @@
   let recentSearches: any[] = [];
 
   // --- DOM Elements ---
-  const triggers = document.querySelectorAll(".search-trigger"); // Changed to querySelectorAll
+  // Use function to re-query triggers in case of dynamic DOM updates or Astro hydration quirks
+  function getTriggers() {
+    return document.querySelectorAll(".search-trigger");
+  }
+
   const modal = document.getElementById("search-modal");
   const container = document.getElementById("search-container");
   const input = document.getElementById("search-input") as HTMLInputElement;
@@ -457,7 +461,16 @@
 
   // --- Event Listeners ---
 
-  triggers.forEach((t) => t.addEventListener("click", openModal)); // Attach to all triggers
+  // --- Event Listeners ---
+
+  // Attach to all triggers found
+  getTriggers().forEach((t) =>
+    t.addEventListener("click", (e) => {
+      e.preventDefault(); // crucial for button/a tags
+      openModal();
+    }),
+  );
+
   closeBtn?.addEventListener("click", closeModal);
   modal?.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();

@@ -1,0 +1,176 @@
+---
+import Layout from "../../../../../components/Layout.astro";
+import Sidebar from "../../../../../components/Sidebar.astro";
+import { getCollection } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+    const allPosts = await getCollection("blog");
+    const uniqueCategories = [
+        ...new Set(allPosts.map((post) => post.data.category)),
+    ];
+
+    return uniqueCategories.flatMap((category) => {
+        const filteredPosts = allPosts
+            .filter((post) => post.data.category === category)
+            .sort(
+                (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+            );
+
+        return paginate(filteredPosts, {
+            params: { category: category.toLowerCase().replace(/\s+/g, "-") },
+            pageSize: 6,
+            props: { categoryName: category },
+        });
+    });
+};
+
+interface Props {
+    page: Page<CollectionEntry<"blog">>;
+    categoryName: string;
+}
+
+const { page, categoryName } = Astro.props;
+const { category } = Astro.params;
+---
+
+<Layout
+    title={`${categoryName} Articles - Page ${page.currentPage} - Simple AI Guide`}
+>
+    <section class="container mx-auto px-4 py-12 md:py-20">
+        <div class="max-w-4xl mx-auto mb-16 text-center">
+            <span
+                class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-4 block"
+                >Category</span
+            >
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white"
+            >
+                {categoryName}
+            </h1>
+            <p
+                class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto"
+            >
+                Exploring the latest in {categoryName}. Found {page.total} articles.
+            </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Main Content -->
+            <div class="w-full lg:w-3/4">
+                <div class="flex items-center gap-4 mb-8">
+                    <h3
+                        class="text-2xl font-bold text-slate-900 dark:text-white"
+                    >
+                        Page {page.currentPage}
+                    </h3>
+                    <div class="h-px bg-slate-200 dark:bg-slate-700 flex-grow">
+                    </div>
+                </div>
+
+                <div class="grid gap-8 md:grid-cols-2">
+                    {
+                        page.data.map((post) => (
+                            <article class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-xl hover:border-indigo-100 dark:hover:border-indigo-500/30 hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                                <div class="mb-6">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-wider group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/30 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                            {post.data.category}
+                                        </span>
+                                        <time
+                                            datetime={post.data.pubDate.toISOString()}
+                                            class="text-xs text-slate-400 font-medium uppercase tracking-wider"
+                                        >
+                                            {post.data.pubDate.toLocaleDateString(
+                                                "en-US",
+                                                {
+                                                    year: "numeric",
+                                                    month: "short",
+                                                    day: "numeric",
+                                                },
+                                            )}
+                                        </time>
+                                    </div>
+
+                                    <h2 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight">
+                                        <a
+                                            href={`/blog/${post.slug}`}
+                                            class="before:absolute before:inset-0"
+                                        >
+                                            {post.data.title}
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <p class="text-slate-600 dark:text-slate-400 mb-6 line-clamp-3 text-sm leading-relaxed flex-grow">
+                                    {post.data.description}
+                                </p>
+
+                                <div class="mt-auto pt-6 border-t border-slate-50 dark:border-slate-700 flex items-center justify-between text-sm">
+                                    <span class="font-semibold text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors flex items-center gap-1">
+                                        Read Article
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="mt-12 flex justify-between items-center">
+                    {
+                        page.url.prev ? (
+                            <a
+                                href={
+                                    page.currentPage === 2
+                                        ? `/blog/category/${category}`
+                                        : page.url.prev
+                                }
+                                class="px-6 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2"
+                            >
+                                ← Previous
+                            </a>
+                        ) : (
+                            <div />
+                        )
+                    }
+
+                    {
+                        page.url.next ? (
+                            <a
+                                href={page.url.next}
+                                class="px-6 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2"
+                            >
+                                Next →
+                            </a>
+                        ) : (
+                            <div />
+                        )
+                    }
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="w-full lg:w-1/4">
+                <div class="sticky top-24">
+                    <Sidebar currentCategory={categoryName} />
+                </div>
+            </aside>
+        </div>
+    </section>
+</Layout>

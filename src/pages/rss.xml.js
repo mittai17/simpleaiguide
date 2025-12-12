@@ -8,6 +8,7 @@ export async function GET(context) {
         title: 'Simple AI Guide',
         description: 'Learn Artificial Intelligence, Machine Learning, and AI Tools for free.',
         site: context.site,
+        stylesheet: '/rss/styles.xsl',
         items: posts.map((post) => ({
             title: post.data.title,
             pubDate: post.data.pubDate,

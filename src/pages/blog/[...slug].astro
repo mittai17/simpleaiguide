@@ -267,16 +267,31 @@ const prevPost =
 					/>
 				</div>
 
-				<header class="mb-8 md:mb-12 text-center">
+				<header class="mb-12 md:mb-16 text-center relative">
+					<!-- Hero Image Background Blur Effect -->
+					{
+						post.data.heroImage && (
+							<div class="absolute inset-0 -z-10 h-full w-full overflow-hidden opacity-20 dark:opacity-10 blur-3xl pointer-events-none select-none">
+								<img
+									src={post.data.heroImage}
+									class="w-full h-full object-cover scale-150"
+									alt=""
+									aria-hidden="true"
+								/>
+							</div>
+						)
+					}
+
 					<div
-						class="flex items-center justify-center flex-wrap gap-4 text-sm text-slate-500 mb-6"
+						class="flex items-center justify-center flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400 mb-8 animate-fade-in-up"
 					>
-						<span
-							class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 font-bold text-xs uppercase tracking-wider"
+						<a
+							href={`/blog/category/${post.data.category.toLowerCase().replace(/\s+/g, "-")}`}
+							class="px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 font-bold text-xs uppercase tracking-wider hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
 						>
 							{post.data.category}
-						</span>
-						<span>•</span>
+						</a>
+						<span class="opacity-50">•</span>
 						<time
 							datetime={post.data.pubDate.toISOString()}
 							class="font-medium"
@@ -289,11 +304,25 @@ const prevPost =
 								})
 							}
 						</time>
-						<span>•</span>
-						<span>{readingTime} min read</span>
+						<span class="opacity-50">•</span>
+						<span class="flex items-center gap-1.5">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								class="w-4 h-4 opacity-70"
+								><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"
+								></path><path
+									fill-rule="evenodd"
+									d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z"
+									clip-rule="evenodd"></path></svg
+							>
+							{readingTime} min read
+						</span>
 					</div>
+
 					<h1
-						class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-slate-900 max-w-4xl mx-auto"
+						class="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-8 leading-tight text-slate-900 dark:text-white max-w-5xl mx-auto tracking-tight animate-fade-in-up delay-100 drop-shadow-sm"
 					>
 						{post.data.title}
 					</h1>
@@ -302,7 +331,9 @@ const prevPost =
 					<MobileTableOfContents headings={headings} />
 
 					<!-- Social Share -->
-					<div class="flex items-center justify-center gap-3 mb-8">
+					<div
+						class="flex items-center justify-center gap-3 mb-8 animate-fade-in-up delay-200"
+					>
 						<span
 							class="text-xs font-bold text-slate-400 uppercase tracking-wider"
 							>Share:</span

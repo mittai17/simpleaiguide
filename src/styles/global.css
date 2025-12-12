@@ -35,8 +35,39 @@ body {
 }
 
 /* DISABLE COLUMNS FOR BLOG POSTS */
+/* DISABLE COLUMNS FOR BLOG POSTS */
 article .prose,
 .prose {
     column-count: auto !important;
     columns: auto !important;
+}
+
+/* Premium Typography Overrides */
+.prose h2,
+.prose h3,
+.prose h4 {
+    @apply scroll-mt-24;
+}
+
+.prose a {
+    @apply text-indigo-600 no-underline border-b-2 border-indigo-200 hover:border-indigo-600 transition-colors duration-200 dark:text-indigo-400 dark:border-indigo-800 dark:hover:border-indigo-400;
+}
+
+.prose blockquote {
+    @apply font-medium italic text-slate-700 border-l-4 border-indigo-500 bg-indigo-50/50 py-4 px-6 rounded-r-lg dark:text-slate-300 dark:bg-slate-800/50;
+    quotes: none;
+}
+
+.prose img {
+    @apply rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 transition-transform duration-300 hover:scale-[1.01];
+}
+
+/* Code block header styling */
+.prose pre {
+    @apply rounded-xl border border-slate-700/50 shadow-2xl;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50;
 }

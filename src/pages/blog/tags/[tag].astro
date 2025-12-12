@@ -1,0 +1,80 @@
+---
+import Layout from "../../../components/Layout.astro";
+import Sidebar from "../../../components/Sidebar.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection("blog");
+    const uniqueTags = [
+        ...new Set(allPosts.map((post) => post.data.tags).flat()),
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+            post.data.tags.includes(tag),
+        );
+        return {
+            params: { tag: tag.toLowerCase().replace(/\s+/g, "-") },
+            props: { posts: filteredPosts, tag },
+        };
+    });
+}
+
+const { tag, posts } = Astro.props;
+const { category } = Astro.params;
+
+// Sort posts
+const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Layout
+    title={`Posts tagged with "${tag}"`}
+    description={`Explore all articles about ${tag}.`}
+>
+    <div class="container mx-auto px-6 md:px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <aside class="hidden lg:block w-64 flex-shrink-0">
+                <Sidebar />
+            </aside>
+            <main class="flex-grow">
+                <header class="mb-12">
+                    <span
+                        class="text-sm font-bold text-indigo-600 uppercase tracking-wider"
+                        >Tag</span
+                    >
+                    <h1
+                        class="text-4xl font-extrabold text-slate-900 dark:text-white capitalize"
+                    >
+                        {tag}
+                    </h1>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2">
+                        Found {posts.length} articles.
+                    </p>
+                </header>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    {
+                        sortedPosts.map((post) => (
+                            <a
+                                href={`/blog/${post.slug}`}
+                                class="group block bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-all"
+                            >
+                                <span class="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-2 block">
+                                    {post.data.category}
+                                </span>
+                                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                    {post.data.title}
+                                </h2>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-3">
+                                    {post.data.description}
+                                </p>
+                            </a>
+                        ))
+                    }
+                </div>
+            </main>
+        </div>
+    </div>
+</Layout>

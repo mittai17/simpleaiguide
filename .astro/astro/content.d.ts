@@ -159,6 +159,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"best-ai-tools/best-ai-side-hustles-2025.mdx": {
+	id: "best-ai-tools/best-ai-side-hustles-2025.mdx";
+  slug: "best-ai-tools/best-ai-side-hustles-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "best-ai-tools/best-free-ai-tools-2025.mdx": {
 	id: "best-ai-tools/best-free-ai-tools-2025.mdx";
   slug: "best-ai-tools/best-free-ai-tools-2025";

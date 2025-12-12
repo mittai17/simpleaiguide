@@ -8,6 +8,7 @@ const { count = 40 } = Astro.props;
 
 <canvas
     id="starfield"
+    data-count={count}
     class="absolute inset-0 w-full h-full -z-10 opacity-50 pointer-events-none"
 ></canvas>
 
@@ -16,6 +17,9 @@ const { count = 40 } = Astro.props;
     const ctx = canvas.getContext("2d");
 
     if (canvas && ctx) {
+        // Read count from data attribute or default to 40
+        const count = parseInt(canvas.dataset.count || "40", 10);
+
         let width = 0;
         let height = 0;
         let stars: { x: number; y: number; size: number; speed: number }[] = [];
@@ -30,7 +34,7 @@ const { count = 40 } = Astro.props;
 
         const initStars = () => {
             stars = [];
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < count; i++) {
                 stars.push({
                     x: Math.random() * width,
                     y: Math.random() * height,

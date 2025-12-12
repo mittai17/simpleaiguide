@@ -23,29 +23,18 @@ const currentYear = new Date().getFullYear();
     >
       <!-- Brand Column -->
       <div class="lg:col-span-4">
-        <a href="/" class="flex items-center gap-2 mb-6 group">
-          <div
-            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform duration-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
-              ></path>
-            </svg>
-          </div>
+        <a href="/" class="flex items-center gap-3 mb-6 group">
+          <img
+            src="/assets/logo.webp?v=2"
+            alt="Simple AI Guide Logo"
+            class="w-10 h-10 rounded-xl shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform duration-300"
+          />
           <span
-            class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300"
+            class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white"
           >
-            Simple AI Guide
+            Simple <span class="text-indigo-600 dark:text-indigo-400"
+              >AI Guide</span
+            >
           </span>
         </a>
         <p

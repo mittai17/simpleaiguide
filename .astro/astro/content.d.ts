@@ -152,6 +152,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
+"best-ai-tools/3-best-free-ai-video-generators-with-sound-2025.mdx": {
+	id: "best-ai-tools/3-best-free-ai-video-generators-with-sound-2025.mdx";
+  slug: "best-ai-tools/3-best-free-ai-video-generators-with-sound-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "best-ai-tools/best-ai-image-models-2026.mdx": {
 	id: "best-ai-tools/best-ai-image-models-2026.mdx";
   slug: "best-ai-tools/best-ai-image-models-2026";

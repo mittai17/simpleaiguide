@@ -10,11 +10,15 @@ import { ViewTransitions } from "astro:transitions";
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
+	tags?: string[];
 }
 
 const {
 	title,
 	description = "Learn Artificial Intelligence for free. A step-by-step guide to AI, Machine Learning, and tools like ChatGPT for absolute beginners.",
+	image = "/social-image.png",
+	tags = [],
 } = Astro.props;
 ---
 
@@ -23,6 +27,7 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
+		{tags.length > 0 && <meta name="keywords" content={tags.join(", ")} />}
 		<meta name="viewport" content="width=device-width" />
 		<meta name="theme-color" content="#4f46e5" />
 		<ViewTransitions />
@@ -83,19 +88,13 @@ const {
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta
-			property="og:image"
-			content={new URL("/social-image.png", Astro.site)}
-		/>
+		<meta property="og:image" content={new URL(image, Astro.site)} />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={title} />
-		<meta
-			property="twitter:image"
-			content={new URL("/social-image.png", Astro.site)}
-		/>
+		<meta property="twitter:image" content={new URL(image, Astro.site)} />
 
 		<!-- Schema.org JSON-LD -->
 		<script type="application/ld+json" is:inline>

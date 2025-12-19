@@ -1,18 +1,31 @@
 ---
 interface Props {
   slotId?: string;
-  format?: 'auto' | 'rectangle' | 'vertical' | 'horizontal';
+  format?: "auto" | "rectangle" | "vertical" | "horizontal";
   label?: string;
   className?: string;
 }
 
-const { slotId = '1234567890', format = 'auto', label = 'Advertisement', className = '' } = Astro.props;
+const {
+  slotId = "1234567890",
+  format = "auto",
+  label = "Advertisement",
+  className = "",
+} = Astro.props;
 ---
 
-<div class={`ad-container my-8 flex flex-col items-center justify-center ${className}`}>
-  <div class="text-[10px] uppercase tracking-widest text-slate-400 mb-2 font-mono">{label}</div>
-  <div class="w-full bg-slate-50 border border-slate-100 rounded-lg overflow-hidden relative group min-h-[250px] flex items-center justify-center">
-    <!-- Placeholder Visuals for Dev Mode -->
+<!-- Ad Space (Hidden for Review) --><!-- <div
+  class={`ad-container my-8 flex flex-col items-center justify-center ${className}`}
+>
+  <div
+    class="text-[10px] uppercase tracking-widest text-slate-400 mb-2 font-mono"
+  >
+    {label}
+  </div>
+  <div
+    class="w-full rounded-lg overflow-hidden relative group flex items-center justify-center"
+  >
+    
     <div class="absolute inset-0 bg-slate-100/50 pattern-grid-lg opacity-20"></div>
     <div class="text-slate-300 font-mono text-sm relative z-10 flex flex-col items-center gap-2">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 opacity-50">
@@ -21,8 +34,7 @@ const { slotId = '1234567890', format = 'auto', label = 'Advertisement', classNa
       <span>Ad Space</span>
     </div>
 
-    <!-- Actual AdSense Code (Commented out for now or active if slotId provided) -->
-    <!-- 
+    
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -32,10 +44,9 @@ const { slotId = '1234567890', format = 'auto', label = 'Advertisement', classNa
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    -->
+    
   </div>
-</div>
-
+</div> -->
 <style>
   .pattern-grid-lg {
     background-image: radial-gradient(currentColor 1px, transparent 1px);

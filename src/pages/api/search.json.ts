@@ -2,7 +2,6 @@ import { getCollection } from 'astro:content';
 
 export async function GET() {
     const blogPosts = await getCollection('blog');
-    const learnPosts = await getCollection('learn');
 
     const staticPages = [
         {
@@ -22,12 +21,6 @@ export async function GET() {
             slug: 'contact',
             type: 'page',
             description: 'Contact Simple AI Guide for questions or topic requests.'
-        },
-        {
-            title: 'Learn',
-            slug: 'learn',
-            type: 'page',
-            description: 'Start your AI journey. Choose a path to begin learning.'
         },
         {
             title: 'Blog',
@@ -75,14 +68,6 @@ export async function GET() {
             tags: post.data.tags || [],
             category: post.data.category || 'Blog'
         })),
-        ...learnPosts.map((post: any) => ({
-            title: post.data.title,
-            slug: `learn/${post.slug}`,
-            type: 'lesson',
-            description: post.data.description,
-            tags: [],
-            category: 'Learn'
-        }))
     ];
 
     return new Response(JSON.stringify(searchItems), {

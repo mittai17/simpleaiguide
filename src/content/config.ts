@@ -15,20 +15,7 @@ const blogCollection = defineCollection({
     }),
 });
 
-const learnCollection = defineCollection({
-    schema: z.object({
-        title: z.string(),
-        description: z.string(),
-        category: z.enum(["ai-basics", "machine-learning", "deep-learning", "math-for-ai", "python-for-ai"]),
-        order: z.number().default(0),
-        tags: z.array(z.string()).default([]),
-        level: z.string().optional(),
-        pubDate: z.string().or(z.date()).optional().transform((val) => val ? new Date(val) : undefined),
-        keyTakeaways: z.array(z.string()).optional(),
-    })
-});
 
 export const collections = {
     'blog': blogCollection,
-    'learn': learnCollection,
 };

@@ -8,11 +8,6 @@ const allPosts = await getCollection("blog");
 const latestPosts = allPosts
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
-
-const allLearn = await getCollection("learn");
-const learnModules = allLearn
-	.sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
-	.slice(0, 3);
 ---
 
 <Layout
@@ -58,12 +53,6 @@ const learnModules = allLearn
 				>
 					Read Latest Articles
 				</a>
-				<a
-					href="/learn/ai-basics"
-					class="w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1 flex justify-center text-sm md:text-base"
-				>
-					Start Free Course
-				</a>
 			</div>
 		</div>
 
@@ -76,35 +65,6 @@ const learnModules = allLearn
 				<div
 					class="flex md:grid md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 gap-5 no-scrollbar"
 				>
-					<!-- Featured Lesson Card -->
-					<a
-						href="/learn/ai-basics/module-1/1-1-what-is-ai"
-						class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/80 p-6 shadow-lg md:shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100 dark:border-slate-700 backdrop-blur-sm min-w-[85%] md:min-w-0 snap-center"
-					>
-						<div
-							class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-indigo-50 transition-transform group-hover:scale-150"
-						>
-						</div>
-						<div class="relative z-10">
-							<span
-								class="mb-2 inline-block rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-indigo-600"
-							>
-								Start Here
-							</span>
-							<h3
-								class="mb-2 text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
-							>
-								What is Artificial Intelligence?
-							</h3>
-							<p
-								class="text-sm text-slate-600 dark:text-slate-400"
-							>
-								The perfect starting point. Understand the core
-								concepts of AI in 5 minutes.
-							</p>
-						</div>
-					</a>
-
 					<!-- Featured Blog Card -->
 					<a
 						href="/blog/best-ai-tools/i-tried-289-ai-tools"
@@ -341,86 +301,6 @@ const learnModules = allLearn
 					</svg>
 				</HolographicCard>
 			</div>
-		</div>
-	</section>
-
-	<!-- Flight Training (Learn) Section -->
-	<section class="py-24 container mx-auto px-4">
-		<div
-			class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
-		>
-			<div>
-				<span
-					class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block"
-					>Flight Training</span
-				>
-				<h2
-					class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white"
-				>
-					Master the Basics
-				</h2>
-			</div>
-			<a
-				href="/learn"
-				class="text-indigo-600 dark:text-indigo-400 font-bold hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-2 group"
-			>
-				View Full Curriculum
-				<svg
-					class="w-4 h-4 transition-transform group-hover:translate-x-1"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-				>
-			</a>
-		</div>
-
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{
-				learnModules.map((module) => (
-					<a
-						href={`/learn/${module.slug}`}
-						class="group block p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-lg transition-all"
-					>
-						<div class="flex items-center justify-between mb-4">
-							<span class="text-xs font-bold uppercase tracking-wider text-indigo-500 bg-indigo-50 px-2 py-1 rounded-md">
-								{module.data.category.replace(/-/g, " ")}
-							</span>
-							{module.data.level && (
-								<span class="text-xs font-medium text-slate-400">
-									{module.data.level}
-								</span>
-							)}
-						</div>
-						<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-							{module.data.title}
-						</h3>
-						<p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-4">
-							{module.data.description}
-						</p>
-						<span class="text-sm font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
-							Start Lesson{" "}
-							<svg
-								class="w-4 h-4"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M9 5l7 7-7 7"
-								/>
-							</svg>
-						</span>
-					</a>
-				))
-			}
 		</div>
 	</section>
 

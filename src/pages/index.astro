@@ -1,335 +1,170 @@
 ---
 import Layout from "../components/Layout.astro";
-import Starfield from "../components/Starfield.astro";
-import HolographicCard from "../components/HolographicCard.astro";
+import Sidebar from "../components/Sidebar.astro";
 import { getCollection } from "astro:content";
 
-const allPosts = await getCollection("blog");
-const latestPosts = allPosts
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3);
+// 1. Fetch posts and sorting
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// 2. Identify Featured Post (e.g., first one marked 'featured' or just latest)
+// Logic: Try to find first post with 'featured: true', fallback to latest
+const featuredPost = allPosts.find(p => p.data.featured) || allPosts[0];
+
+// 3. Main feed posts (exclude featured one to avoid dubplication)
+const mainPosts = allPosts.filter(p => p.slug !== featuredPost.slug).slice(0, 10);
 ---
 
 <Layout
-	title="Simple AI Guide - Fast, Modern Blog"
-	description="Learn Artificial Intelligence for free. A step-by-step guide to AI, Machine Learning, and tools like ChatGPT for absolute beginners."
+	title="Simple AI Guide - AI Tools & News"
+	description="Expert guides, reviews, and news about Artificial Intelligence, Machine Learning, and the best AI tools."
 >
-	<!-- Hero Section -->
-	<section
-		class="container mx-auto px-4 py-10 md:py-24 flex flex-col lg:flex-row items-center gap-10 md:gap-12 relative overflow-hidden"
-	>
-		<!-- Starfield (Optimized) -->
-		<Starfield />
-
-		<!-- Hero Text -->
-		<div class="flex-1 text-center lg:text-left z-10 w-full px-2 md:px-0">
-			<div
-				class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold text-xs md:text-sm mb-6 animate-fade-in"
-			>
-				🚀 The Missing Manual for AI
-			</div>
-			<h1
-				class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-indigo-300 dark:via-white dark:to-indigo-300 leading-tight animate-gradient-x"
-			>
-				Learn AI: Not Rocket Science <span
-					class="text-indigo-600 dark:text-indigo-400 block mt-2 md:mt-0"
-					>(But Close Enough)</span
-				>
-			</h1>
-
-			<p
-				class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0"
-			>
-				We translate robot-speak into human. No alien decoder ring
-				required. Master the basics, explore tools, and stay ahead.
-			</p>
-
-			<div
-				class="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center lg:justify-start w-full"
-			>
-				<a
-					href="/blog"
-					class="w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-bold hover:from-indigo-500 hover:to-indigo-400 transition-all shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-1 flex justify-center text-sm md:text-base"
-				>
-					Read Latest Articles
-				</a>
-			</div>
-		</div>
-
-		<!-- Hero Featured Cards -->
-		<div
-			class="flex-1 w-full max-w-md md:max-w-2xl lg:max-w-lg relative z-10"
-		>
-			<!-- Mobile: Horizontal Scroll Snap, Desktop: Grid -->
-			<div class="relative">
-				<div
-					class="flex md:grid md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 gap-5 no-scrollbar"
-				>
-					<!-- Featured Blog Card -->
-					<a
-						href="/blog/best-ai-tools/i-tried-289-ai-tools"
-						class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/80 p-6 shadow-lg md:shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-slate-100 dark:border-slate-700 backdrop-blur-sm min-w-[85%] md:min-w-0 snap-center"
-					>
-						<div
-							class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-50 transition-transform group-hover:scale-150"
-						>
-						</div>
-						<div class="relative z-10">
-							<span
-								class="mb-2 inline-block rounded-full bg-purple-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-600"
-							>
-								Trending
-							</span>
-							<h3
-								class="mb-2 text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors"
-							>
-								I Tried 289 AI Tools
-							</h3>
-							<p
-								class="text-sm text-slate-600 dark:text-slate-400"
-							>
-								The best tools for making money online in 2025.
-								Tested and verified.
-							</p>
-						</div>
-					</a>
-				</div>
-				<!-- Mobile Scroll Hint -->
-				<div
-					class="md:hidden absolute bottom-0 left-0 w-full flex justify-center pointer-events-none"
-				>
-					<span
-						class="text-xs text-slate-400 bg-white/80 backdrop-blur px-3 py-1 rounded-full shadow-sm border border-slate-100"
-					>
-						Swipe to explore →
-					</span>
-				</div>
-			</div>
-
-			<!-- Decorative Blobs -->
-			<div
-				class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-indigo-500/5 rounded-full"
-			>
-			</div>
-		</div>
-	</section>
-
-	<!-- Captain's Log (Blog) Section -->
-	<section class="py-24 bg-slate-900 text-white relative overflow-hidden">
-		<!-- Decorative Background -->
-		<!-- Decorative Background Optimized -->
-		<div
-			class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20"
-		>
-			<div
-				class="absolute top-0 right-0 w-[300px] h-[300px] bg-indigo-500/10 rounded-full"
-			>
-			</div>
-			<div
-				class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-purple-500/10 rounded-full"
-			>
-			</div>
+	<!-- Hero / Featured Section -->
+	<section class="relative bg-slate-900 text-white overflow-hidden py-12 md:py-20">
+		<!-- Background Effects -->
+		<div class="absolute inset-0 z-0">
+			<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50"></div>
+			<div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 opacity-50"></div>
+            <div class="absolute inset-0 bg-[url('/assets/grid-pattern.svg')] opacity-10"></div>
 		</div>
 
 		<div class="container mx-auto px-4 relative z-10">
-			<div
-				class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
-			>
-				<div>
-					<span
-						class="text-indigo-400 font-bold tracking-wider uppercase text-sm mb-2 block"
-						>Captain's Log</span
-					>
-					<h2 class="text-3xl md:text-4xl font-bold text-white">
-						Latest Intelligence
-					</h2>
+			<article class="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+				<!-- Image -->
+				<div class="w-full md:w-1/2 lg:w-3/5">
+                    <a href={`/blog/${featuredPost.slug}`} class="block group relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50">
+                        {featuredPost.data.heroImage ? (
+                            <img 
+                                src={featuredPost.data.heroImage} 
+                                alt={featuredPost.data.title}
+                                class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                        ) : (
+                            <div class="w-full aspect-video bg-gradient-to-br from-indigo-900 to-slate-900 flex items-center justify-center">
+                                <span class="text-indigo-400 font-bold text-2xl">Featured Article</span>
+                            </div>
+                        )}
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-60"></div>
+                    </a>
 				</div>
-				<a
-					href="/blog"
-					class="text-indigo-400 font-bold hover:text-indigo-300 flex items-center gap-2 group"
-				>
-					Read All Articles
-					<svg
-						class="w-4 h-4 transition-transform group-hover:translate-x-1"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-						><path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-					>
-				</a>
-			</div>
 
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{
-					latestPosts.map((post) => (
-						<a
-							href={`/blog/${post.slug}`}
-							class="group block p-6 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all backdrop-blur-sm"
-						>
-							<div class="flex items-center justify-between mb-4">
-								<span class="text-xs font-bold uppercase tracking-wider text-indigo-400">
-									{post.data.category}
-								</span>
-								<time
-									datetime={post.data.pubDate.toISOString()}
-									class="text-xs text-slate-400"
-								>
-									{post.data.pubDate.toLocaleDateString(
-										"en-US",
-										{
-											month: "short",
-											day: "numeric",
-										},
-									)}
-								</time>
-							</div>
-							<h3 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
-								{post.data.title}
-							</h3>
-							<p class="text-slate-400 text-sm line-clamp-3 mb-4">
-								{post.data.description}
-							</p>
-							<span class="text-sm font-bold text-indigo-400 flex items-center gap-1">
-								Read Article{" "}
-								<svg
-									class="w-4 h-4"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M9 5l7 7-7 7"
-									/>
-								</svg>
-							</span>
+				<!-- Content -->
+				<div class="w-full md:w-1/2 lg:w-2/5 flex flex-col items-start text-left">
+					<div class="flex items-center gap-3 mb-4">
+						<span class="px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+							Featured
+						</span>
+						<span class="text-indigo-200 text-sm font-medium">
+                            {featuredPost.data.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+						</span>
+					</div>
+
+					<h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight group-hover:text-indigo-300 transition-colors">
+						<a href={`/blog/${featuredPost.slug}`} class="hover:text-indigo-400 transition-colors">
+							{featuredPost.data.title}
 						</a>
-					))
-				}
-			</div>
-		</div>
-	</section>
+					</h1>
 
-	<!-- Why Simple AI? Section -->
-	<section
-		class="py-20 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-100 dark:border-slate-800"
-	>
-		<div class="container mx-auto px-4">
-			<div class="text-center mb-16">
-				<h2
-					class="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-				>
-					Why This Guide?
-				</h2>
-				<p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-					Most AI resources are too technical or too hype-driven. We
-					take a different approach.
-				</p>
-			</div>
+					<p class="text-lg text-slate-300 mb-8 leading-relaxed line-clamp-3">
+						{featuredPost.data.description}
+					</p>
 
-			<div
-				class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
-			>
-				<HolographicCard
-					title="Zero Jargon"
-					description="We explain complex concepts in plain English. No PhD required."
-					color="indigo"
-				>
-					<svg
-						slot="icon"
-						xmlns="http://www.w3.org/2000/svg"
-						class="w-6 h-6 text-indigo-500"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-						></path>
-					</svg>
-				</HolographicCard>
-
-				<HolographicCard
-					title="100% Free"
-					description="Knowledge should be accessible. No paywalls, no sign-ups."
-					color="emerald"
-				>
-					<svg
-						slot="icon"
-						xmlns="http://www.w3.org/2000/svg"
-						class="w-6 h-6 text-emerald-500"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-						></path>
-					</svg>
-				</HolographicCard>
-
-				<HolographicCard
-					title="Always Current"
-					description="AI moves fast. We update our content weekly to keep you ahead."
-					color="purple"
-				>
-					<svg
-						slot="icon"
-						xmlns="http://www.w3.org/2000/svg"
-						class="w-6 h-6 text-purple-500"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-					</svg>
-				</HolographicCard>
-			</div>
-		</div>
-	</section>
-
-	<!-- CTA Section -->
-	<section class="py-20 container mx-auto px-4 text-center">
-		<div
-			class="bg-indigo-600 rounded-3xl p-12 md:p-20 relative overflow-hidden shadow-2xl"
-		>
-			<div
-				class="absolute top-0 left-0 w-full h-full bg-[url('/assets/noise.png')] opacity-10 mix-blend-overlay"
-			>
-			</div>
-			<div class="relative z-10 max-w-2xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-					Ready to Launch?
-				</h2>
-				<p class="text-indigo-100 text-lg mb-10">
-					Join thousands of others mastering AI. No spam, just
-					knowledge.
-				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
-					<a
-						href="/blog"
-						class="px-8 py-4 rounded-xl bg-white text-indigo-600 font-bold hover:bg-indigo-50 transition-all shadow-lg"
-					>
-						Browse All Articles
+					<a href={`/blog/${featuredPost.slug}`} class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-all shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-0.5">
+						Read Article
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                            <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+                        </svg>
 					</a>
 				</div>
-			</div>
+			</article>
 		</div>
+	</section>
+
+	<!-- Main Content Area with Sidebar -->
+	<section class="container mx-auto px-4 py-12 md:py-16">
+        <div class="flex flex-col lg:flex-row gap-12">
+            
+            <!-- Posts Feed -->
+            <div class="w-full lg:w-3/4">
+                <div class="flex items-center justify-between mb-8 border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-indigo-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Latest Updates
+                    </h2>
+                    <a href="/blog" class="text-sm font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+                        View Archive <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="grid gap-10">
+                    {mainPosts.map(post => (
+                        <article class="flex flex-col md:flex-row gap-6 md:gap-8 items-start group">
+                            <!-- Thumbnail -->
+                            <a href={`/blog/${post.slug}`} class="w-full md:w-1/3 flex-shrink-0 aspect-[16/10] bg-slate-100 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 relative">
+                                {post.data.heroImage ? (
+                                    <img 
+                                        src={post.data.heroImage} 
+                                        alt={post.data.title}
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        loading="lazy"
+                                    />
+                                ) : (
+                                    <div class="w-full h-full flex items-center justify-center bg-indigo-50 text-indigo-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                        </svg>
+                                    </div>
+                                )}
+                            </a>
+
+                            <!-- Text Content -->
+                            <div class="flex-1 min-w-0 py-1">
+                                <div class="flex items-center gap-3 text-xs md:text-sm mb-3">
+                                    <a href={`/blog/category/${post.data.category.toLowerCase().replace(/\s+/g, '-')}`} class="font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                                        {post.data.category}
+                                    </a>
+                                    <span class="text-slate-300 dark:text-slate-600">•</span>
+                                    <span class="text-slate-500 dark:text-slate-400">
+                                        {post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                                    </span>
+                                </div>
+
+                                <h3 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                    <a href={`/blog/${post.slug}`}>
+                                        {post.data.title}
+                                    </a>
+                                </h3>
+
+                                <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed line-clamp-3 mb-4">
+                                    {post.data.description}
+                                </p>
+
+                                <a href={`/blog/${post.slug}`} class="text-sm font-bold text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 inline-flex items-center gap-1 transition-colors">
+                                    Continue Reading
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+
+                <div class="mt-12 text-center pointer-events-none">
+                     <p class="text-slate-400 text-sm">Showing 10 most recent posts. <a href="/blog" class="text-indigo-600 hover:underline pointer-events-auto">View all archives &rarr;</a></p>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="w-full lg:w-1/4 flex-shrink-0">
+                <div class="sticky top-24">
+                    <Sidebar />
+                </div>
+            </aside>
+
+        </div>
 	</section>
 </Layout>

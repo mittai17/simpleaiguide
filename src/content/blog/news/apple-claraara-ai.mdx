@@ -104,7 +104,7 @@ This avoids the classic compression failure where the model wastes capacity on t
 
 ### 2. Memory Tokens
 
-Each document becomes 4–32 learnable tokens, created by a **Mistral-7B** style [transformer](/learn/ai-basics/module-1/1-7-neural-networks) with LoRA adapters. These tokens store topic relevance, semantic patterns, latent meaning, and answer-supporting signals.
+Each document becomes 4–32 learnable tokens, created by a **Mistral-7B** style transformer with LoRA adapters. These tokens store topic relevance, semantic patterns, latent meaning, and answer-supporting signals.
 
 <Image src={image2} alt="Claraara Memory Extraction Process visualizing how tokens are compressed" />
 
@@ -113,9 +113,9 @@ Each document becomes 4–32 learnable tokens, created by a **Mistral-7B** style
 Both components share the same transformer:
 
 *   **Query Reasoner**: Maps the incoming question into memory tokens.
-*   **Generator**: Uses memory tokens + query tokens to produce the final answer (similar to how standard [LLMs](/learn/ai-basics/module-1/1-4-types-of-ai) generated text).
+*   **Generator**: Uses memory tokens + query tokens to produce the final answer (similar to how standard LLMs generated text).
 
-Both are trained on next-token prediction loss, cross-entropy question answering loss, and MSE alignment of document & memory tokens. This holistic approach is a major evolution in [machine learning](/learn/machine-learning/module-2/2-1-what-is-ml) pipeline design.
+Both are trained on next-token prediction loss, cross-entropy question answering loss, and MSE alignment of document & memory tokens. This holistic approach is a major evolution in machine learning pipeline design.
 
 ## Benchmarks: Claraara Is Shockingly Good
 
@@ -194,8 +194,7 @@ The model correctly reasons over compressed tokens and avoids hallucinations.
 
 Apple may be late to the AI game, but Claraara is an indication of deep, serious research efforts. This is one of the most promising RAG architectures today.
 
----
-*For more on AI basics, check out our [Machine Learning](/learn/machine-learning/module-2/2-1-what-is-ml) section.*
+
 
 ## 🙋‍♀️ FAQ: People Also Ask
 

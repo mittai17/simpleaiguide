@@ -201,6 +201,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"comparisons/final-round-vs-lockedin-ai-interview-tool-comparison-2025.mdx": {
+	id: "comparisons/final-round-vs-lockedin-ai-interview-tool-comparison-2025.mdx";
+  slug: "comparisons/final-round-vs-lockedin-ai-interview-tool-comparison-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "comparisons/stop-using-chatgpt-2025.mdx": {
 	id: "comparisons/stop-using-chatgpt-2025.mdx";
   slug: "comparisons/stop-using-chatgpt-2025";

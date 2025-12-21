@@ -3,13 +3,9 @@ title: 'Apple Claraara: The RAG Model That Compresses Knowledge Into Memory Toke
 description: "Apple's Claraara is a new 7B RAG framework that compresses documents into dense memory tokens strings, solving the broken gradient problem and improving retrieval accuracy."
 pubDate: 2025-12-10
 category: 'News'
-heroImage: '../../../assets/images/blog/news/apple-claraara/image_0.jpg'
+heroImage: '/images/blog/news/apple-claraara/image_0.jpg'
 tags: ['Apple AI', 'Claraara', 'RAG', 'Mistral 7B', 'LLM', 'AI Research']
 ---
-import { Image } from 'astro:assets';
-import image1 from '../../../assets/images/blog/news/apple-claraara/image_1.jpg';
-import image2 from '../../../assets/images/blog/news/apple-claraara/image_2.jpg';
-import image3 from '../../../assets/images/blog/news/apple-claraara/image_3.jpg';
 import YouTubeEmbed from "../../../components/YouTubeEmbed.astro";
 
 > **🟣 AEO Optimization (AI Search Engine Ready)**
@@ -64,7 +60,7 @@ Apple’s research calls this issue the **broken gradient problem**.
 
 Claraara creates a single continuous latent space where both retriever and generator operate together.
 
-<Image src={image1} alt="Apple Claraara Architecture Diagram showing the flow from Long-context LLM to Condensed Memory" />
+![Apple Claraara Architecture Diagram showing the flow from Long-context LLM to Condensed Memory](/images/blog/news/apple-claraara/image_1.jpg)
 
 This works because:
 
@@ -106,7 +102,7 @@ This avoids the classic compression failure where the model wastes capacity on t
 
 Each document becomes 4–32 learnable tokens, created by a **Mistral-7B** style transformer with LoRA adapters. These tokens store topic relevance, semantic patterns, latent meaning, and answer-supporting signals.
 
-<Image src={image2} alt="Claraara Memory Extraction Process visualizing how tokens are compressed" />
+![Claraara Memory Extraction Process visualizing how tokens are compressed](/images/blog/news/apple-claraara/image_2.jpg)
 
 ### 3. Query Reasoner + Generator (Shared Backbone)
 
@@ -132,7 +128,7 @@ This beats:
 
 This suggests that raw model reasoning ability is extremely strong.
 
-<Image src={image3} alt="Claraara Benchmark Comparison Chart showing performance against standard RAG" />
+![Claraara Benchmark Comparison Chart showing performance against standard RAG](/images/blog/news/apple-claraara/image_3.jpg)
 
 ## Installation Guide (Local Setup)
 

@@ -1,0 +1,101 @@
+---
+
+---
+
+<div
+    id="image-zoom-overlay"
+    class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4"
+>
+    <img
+        id="zoomed-image"
+        src=""
+        alt="Zoomed"
+        class="max-w-full max-h-[90vh] object-contain scale-95 transition-transform duration-300 rounded-lg shadow-2xl"
+    />
+    <button
+        id="close-zoom"
+        class="absolute top-4 right-4 text-white hover:text-indigo-400 focus:outline-none p-2 bg-slate-800/50 rounded-full"
+        aria-label="Close Zoom"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-8 h-8"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+</div>
+
+<script>
+    // Initialize Image Zoom
+    function initImageZoom() {
+        // Only target images inside the prose content area to avoid logos/icons
+        const images = document.querySelectorAll(".prose img");
+        const overlay = document.getElementById("image-zoom-overlay");
+        const zoomedImg = document.getElementById(
+            "zoomed-image",
+        ) as HTMLImageElement;
+        const closeBtn = document.getElementById("close-zoom");
+
+        if (!overlay || !zoomedImg) return;
+
+        let isOpen = false;
+
+        // Open Zoom
+        images.forEach((img) => {
+            // Skip if already has click handler or is a link
+            if (img.parentElement?.tagName === "A") return;
+
+            img.classList.add("cursor-zoom-in");
+            img.addEventListener("click", () => {
+                zoomedImg.src = (img as HTMLImageElement).src;
+                overlay.classList.remove("opacity-0", "pointer-events-none");
+                isOpen = true;
+                document.body.style.overflow = "hidden";
+
+                // Small delay for scale animation
+                setTimeout(() => {
+                    zoomedImg.classList.remove("scale-95");
+                    zoomedImg.classList.add("scale-100");
+                }, 10);
+            });
+        });
+
+        // Close Zoom Functions
+        const closeZoom = () => {
+            zoomedImg.classList.remove("scale-100");
+            zoomedImg.classList.add("scale-95");
+            overlay.classList.add("opacity-0", "pointer-events-none");
+
+            setTimeout(() => {
+                if (!overlay.classList.contains("opacity-0")) return; // prevention
+                isOpen = false;
+                document.body.style.overflow = "";
+                zoomedImg.src = "";
+            }, 300);
+        };
+
+        closeBtn?.addEventListener("click", closeZoom);
+
+        // Close on background click
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) closeZoom();
+        });
+
+        // Close on Escape
+        document.addEventListener("keydown", (e) => {
+            if (isOpen && e.key === "Escape") closeZoom();
+        });
+    }
+
+    // Run on load and after View Transitions
+    document.addEventListener("DOMContentLoaded", initImageZoom);
+    document.addEventListener("astro:page-load", initImageZoom);
+</script>

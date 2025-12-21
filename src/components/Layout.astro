@@ -3,6 +3,7 @@ import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 import ScrollRocket from "./ScrollRocket.astro";
 import CookieConsent from "./CookieConsent.astro";
+import ImageZoom from "./ImageZoom.astro";
 import "../styles/global.css";
 
 import { ViewTransitions } from "astro:transitions";
@@ -150,6 +151,7 @@ const {
 		>
 		</div>
 		<CookieConsent />
+		<ImageZoom />
 		<ScrollRocket />
 		<!-- Global Space Background Removed for Performance -->
 
@@ -159,7 +161,11 @@ const {
 		</main>
 		<Footer />
 
-		<style is:global></style>
+		<style is:global>
+			html {
+				scroll-padding-top: 100px;
+			}
+		</style>
 		<!-- Konami Code Easter Egg -->
 		<div
 			id="rocket"

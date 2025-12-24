@@ -243,6 +243,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"news/ai-news-this-week-2025-image-models-audio-video.mdx": {
+	id: "news/ai-news-this-week-2025-image-models-audio-video.mdx";
+  slug: "news/ai-news-this-week-2025-image-models-audio-video";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "news/apple-claraara-ai.mdx": {
 	id: "news/apple-claraara-ai.mdx";
   slug: "news/apple-claraara-ai";

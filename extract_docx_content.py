@@ -99,7 +99,7 @@ def extract_content(docx_path, output_dir, image_dir):
         f.write(markdown_content)
 
 if __name__ == "__main__":
-    docx_path = "sample-temp.docx"
+    docx_path = r"C:\Users\ggiri\Documents\sample-temp.docx"
     output_dir = "extracted_data"
     image_dir = os.path.join(output_dir, "images")
     extract_content(docx_path, output_dir, image_dir)

@@ -61,6 +61,7 @@ article .prose,
 
 .prose img {
     @apply rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 transition-transform duration-300 hover:scale-[1.01];
+    height: auto;
 }
 
 /* Code block header styling */

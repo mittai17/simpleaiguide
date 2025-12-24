@@ -3,7 +3,7 @@ title: 'Apple Claraara: The RAG Model That Compresses Knowledge Into Memory Toke
 description: "Apple's Claraara is a new 7B RAG framework that compresses documents into dense memory tokens strings, solving the broken gradient problem and improving retrieval accuracy."
 pubDate: 2025-12-10
 category: 'News'
-heroImage: '/images/blog/news/apple-claraara/image_0.jpg'
+heroImage: '/images/blog/news/apple-claraara/image_0.webp'
 tags: ['Apple AI', 'Claraara', 'RAG', 'Mistral 7B', 'LLM', 'AI Research']
 ---
 import YouTubeEmbed from "../../../components/YouTubeEmbed.astro";
@@ -60,7 +60,7 @@ Apple’s research calls this issue the **broken gradient problem**.
 
 Claraara creates a single continuous latent space where both retriever and generator operate together.
 
-![Apple Claraara Architecture Diagram showing the flow from Long-context LLM to Condensed Memory](/images/blog/news/apple-claraara/image_1.jpg)
+![Apple Claraara Architecture Diagram showing the flow from Long-context LLM to Condensed Memory](/images/blog/news/apple-claraara/image_1.webp)
 
 This works because:
 
@@ -102,7 +102,7 @@ This avoids the classic compression failure where the model wastes capacity on t
 
 Each document becomes 4–32 learnable tokens, created by a **Mistral-7B** style transformer with LoRA adapters. These tokens store topic relevance, semantic patterns, latent meaning, and answer-supporting signals.
 
-![Claraara Memory Extraction Process visualizing how tokens are compressed](/images/blog/news/apple-claraara/image_2.jpg)
+![Claraara Memory Extraction Process visualizing how tokens are compressed](/images/blog/news/apple-claraara/image_2.webp)
 
 ### 3. Query Reasoner + Generator (Shared Backbone)
 
@@ -128,7 +128,7 @@ This beats:
 
 This suggests that raw model reasoning ability is extremely strong.
 
-![Claraara Benchmark Comparison Chart showing performance against standard RAG](/images/blog/news/apple-claraara/image_3.jpg)
+![Claraara Benchmark Comparison Chart showing performance against standard RAG](/images/blog/news/apple-claraara/image_3.webp)
 
 ## Installation Guide (Local Setup)
 

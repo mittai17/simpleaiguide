@@ -222,6 +222,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"news/ai-news-breakdown-bloom-gemma2-neotron3.mdx": {
+	id: "news/ai-news-breakdown-bloom-gemma2-neotron3.mdx";
+  slug: "news/ai-news-breakdown-bloom-gemma2-neotron3";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "news/ai-news-gpt-5-2-real-time.mdx": {
 	id: "news/ai-news-gpt-5-2-real-time.mdx";
   slug: "news/ai-news-gpt-5-2-real-time";

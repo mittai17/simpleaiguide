@@ -19,6 +19,7 @@ export default defineConfig({
   outDir: 'docs',
   build: {
     outDir: 'docs',
+    inlineStylesheets: 'auto',
   },
   redirects: {
     '/blog/best-ai-tools': '/blog/category/best-ai-tools',

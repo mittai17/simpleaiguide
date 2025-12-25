@@ -128,12 +128,34 @@ def analyze_content(df):
         "generated_date": pd.Timestamp.now().isoformat()
     }
     
-    with open('src/content/trending.json', 'w') as f:
-        json.dump(output_data, f, indent=2)
-    print(f"\n✅ Exported trending posts to 'src/content/trending.json'")
+    # Generate JSON for Web Use (Saved to 'public' for dynamic fetching)
+    output_path = 'public/trending.json'
+    output_data = {
+        "popular_posts": top_performers[['title', 'path']].to_dict(orient='records'),
+        "generated_date": pd.Timestamp.now().isoformat()
+    }
+    
+    try:
+        with open(output_path, 'w') as f:
+            json.dump(output_data, f, indent=2)
+        print(f"✅ [UPDATED] Trending data saved to '{output_path}' at {pd.Timestamp.now().strftime('%H:%M:%S')}")
+    except Exception as e:
+        print(f"❌ Error saving JSON: {e}")
 
 if __name__ == "__main__":
-    print("Initializing Content Suggestion Engine...")
-    df = fetch_analytics_data()
-    if df is not None:
-        analyze_content(df)
+    import time
+    
+    print("🚀 Content Suggestion Engine Started (Running every 5 minutes)")
+    print("Press Ctrl+C to stop.")
+    
+    try:
+        while True:
+            df = fetch_analytics_data()
+            if df is not None:
+                analyze_content(df)
+            
+            print("\n⏳ Waiting 5 minutes for next update...")
+            time.sleep(300) # 300 seconds = 5 minutes
+            
+    except KeyboardInterrupt:
+        print("\n🛑 Stopped by user.")

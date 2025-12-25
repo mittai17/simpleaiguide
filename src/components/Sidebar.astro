@@ -10,9 +10,6 @@ const { currentSlug, currentCategory } = Astro.props;
 
 const posts = await getCollection("blog");
 
-import trendingData from "../content/trending.json";
-const trendingPosts = trendingData.popular_posts;
-
 // Categories Logic
 const categories = [...new Set(posts.map((post) => post.data.category))].map(
   (category) => {
@@ -75,7 +72,8 @@ if (currentCategory) {
 </nav>
 
 <!-- Trending Posts (Analytics Powered) -->
-<div>
+<!-- Trending Posts (Analytics Powered) -->
+<div id="trending-widget" class="hidden">
   <h3
     class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs mb-4 flex items-center gap-2"
   >
@@ -95,26 +93,37 @@ if (currentCategory) {
     </svg>
     Trending Now
   </h3>
-  <div class="space-y-1">
-    {
-      trendingPosts.map((post) => (
-        <a
-          href={post.path}
-          class="block group px-3 py-2.5 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
-        >
-          <div class="flex items-start gap-3">
-            <span class="text-xs font-bold text-slate-300 dark:text-slate-600 mt-0.5 group-hover:text-indigo-500 transition-colors">
-              #
-            </span>
-            <h4 class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
-              {post.title}
-            </h4>
-          </div>
-        </a>
-      ))
-    }
+  <div class="space-y-1" id="trending-list">
+    <!-- Populated by JS -->
   </div>
 </div>
+
+<script is:inline>
+  fetch("/trending.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const widget = document.getElementById("trending-widget");
+      const list = document.getElementById("trending-list");
+      if (data && data.popular_posts && data.popular_posts.length > 0) {
+        widget.classList.remove("hidden");
+        list.innerHTML = data.popular_posts
+          .map(
+            (post) => `
+          <a href="${post.path}" class="block group px-3 py-2.5 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700">
+            <div class="flex items-start gap-3">
+               <span class="text-xs font-bold text-slate-300 dark:text-slate-600 mt-0.5 group-hover:text-indigo-500 transition-colors">#</span>
+               <h4 class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
+                ${post.title}
+              </h4>
+            </div>
+          </a>
+        `,
+          )
+          .join("");
+      }
+    })
+    .catch((err) => console.error("Failed to load trending data:", err));
+</script>
 
 <!-- Categories  -->
 <div>

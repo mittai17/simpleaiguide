@@ -136,15 +136,28 @@ def analyze_content(df):
     }
     
     try:
+        # Save to public (source)
         with open(output_path, 'w') as f:
             json.dump(output_data, f, indent=2)
-        print(f"✅ [UPDATED] Trending data saved to '{output_path}' at {pd.Timestamp.now().strftime('%H:%M:%S')}")
+        print(f"✅ [UPDATED] Trending data saved to '{output_path}'")
 
+        # Save to docs (build output) - Critical for immediate updates if CI doesn't trigger
+        docs_path = 'docs/trending.json'
+        if os.path.exists('docs'):
+            with open(docs_path, 'w') as f:
+                json.dump(output_data, f, indent=2)
+            print(f"✅ [UPDATED] Trending data saved to '{docs_path}'")
+        
         # AUTO-DEPLOY: Commit and Push to GitHub
         import subprocess
         print("🚀 Auto-deploying updates to GitHub...")
+        
+        # Add both files
         subprocess.run(["git", "add", "public/trending.json"], check=False)
-        subprocess.run(["git", "commit", "public/trending.json", "-m", "chore: auto-update trending stats"], check=False)
+        if os.path.exists('docs'):
+            subprocess.run(["git", "add", "docs/trending.json"], check=False)
+            
+        subprocess.run(["git", "commit", "-m", "chore: auto-update trending stats"], check=False)
         # explicit push to main to avoid detached HEAD issues in CI
         subprocess.run(["git", "push", "origin", "HEAD:main"], check=False)
         print("☁️  Synced with live site.")

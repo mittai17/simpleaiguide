@@ -25,9 +25,13 @@ jobs:
 
       - name: Create Credentials File
         env:
-          # You must add this Secret in GitHub Settings!
           GA_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
-        run: echo "$GA_KEY" > credentials.json
+        shell: python
+        run: |
+          import os
+          # Write the environment variable directly to file to preserve newlines/formatting
+          with open('credentials.json', 'w', encoding='utf-8') as f:
+              f.write(os.environ['GA_KEY'])
 
       - name: Configure Git
         run: |

@@ -1,0 +1,48 @@
+name: Auto-Post to LinkedIn
+
+on:
+  push:
+    paths:
+      - 'src/content/blog/**/*.mdx' # Only run when blog posts change
+
+jobs:
+  check-and-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Need previous commit to compare
+
+      - name: Check for NEW files
+        id: check_files
+        run: |
+          # Get list of added files (A) in src/content/blog
+          NEW_FILES=$(git diff --name-status HEAD^ HEAD | grep '^A' | grep 'src/content/blog/' | cut -f2)
+          
+          if [ -z "$NEW_FILES" ]; then
+            echo "No new blog posts detected."
+            echo "run_poster=false" >> $GITHUB_ENV
+          else
+            echo "Found new post(s): $NEW_FILES"
+            # Take the first one (handling multiple is complex, one is safe)
+            FIRST_FILE=$(echo "$NEW_FILES" | head -n 1)
+            echo "target_file=$FIRST_FILE" >> $GITHUB_ENV
+            echo "run_poster=true" >> $GITHUB_ENV
+          fi
+
+      - name: Set up Python
+        if: env.run_poster == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Requests
+        if: env.run_poster == 'true'
+        run: pip install requests
+
+      - name: Run LinkedIn Poster
+        if: env.run_poster == 'true'
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        run: python linkedin_autoposter.py "${{ env.target_file }}"

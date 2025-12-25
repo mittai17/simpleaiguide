@@ -139,12 +139,32 @@ def analyze_content(df):
         with open(output_path, 'w') as f:
             json.dump(output_data, f, indent=2)
         print(f"✅ [UPDATED] Trending data saved to '{output_path}' at {pd.Timestamp.now().strftime('%H:%M:%S')}")
+
+        # AUTO-DEPLOY: Commit and Push to GitHub
+        import subprocess
+        print("🚀 Auto-deploying updates to GitHub...")
+        subprocess.run(["git", "add", "public/trending.json"], check=False)
+        subprocess.run(["git", "commit", "public/trending.json", "-m", "chore: auto-update trending stats"], check=False)
+        # explicit push to main to avoid detached HEAD issues in CI
+        subprocess.run(["git", "push", "origin", "HEAD:main"], check=False)
+        print("☁️  Synced with live site.")
+
     except Exception as e:
-        print(f"❌ Error saving JSON: {e}")
+        print(f"❌ Error saving/deploying: {e}")
 
 if __name__ == "__main__":
     import time
     
+    # Check if running in GitHub Actions (Cloud)
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        print("☁️ Running in Cloud Mode (Single Execution)")
+        df = fetch_analytics_data()
+        if df is not None:
+            analyze_content(df)
+        print("✅ Cloud run complete.")
+        exit(0)
+
+    # Local Mode (Loop)
     print("🚀 Content Suggestion Engine Started (Running every 5 minutes)")
     print("Press Ctrl+C to stop.")
     

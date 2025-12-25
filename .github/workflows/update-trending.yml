@@ -1,0 +1,39 @@
+name: Auto-Update Trending Posts
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Runs every 30 minutes (GitHub reliable minimum)
+  workflow_dispatch: # Allows manual click to run
+
+jobs:
+  update-trends:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to push changes back to repo
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install google-analytics-data pandas
+
+      - name: Create Credentials File
+        env:
+          # You must add this Secret in GitHub Settings!
+          GA_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+        run: echo "$GA_KEY" > credentials.json
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'Analytics Bot'
+          git config --global user.email 'bot@simpleaiguide.tech'
+
+      - name: Run Analytics Script
+        # The script itself handles the git commit/push logic
+        run: python analytics_suggestion_engine.py

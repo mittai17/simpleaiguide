@@ -17,7 +17,7 @@ KEY_FILE_PATH = 'credentials.json'
 
 # REPLACE THIS WITH YOUR GA4 PROPERTY ID (Not the "G-XXXX" ID, but the numeric Property ID)
 # You can find this in Google Analytics > Admin > Property Settings
-PROPERTY_ID = 'YOUR_NUMERIC_PROPERTY_ID' 
+PROPERTY_ID = '515388480' 
 
 def fetch_analytics_data():
     """Fetches page view data from Google Analytics 4."""

@@ -1,25 +1,25 @@
 {
-    "popular_posts": [
-        {
-            "title": "You Suck at Prompting (For Now)",
-            "path": "/blog/prompt-engineering/you-suck-at-prompting-2025"
-        },
-        {
-            "title": "Stop Using ChatGPT (Use This Instead)",
-            "path": "/blog/comparisons/stop-using-chatgpt-2025"
-        },
-        {
-            "title": "System Prompts vs User Prompts",
-            "path": "/blog/prompt-engineering/system-prompts-vs-user-prompts-2025"
-        },
-        {
-            "title": "13 AI Side Hustles for 2025",
-            "path": "/blog/best-ai-tools/best-ai-side-hustles-2025"
-        },
-        {
-            "title": "The Agentic Shift: AI Agents Explained",
-            "path": "/blog/best-ai-tools/the-agentic-shift"
-        }
-    ],
-    "generated_date": "2025-12-25T10:00:00.000000"
+  "popular_posts": [
+    {
+      "title": "Apple Claraara: The RAG Model That Compresses Knowledge Into Memory Tokens | Simple AI Guide",
+      "path": "/blog/news/apple-claraara-ai/"
+    },
+    {
+      "title": "AI News Weekly: GPT-5.2, Real-Time Video Editing, Open-Source AI Agents & Ultra-Fast Image Models | Simple AI Guide",
+      "path": "/blog/news/ai-news-gpt-5-2-real-time/"
+    },
+    {
+      "title": "Best Ai Tools Articles - Simple AI Guide | Simple AI Guide",
+      "path": "/blog/category/best-ai-tools/"
+    },
+    {
+      "title": "News Articles - Simple AI Guide | Simple AI Guide",
+      "path": "/blog/category/news/"
+    },
+    {
+      "title": "Prompt Engineering Articles - Simple AI Guide | Simple AI Guide",
+      "path": "/blog/category/prompt-engineering/"
+    }
+  ],
+  "generated_date": "2025-12-25T11:21:12.098100"
 }

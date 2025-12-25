@@ -42,7 +42,11 @@ jobs:
         run: pip install requests
 
       - name: Run LinkedIn Poster
-        if: env.run_poster == 'true'
+        if: env.run_poster == 'true' && secrets.LINKEDIN_ACCESS_TOKEN != ''
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
         run: python linkedin_autoposter.py "${{ env.target_file }}"
+        
+      - name: Warning if Token Missing
+        if: env.run_poster == 'true' && secrets.LINKEDIN_ACCESS_TOKEN == ''
+        run: echo "⚠️ Skipping LinkedIn post because LINKEDIN_ACCESS_TOKEN secret is missing in GitHub."

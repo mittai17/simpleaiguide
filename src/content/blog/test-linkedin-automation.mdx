@@ -1,0 +1,24 @@
+---
+title: "Testing LinkedIn Automation"
+description: "This is a test post to verify the new automated LinkedIn sharing workflow. If you are seeing this on LinkedIn, it works! 🚀"
+pubDate: "2025-12-26"
+heroImage: "/blog-placeholder-1.jpg"
+tags: ["Test", "Automation", "GitHub Actions"]
+category: "Technology"
+---
+
+## LinkedIn Automation Test
+
+This is a generated test post.
+
+We have just configured a GitHub Action to automatically detect new blog posts and share them to LinkedIn via the official API.
+
+### How it works:
+1. A new `.mdx` file is pushed to `src/content/blog/`.
+2. GitHub Actions triggers the `autopost-linkedin.yml` workflow.
+3. The workflow identifies the new file.
+4. It extracts the `title` and `description` from the frontmatter.
+5. It uses the `LINKEDIN_ACCESS_TOKEN` secret to authenticate with LinkedIn.
+6. It posts the article update to the user's profile.
+
+If this works, we are fully automated! 🎉

@@ -30,17 +30,18 @@ def generate_text_openrouter(title, content, article_url):
 
     prompt = f"""
     You are an expert social media manager.
-    Write a short, engaging LinkedIn post (max 200 words) to promote this article.
+    Write a short, engaging LinkedIn post (max 150 words) to promote this article.
     
     Article: {title}
     Context: {content[:800]}...
     
     Instructions:
-    1. Hook the reader instantly.
+    1. Hook the reader with a question or fact.
     2. Use 3-4 emojis.
-    3. Do NOT use "I" or "We".
-    4. MUST include the link: {article_url}
-    5. Add 3 hashtags.
+    3. Do NOT use "I", "We", or "My article".
+    4. Do NOT output the URL in the text body.
+    5. END clearly with: "Read the full guide: {article_url}"
+    6. Add 3 hashtags.
     """
 
     headers = {
@@ -59,7 +60,9 @@ def generate_text_openrouter(title, content, article_url):
         try:
             response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
             if response.status_code == 200:
-                return response.json()['choices'][0]['message']['content']
+                raw_text = response.json()['choices'][0]['message']['content']
+                # Clean up if model hallucinates quotes
+                return raw_text.strip('"')
         except Exception as e:
             print(f"❌ Error with {model}: {e}")
     

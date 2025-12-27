@@ -29,19 +29,23 @@ def generate_text_openrouter(title, content, article_url):
         return f"🚀 New Article: {title}\n\nRead here: {article_url}\n\n#AI #Tech"
 
     prompt = f"""
-    You are an expert social media manager.
-    Write a short, engaging LinkedIn post (max 150 words) to promote this article.
-    
+    You are a viral social media ghostwriter known for high click-through rates.
+    Write a CONTROVERSIAL, CLICKBAITY LinkedIn post (max 100 words) using this article.
+
     Article: {title}
-    Context: {content[:800]}...
+    Excerpt: {content[:600]}...
+
+    YOUR GOAL: Make the reader CLICK the link. Use "Curiosity Gaps".
+
+    Structure:
+    1. 🛑 STOP SCROLLING Hook (Shocking statement, "You're doing it wrong", or specific number).
+    2. The "Villain" (The problem everyone ignores).
+    3. The "Hero" (The solution hinted at in the article).
+    4. 3-4 Impactful lines only. Spaced out.
+    5. NO corporate jargon. Speak like a human.
+    6. 🔥 MUST END WITH: "Steal the full strategy here: {article_url}"
     
-    Instructions:
-    1. Hook the reader with a question or fact.
-    2. Use 3-4 emojis.
-    3. Do NOT use "I", "We", or "My article".
-    4. Do NOT output the URL in the text body.
-    5. END clearly with: "Read the full guide: {article_url}"
-    6. Add 3 hashtags.
+    Use 2-3 aggressive emojis (🚨, ⚠️, 🚀, 💡).
     """
 
     headers = {

@@ -8,6 +8,11 @@ on:
 jobs:
   check-and-post:
     runs-on: ubuntu-latest
+    # Default env vars to satisfy linter, will be overwritten by steps
+    env:
+      run_poster: 'false'
+      target_file: ''
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -42,11 +47,12 @@ jobs:
         run: pip install requests
 
       - name: Run LinkedIn Poster
-        if: env.run_poster == 'true' && secrets.LINKEDIN_ACCESS_TOKEN != ''
+        if: env.run_poster == 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
-        run: python linkedin_autoposter.py "${{ env.target_file }}"
-        
-      - name: Warning if Token Missing
-        if: env.run_poster == 'true' && secrets.LINKEDIN_ACCESS_TOKEN == ''
-        run: echo "⚠️ Skipping LinkedIn post because LINKEDIN_ACCESS_TOKEN secret is missing in GitHub."
+        run: |
+          if [ -z "$LINKEDIN_ACCESS_TOKEN" ]; then
+            echo "⚠️ Skipping LinkedIn post because LINKEDIN_ACCESS_TOKEN secret is missing/empty."
+          else
+            python linkedin_autoposter.py "${{ env.target_file }}"
+          fi

@@ -26,11 +26,11 @@ def setup_gemini():
 def generate_linkedin_post(title, content, article_url):
     """Uses Gemini to rewrite the content into a viral LinkedIn post."""
     if not setup_gemini():
-        # Fallback to simple template if no AI
         print("⚠️ Gemini key missing, using simple fallback.")
         return f"🚀 New Article: {title}\n\nRead here: {article_url}\n\n#AI #Tech"
 
-    model = genai.GenerativeModel('gemini-pro')
+    # UPDATED MODEL NAME (gemini-pro is deprecated/404)
+    model = genai.GenerativeModel('gemini-1.5-flash')
     
     prompt = f"""
     You are an expert social media manager for a Tech/AI blog.
@@ -81,7 +81,6 @@ def update_history(file_path):
         "posted_at": time.time()
     })
     
-    # Ensure dir exists
     os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
     
     with open(HISTORY_FILE, 'w') as f:
@@ -90,14 +89,10 @@ def update_history(file_path):
 
 def find_next_post():
     """Finds an unposted .mdx file."""
-    # Recursively find all MDX files
     all_files = glob.glob(f"{BLOG_DIR}/**/*.mdx", recursive=True)
-    # Normalize paths for comparison (forward slashes)
     all_files = [f.replace('\\', '/') for f in all_files]
     
-    # Filter out history
     posted = get_posted_history()
-    # Normalize posted paths too just in case
     posted = [p.replace('\\', '/') for p in posted]
     
     available = [f for f in all_files if f not in posted]
@@ -106,38 +101,48 @@ def find_next_post():
         print("🎉 No new content to post! (All files in history)")
         return None
         
-    # Pick one (randomly or sorted? Random is good for variety if backfilling)
-    # Or strict order? Let's do sorted to post oldest first (assuming filename sort roughly maps to date?)
-    # Actually, random is more fun for an "Agent".
-    # But let's stick to consistent ordering to ensure everything gets posted eventually.
     available.sort() 
     return available[0]
 
 def get_linkedin_user_id():
     """Fetches the current user's URN (ID) from LinkedIn."""
-    url = "https://api.linkedin.com/v2/me"
+    # UPDATED ENDPOINT: /v2/me often fails with newer granular permissions.
+    # We should use /v2/userinfo OR handle the error gracefully.
+    # The error was "Not enough permissions to access: me.GET.NO_VERSION"
+    # This means the token has 'profile' scope (OpenID) but not 'r_liteprofile' or 'r_basicprofile'.
+    # For 'openid' scope, we must use https://api.linkedin.com/v2/userinfo
+    
+    url = "https://api.linkedin.com/v2/userinfo"
     headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
     response = requests.get(url, headers=headers)
+    
     if response.status_code == 200:
-        return response.json().get("id")
-    else:
-        print(f"❌ Failed to get Profile ID: {response.text}")
-        return None
+        data = response.json()
+        # OpenID endpoint returns 'sub' as the ID
+        return data.get("sub")
+    
+    # Fallback to old endpoint just in case
+    url_old = "https://api.linkedin.com/v2/me"
+    response_old = requests.get(url_old, headers=headers)
+    if response_old.status_code == 200:
+        return response_old.json().get("id")
+
+    print(f"❌ Failed to get Profile ID. Status: {response.status_code}")
+    print(f"Response: {response.text}")
+    return None
 
 def extract_content(file_path):
     """Extracts Title and raw content from MDX file."""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             raw_text = f.read()
-            
-        # Regex to find title
+        
         title_match = re.search(r'title:\s*"(.*?)"', raw_text)
         if not title_match:
             title_match = re.search(r'title:\s*(.*)', raw_text)
             
         title = title_match.group(1) if title_match else "Tech Article"
         
-        # Remove frontmatter for content processing
         content_body = re.sub(r'^---[\s\S]*?---', '', raw_text).strip()
         
         return title, content_body
@@ -204,13 +209,11 @@ if __name__ == "__main__":
     current_mode = "AUTO"
     target_file = None
     
-    # Check if a specific file was passed (Manual/Trigger Mode)
     if len(sys.argv) > 1:
         target_file = sys.argv[1]
         current_mode = "MANUAL"
         print(f"🤖 LinkedIn Agent starting in MANUAL mode for: {target_file}")
     else:
-        # Autonomous Mode
         print("🤖 LinkedIn Agent starting in AUTONOMOUS mode.")
         target_file = find_next_post()
         
@@ -220,31 +223,23 @@ if __name__ == "__main__":
         
     print(f"📄 Selected file: {target_file}")
     
-    # 1. Read Content
     title, content = extract_content(target_file)
     if not title:
         sys.exit(1)
         
-    # 2. Prepare URL
-    # Convert 'src/content/blog/category/slug.mdx' -> 'https://simpleaiguide.tech/blog/category/slug'
-    # Normalize path separators first
     normalized_path = target_file.replace('\\', '/')
     slug_path = normalized_path.replace('src/content/blog/', '').replace('.mdx', '')
     article_url = f"https://simpleaiguide.tech/blog/{slug_path}"
     
     print(f"🔗 URL: {article_url}")
     
-    # 3. Generate Post with AI
     print("🧠 Generating viral post content using Gemini AI...")
     linkedin_text = generate_linkedin_post(title, content, article_url)
     print("-" * 40)
     print(linkedin_text)
     print("-" * 40)
     
-    # 4. Post
     success = post_to_linkedin(linkedin_text, article_url, title)
     
-    # 5. Update History (Only in Auto mode or if successful? Always good to track)
     if success:
-        # We store the normalized path to match glob output
         update_history(target_file.replace('\\', '/'))

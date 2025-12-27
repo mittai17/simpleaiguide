@@ -18,6 +18,8 @@ jobs:
     env:
       run_poster: 'false'
       target_file: ''
+      LINKEDIN_ACCESS_TOKEN: '' # Silence IDE warning
+      GEMINI_API_KEY: ''        # Silence IDE warning
 
     steps:
       - name: Checkout Code

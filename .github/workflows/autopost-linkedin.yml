@@ -3,12 +3,17 @@ name: Auto-Post to LinkedIn
 on:
   push:
     paths:
-      - 'src/content/blog/**/*.mdx' # Only run when blog posts change
+      - 'src/content/blog/**/*.mdx' # Run when blog posts change
+  schedule:
+    - cron: '0 * * * *' # Run every hour
 
 jobs:
   check-and-post:
     runs-on: ubuntu-latest
-    # Default env vars to satisfy linter, will be overwritten by steps
+    permissions:
+      contents: write # Required to commit the history file
+
+    # Default env vars
     env:
       run_poster: 'false'
       target_file: ''
@@ -17,12 +22,23 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2 # Need previous commit to compare
+          fetch-depth: 2 
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # --- LOGIC FOR PUSH EVENTS (Immediate Post) ---
       - name: Check for NEW files
+        if: github.event_name == 'push'
         id: check_files
         run: |
-          # Get list of added files (A) in src/content/blog
+          # Get list of added files (A)
           NEW_FILES=$(git diff --name-status HEAD^ HEAD | grep '^A' | grep 'src/content/blog/' | cut -f2)
           
           if [ -z "$NEW_FILES" ]; then
@@ -30,29 +46,37 @@ jobs:
             echo "run_poster=false" >> $GITHUB_ENV
           else
             echo "Found new post(s): $NEW_FILES"
-            # Take the first one (handling multiple is complex, one is safe)
             FIRST_FILE=$(echo "$NEW_FILES" | head -n 1)
             echo "target_file=$FIRST_FILE" >> $GITHUB_ENV
             echo "run_poster=true" >> $GITHUB_ENV
           fi
 
-      - name: Set up Python
-        if: env.run_poster == 'true'
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install Requests
-        if: env.run_poster == 'true'
-        run: pip install requests
-
-      - name: Run LinkedIn Poster
-        if: env.run_poster == 'true'
+      - name: Run Manual Post (Push)
+        if: github.event_name == 'push' && env.run_poster == 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python linkedin_autoposter.py "${{ env.target_file }}"
+
+      # --- LOGIC FOR SCHEDULED EVENTS (Hourly Drip Feed) ---
+      - name: Run Auto Post (Schedule)
+        if: github.event_name == 'schedule'
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python linkedin_autoposter.py
+
+      # --- SAVE STATE ---
+      - name: Commit History
+        if: always() # Run even if previous steps failed (though we only want success)
         run: |
-          if [ -z "$LINKEDIN_ACCESS_TOKEN" ]; then
-            echo "⚠️ Skipping LinkedIn post because LINKEDIN_ACCESS_TOKEN secret is missing/empty."
+          # Only commit if history file changed
+          if [[ -n $(git status --porcelain data/linkedin_history.json) ]]; then
+            git config --global user.name "GitHub Actions"
+            git config --global user.email "actions@github.com"
+            git add data/linkedin_history.json
+            git commit -m "chore: update linkedin post history [skip ci]"
+            git push
           else
-            python linkedin_autoposter.py "${{ env.target_file }}"
+            echo "No history changes to commit."
           fi

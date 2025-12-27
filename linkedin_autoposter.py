@@ -4,162 +4,135 @@ import json
 import re
 import sys
 import glob
-import random
 import time
-import google.generativeai as genai
+import urllib.parse
 
 # --- CONFIGURATION ---
 LINKEDIN_API_URL = "https://api.linkedin.com/v2/ugcPosts"
+LINKEDIN_UPLOAD_URL = "https://api.linkedin.com/v2/assets?action=registerUpload"
 ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 HISTORY_FILE = "data/linkedin_history.json"
 BLOG_DIR = "src/content/blog"
 
-def setup_gemini():
-    """Configures the Gemini AI model."""
-    if not GEMINI_API_KEY:
-        print("❌ Error: GEMINI_API_KEY is missing from GitHub Secrets.")
-        return False
-    genai.configure(api_key=GEMINI_API_KEY)
-    return True
+# Free models on OpenRouter to try in order
+OPENROUTER_MODELS = [
+    "google/gemini-2.0-flash-exp:free",
+    "meta-llama/llama-3.2-11b-vision-instruct:free",
+    "microsoft/phi-3-medium-128k-instruct:free"
+]
 
-def generate_linkedin_post(title, content, article_url):
-    """Uses Gemini to rewrite the content into a viral LinkedIn post."""
-    if not setup_gemini():
-        print("⚠️ Gemini key missing, using simple fallback.")
+def generate_text_openrouter(title, content, article_url):
+    """Generates LinkedIn post text using OpenRouter (Free Tier)."""
+    if not OPENROUTER_API_KEY:
+        print("⚠️ OPENROUTER_API_KEY missing. Using fallback text.")
         return f"🚀 New Article: {title}\n\nRead here: {article_url}\n\n#AI #Tech"
 
-    # UPDATED MODEL NAME (gemini-pro is deprecated/404)
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    
     prompt = f"""
-    You are an expert social media manager for a Tech/AI blog.
-    Write a generic, slightly clickbaity but professional LinkedIn post to promote this article.
+    You are an expert social media manager.
+    Write a short, engaging LinkedIn post (max 200 words) to promote this article.
     
-    Article Title: {title}
-    Article Excerpt/Content: {content[:1000]}...
+    Article: {title}
+    Context: {content[:800]}...
     
-    Rules:
-    1. Start with a hook or a question.
-    2. Use short paragraphs.
-    3. Use 3-5 relevant emojis.
-    4. Do NOT mention "I wrote this" or "My article". Speak as the brand/page.
-    5. END the post with this EXACT line: "Read the full guide here: {article_url}"
-    6. Add 3-5 hashtags at the very end.
+    Instructions:
+    1. Hook the reader instantly.
+    2. Use 3-4 emojis.
+    3. Do NOT use "I" or "We".
+    4. MUST include the link: {article_url}
+    5. Add 3 hashtags.
     """
+
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://simpleaiguide.tech", 
+    }
+
+    # Try models in order until one works
+    for model in OPENROUTER_MODELS:
+        print(f"🧠 Trying OpenRouter Model: {model}...")
+        payload = {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}]
+        }
+        try:
+            response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
+            if response.status_code == 200:
+                return response.json()['choices'][0]['message']['content']
+        except Exception as e:
+            print(f"❌ Error with {model}: {e}")
+    
+    return f"🚀 Fresh guide: {title}\n\nRead more: {article_url}"
+
+def generate_image_pollinations(prompt_text):
+    """Generates an image using Pollinations.ai (Free)."""
+    print("🎨 Generating Image via Pollinations...")
+    # Clean prompt for URL
+    safe_prompt = urllib.parse.quote(prompt_text[:100]) # Limit length
+    url = f"https://image.pollinations.ai/prompt/{safe_prompt}?width=1200&height=627&nologo=true"
     
     try:
-        response = model.generate_content(prompt)
-        return response.text
+        response = requests.get(url, timeout=30)
+        if response.status_code == 200:
+            filename = f"temp_gen_image_{int(time.time())}.jpg"
+            with open(filename, 'wb') as f:
+                f.write(response.content)
+            print(f"✅ Image generated: {filename}")
+            return filename
     except Exception as e:
-        print(f"❌ AI Generation Error: {e}")
-        return f"🚀 New on the blog: {title}\n\n{content[:100]}...\n\nRead more: {article_url}"
+        print(f"❌ Image Gen Failed: {e}")
+    return None
 
-def get_posted_history():
-    """Loads the list of already posted files."""
-    if not os.path.exists(HISTORY_FILE):
-        return []
+def register_upload():
+    """Step 1: Register upload with LinkedIn to get URL."""
+    url = "https://api.linkedin.com/v2/assets?action=registerUpload"
+    headers = {"Authorization": f"Bearer {ACCESS_TOKEN}", "Content-Type": "application/json"}
+    
+    payload = {
+        "registerUploadRequest": {
+            "recipes": ["urn:li:digitalmediaRecipe:feedshare-image"],
+            "owner": f"urn:li:person:{get_linkedin_user_id()}",
+            "serviceRelationships": [{"relationshipType": "OWNER", "identifier": "urn:li:userGeneratedContent"}]
+        }
+    }
+    
+    response = requests.post(url, headers=headers, json=payload)
+    if response.status_code == 200:
+        data = response.json()
+        upload_url = data['value']['uploadMechanism']['com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest']['uploadUrl']
+        asset = data['value']['asset']
+        return upload_url, asset
+    return None, None
+
+def upload_image_binary(upload_url, image_path):
+    """Step 2: Upload the actual image file."""
     try:
-        with open(HISTORY_FILE, 'r') as f:
-            data = json.load(f)
-            return [item['path'] for item in data]
-    except:
-        return []
-
-def update_history(file_path):
-    """Adds the file to history."""
-    history = []
-    if os.path.exists(HISTORY_FILE):
-        with open(HISTORY_FILE, 'r') as f:
-            try:
-                history = json.load(f)
-            except:
-                pass
-    
-    history.append({
-        "path": file_path,
-        "posted_at": time.time()
-    })
-    
-    os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
-    
-    with open(HISTORY_FILE, 'w') as f:
-        json.dump(history, f, indent=2)
-    print(f"✅ Updated history: {HISTORY_FILE}")
-
-def find_next_post():
-    """Finds an unposted .mdx file."""
-    all_files = glob.glob(f"{BLOG_DIR}/**/*.mdx", recursive=True)
-    all_files = [f.replace('\\', '/') for f in all_files]
-    
-    posted = get_posted_history()
-    posted = [p.replace('\\', '/') for p in posted]
-    
-    available = [f for f in all_files if f not in posted]
-    
-    if not available:
-        print("🎉 No new content to post! (All files in history)")
-        return None
-        
-    available.sort() 
-    return available[0]
+        with open(image_path, 'rb') as f:
+            headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"} 
+            response = requests.put(upload_url, headers=headers, data=f)
+            if response.status_code == 201 or response.status_code == 200:
+                print("✅ Image Uploaded Successfully")
+                return True
+    except Exception as e:
+        print(f"❌ Upload Failed: {e}")
+    return False
 
 def get_linkedin_user_id():
-    """Fetches the current user's URN (ID) from LinkedIn."""
-    # UPDATED ENDPOINT: /v2/me often fails with newer granular permissions.
-    # We should use /v2/userinfo OR handle the error gracefully.
-    # The error was "Not enough permissions to access: me.GET.NO_VERSION"
-    # This means the token has 'profile' scope (OpenID) but not 'r_liteprofile' or 'r_basicprofile'.
-    # For 'openid' scope, we must use https://api.linkedin.com/v2/userinfo
-    
+    """Fetches User URN."""
     url = "https://api.linkedin.com/v2/userinfo"
     headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
     response = requests.get(url, headers=headers)
-    
     if response.status_code == 200:
-        data = response.json()
-        # OpenID endpoint returns 'sub' as the ID
-        return data.get("sub")
+        return response.json().get("sub")
     
-    # Fallback to old endpoint just in case
-    url_old = "https://api.linkedin.com/v2/me"
-    response_old = requests.get(url_old, headers=headers)
-    if response_old.status_code == 200:
-        return response_old.json().get("id")
+    # Fallback
+    response = requests.get("https://api.linkedin.com/v2/me", headers=headers)
+    return response.json().get("id") if response.status_code == 200 else None
 
-    print(f"❌ Failed to get Profile ID. Status: {response.status_code}")
-    print(f"Response: {response.text}")
-    return None
-
-def extract_content(file_path):
-    """Extracts Title and raw content from MDX file."""
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            raw_text = f.read()
-        
-        title_match = re.search(r'title:\s*"(.*?)"', raw_text)
-        if not title_match:
-            title_match = re.search(r'title:\s*(.*)', raw_text)
-            
-        title = title_match.group(1) if title_match else "Tech Article"
-        
-        content_body = re.sub(r'^---[\s\S]*?---', '', raw_text).strip()
-        
-        return title, content_body
-    except Exception as e:
-        print(f"❌ Error reading file {file_path}: {e}")
-        return None, None
-
-def post_to_linkedin(content_text, article_url, title):
-    """Sends the API Request to create a post."""
-    if not ACCESS_TOKEN:
-        print("❌ Error: LINKEDIN_ACCESS_TOKEN is missing.")
-        sys.exit(1)
-
+def post_with_image(text, asset_urn, article_url, title):
+    """Step 3: Create the Post with the Image."""
     user_id = get_linkedin_user_id()
-    if not user_id:
-        sys.exit(1)
-        
     author_urn = f"urn:li:person:{user_id}"
     
     payload = {
@@ -167,79 +140,95 @@ def post_to_linkedin(content_text, article_url, title):
         "lifecycleState": "PUBLISHED",
         "specificContent": {
             "com.linkedin.ugc.ShareContent": {
-                "shareCommentary": {
-                    "text": content_text
-                },
-                "shareMediaCategory": "ARTICLE",
+                "shareCommentary": {"text": text},
+                "shareMediaCategory": "IMAGE",
                 "media": [
                     {
                         "status": "READY",
-                        "originalUrl": article_url,
-                        "title": {
-                            "text": title
-                        }
+                        "description": {"text": title},
+                        "media": asset_urn,
+                        "title": {"text": title}
                     }
                 ]
             }
         },
-        "visibility": {
-            "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
-        }
+        "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}
     }
-
-    headers = {
-        "Authorization": f"Bearer {ACCESS_TOKEN}",
-        "Content-Type": "application/json",
-        "X-Restli-Protocol-Version": "2.0.0"
-    }
-
-    print(f"📤 Posting to LinkedIn as {author_urn}...")
-    response = requests.post(LINKEDIN_API_URL, headers=headers, json=payload)
-
+    
+    response = requests.post(LINKEDIN_API_URL, headers={"Authorization": f"Bearer {ACCESS_TOKEN}"}, json=payload)
     if response.status_code == 201:
-        print("✅ SUCCESS: Successfully posted to LinkedIn!")
+        print("✅ SUCCESS: Posted Image+Text to LinkedIn!")
         return True
     else:
-        print(f"❌ Failed to post: {response.status_code}")
-        print(response.text)
+        print(f"❌ Post Failed: {response.text}")
         return False
 
-# --- MAIN AGENT LOOP ---
+# --- UTILS ---
+def get_posted():
+    if not os.path.exists(HISTORY_FILE): return []
+    try:
+        with open(HISTORY_FILE) as f: return [x['path'] for x in json.load(f)]
+    except: return []
+
+def update_history(path):
+    hist = []
+    if os.path.exists(HISTORY_FILE):
+        try:
+            with open(HISTORY_FILE) as f: hist = json.load(f)
+        except: pass
+    hist.append({"path": path, "posted_at": time.time()})
+    os.makedirs("data", exist_ok=True)
+    with open(HISTORY_FILE, 'w') as f: json.dump(hist, f, indent=2)
+
+def extract_content(path):
+    try:
+        with open(path, 'r', encoding='utf-8') as f: text = f.read()
+        title = re.search(r'title:\s*"(.*?)"', text)
+        title = title.group(1) if title else "Tech Article"
+        body = re.sub(r'^---[\s\S]*?---', '', text).strip()
+        return title, body
+    except: return None, None
+
+def find_next():
+    files = [f.replace('\\','/') for f in glob.glob(f"{BLOG_DIR}/**/*.mdx", recursive=True)]
+    posted = [f.replace('\\','/') for f in get_posted()]
+    avail = sorted([f for f in files if f not in posted])
+    return avail[0] if avail else None
+
+# --- MAIN ---
 if __name__ == "__main__":
-    current_mode = "AUTO"
-    target_file = None
-    
-    if len(sys.argv) > 1:
-        target_file = sys.argv[1]
-        current_mode = "MANUAL"
-        print(f"🤖 LinkedIn Agent starting in MANUAL mode for: {target_file}")
-    else:
-        print("🤖 LinkedIn Agent starting in AUTONOMOUS mode.")
-        target_file = find_next_post()
-        
-    if not target_file:
-        print("💤 No posts to process.")
+    target = sys.argv[1] if len(sys.argv) > 1 else find_next()
+    if not target:
+        print("💤 Nothing to post.")
         sys.exit(0)
-        
-    print(f"📄 Selected file: {target_file}")
     
-    title, content = extract_content(target_file)
-    if not title:
-        sys.exit(1)
-        
-    normalized_path = target_file.replace('\\', '/')
-    slug_path = normalized_path.replace('src/content/blog/', '').replace('.mdx', '')
-    article_url = f"https://simpleaiguide.tech/blog/{slug_path}"
+    print(f"📄 Processing: {target}")
+    title, content = extract_content(target)
     
-    print(f"🔗 URL: {article_url}")
+    slug = target.replace('\\','/').replace('src/content/blog/','').replace('.mdx','')
+    url = f"https://simpleaiguide.tech/blog/{slug}"
     
-    print("🧠 Generating viral post content using Gemini AI...")
-    linkedin_text = generate_linkedin_post(title, content, article_url)
-    print("-" * 40)
-    print(linkedin_text)
-    print("-" * 40)
+    # 1. Generate Text (OpenRouter)
+    print("🧠 Generating Text (OpenRouter)...")
+    post_text = generate_text_openrouter(title, content, url)
+    print(f"📝 Text:\n{post_text}\n")
     
-    success = post_to_linkedin(linkedin_text, article_url, title)
+    # 2. Generate Image (Pollinations)
+    # create a visual prompt based on title
+    img_prompt = f"editorial illustration of {title}, minimal vector art, tech style, vibrant colors"
+    img_path = generate_image_pollinations(img_prompt)
     
+    success = False
+    if img_path:
+        # 3. Upload & Post
+        up_url, asset = register_upload()
+        if up_url and upload_image_binary(up_url, img_path):
+            success = post_with_image(post_text, asset, url, title)
+            os.remove(img_path) # cleanup
+        else:
+            print("⚠️ Image upload failed, skipping post.")
+    else:
+        print("⚠️ Image gen failed, skipping post.")
+
     if success:
-        update_history(target_file.replace('\\', '/'))
+        update_history(target.replace('\\','/'))

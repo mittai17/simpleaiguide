@@ -1,25 +1,24 @@
 name: Auto-Post to LinkedIn
 
 on:
-  workflow_dispatch: # Allow manual trigger via GitHub UI
+  workflow_dispatch:
   push:
     paths:
-      - 'src/content/blog/**/*.mdx' # Run when blog posts change
+      - 'src/content/blog/**/*.mdx'
   schedule:
-    - cron: '0 * * * *' # Run every hour
+    - cron: '0 * * * *'
 
 jobs:
   check-and-post:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Required to commit the history file
+      contents: write
 
-    # Default env vars
     env:
       run_poster: 'false'
       target_file: ''
-      LINKEDIN_ACCESS_TOKEN: '' # Silence IDE warning
-      GEMINI_API_KEY: ''        # Silence IDE warning
+      LINKEDIN_ACCESS_TOKEN: ''
+      OPENROUTER_API_KEY: ''
 
     steps:
       - name: Checkout Code
@@ -36,14 +35,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # --- LOGIC FOR PUSH EVENTS (Immediate Post) ---
       - name: Check for NEW files
         if: github.event_name == 'push'
         id: check_files
         run: |
-          # Get list of added files (A)
           NEW_FILES=$(git diff --name-status HEAD^ HEAD | grep '^A' | grep 'src/content/blog/' | cut -f2)
-          
           if [ -z "$NEW_FILES" ]; then
             echo "No new blog posts detected."
             echo "run_poster=false" >> $GITHUB_ENV
@@ -58,22 +54,19 @@ jobs:
         if: github.event_name == 'push' && env.run_poster == 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python linkedin_autoposter.py "${{ env.target_file }}"
 
-      # --- LOGIC FOR SCHEDULED/MANUAL EVENTS (Hourly Drip Feed) ---
       - name: Run Auto Post (Schedule/Manual)
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python linkedin_autoposter.py
 
-      # --- SAVE STATE ---
       - name: Commit History
-        if: always() # Run even if previous steps failed (though we only want success)
+        if: always()
         run: |
-          # Only commit if history file changed
           if [[ -n $(git status --porcelain data/linkedin_history.json) ]]; then
             git config --global user.name "GitHub Actions"
             git config --global user.email "actions@github.com"

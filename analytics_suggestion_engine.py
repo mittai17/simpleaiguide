@@ -130,10 +130,6 @@ def analyze_content(df):
     
     # Generate JSON for Web Use (Saved to 'public' for dynamic fetching)
     output_path = 'public/trending.json'
-    output_data = {
-        "popular_posts": top_performers[['title', 'path']].to_dict(orient='records'),
-        "generated_date": pd.Timestamp.now().isoformat()
-    }
     
     try:
         # Save to public (source)
@@ -148,6 +144,14 @@ def analyze_content(df):
                 json.dump(output_data, f, indent=2)
             print(f"✅ [UPDATED] Trending data saved to '{docs_path}'")
         
+        # NEW: Save Hidden Gems for LinkedIn Agent
+        if not hidden_gems.empty:
+            gems_data = hidden_gems[['title', 'path', 'score']].to_dict(orient='records')
+            os.makedirs('data', exist_ok=True)
+            with open('data/hidden_gems.json', 'w') as f:
+                json.dump(gems_data, f, indent=2)
+            print(f"💎 [SAVED] Hidden Gems saved to 'data/hidden_gems.json' for Autoposter.")
+        
         # AUTO-DEPLOY: Commit and Push to GitHub
         import subprocess
         print("🚀 Auto-deploying updates to GitHub...")
@@ -156,8 +160,11 @@ def analyze_content(df):
         subprocess.run(["git", "add", "public/trending.json"], check=False)
         if os.path.exists('docs'):
             subprocess.run(["git", "add", "docs/trending.json"], check=False)
+        
+        # Add hidden gems
+        subprocess.run(["git", "add", "data/hidden_gems.json"], check=False)
             
-        subprocess.run(["git", "commit", "-m", "chore: auto-update trending stats"], check=False)
+        subprocess.run(["git", "commit", "-m", "chore: auto-update trending stats and hidden gems"], check=False)
         # explicit push to main to avoid detached HEAD issues in CI
         subprocess.run(["git", "push", "origin", "HEAD:main"], check=False)
         print("☁️  Synced with live site.")

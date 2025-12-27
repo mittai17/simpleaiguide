@@ -22,14 +22,14 @@ To auto-post your new blogs to LinkedIn, you need a **LinkedIn Access Token** an
 
 ## Step 4: Generate Your Access Token
 1. Run the included helper script:
-   ```bash
+   ```bash  
    python get_linkedin_token.py
    ```
    (Wait, I deleted that script. Re-create it if needed or use [OAuth.tools](https://oauth.tools/)).
 
 ## Step 5: Add Secrets to GitHub
 1. Go to your GitHub Repo -> **Settings** -> **Secrets and variables** -> **Actions**.
-2. Add **New repository secret**:
+2. Add **New repository secret**: 
    *   Name: `LINKEDIN_ACCESS_TOKEN`
    *   Value: (Your long LinkedIn Token)
 3. Add another **New repository secret**:

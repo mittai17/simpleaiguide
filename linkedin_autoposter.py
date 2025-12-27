@@ -196,11 +196,47 @@ def extract_content(path):
         return title, body
     except: return None, None
 
+def get_hidden_gems():
+    """Reads the Hidden Gems from the analytics report if available."""
+    try:
+        if os.path.exists("data/hidden_gems.json"):
+            with open("data/hidden_gems.json", "r") as f:
+                return json.load(f)
+    except:
+        pass
+    return []
+
 def find_next():
-    files = [f.replace('\\','/') for f in glob.glob(f"{BLOG_DIR}/**/*.mdx", recursive=True)]
-    posted = [f.replace('\\','/') for f in get_posted()]
-    avail = sorted([f for f in files if f not in posted])
-    return avail[0] if avail else None
+    """Finds the next unposted article, prioritizing Hidden Gems."""
+    # 1. Recursive list of all MDX files
+    all_files = glob.glob(f"{BLOG_DIR}/**/*.mdx", recursive=True)
+    all_files = [f.replace('\\', '/') for f in all_files]
+    
+    # 2. Get history
+    posted = get_posted()
+    posted = [p.replace('\\', '/') for p in posted]
+    
+    # 3. Check for High-Priority Hidden Gems first
+    hidden_gems = get_hidden_gems()
+    for gem in hidden_gems:
+        # Convert URL path like '/blog/category/slug' to file path partial 'category/slug'
+        slug = gem['path'].replace('/blog/', '')
+        
+        # Try to find matching file
+        match = next((f for f in all_files if slug in f), None)
+        if match and match not in posted:
+            print(f"💎 Found HIDDEN GEM to promote: {match}")
+            return match
+
+    # 4. Fallback: Find oldest unposted file
+    # We sort to ensure deterministic processing of backlog
+    available = sorted([f for f in all_files if f not in posted])
+    
+    if available:
+        return available[0]
+        
+    print("🎉 No new content to post! (All files in history)")
+    return None
 
 # --- MAIN ---
 if __name__ == "__main__":

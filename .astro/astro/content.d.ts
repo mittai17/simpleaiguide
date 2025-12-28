@@ -180,6 +180,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"best-ai-tools/best-free-ai-video-tools-2025.mdx": {
+	id: "best-ai-tools/best-free-ai-video-tools-2025.mdx";
+  slug: "best-ai-tools/best-free-ai-video-tools-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "best-ai-tools/i-tested-750-ai-tools-2025.mdx": {
 	id: "best-ai-tools/i-tested-750-ai-tools-2025.mdx";
   slug: "best-ai-tools/i-tested-750-ai-tools-2025";
@@ -285,9 +292,23 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"prompt-engineering/system-prompts-vs-user-prompts-2025.mdx": {
+	id: "prompt-engineering/system-prompts-vs-user-prompts-2025.mdx";
+  slug: "prompt-engineering/system-prompts-vs-user-prompts-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "prompt-engineering/you-suck-at-prompting-2025.mdx": {
 	id: "prompt-engineering/you-suck-at-prompting-2025.mdx";
   slug: "prompt-engineering/you-suck-at-prompting-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+"test-linkedin-automation.mdx": {
+	id: "test-linkedin-automation.mdx";
+  slug: "test-linkedin-automation";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">

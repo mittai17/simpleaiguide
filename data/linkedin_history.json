@@ -82,5 +82,9 @@
   {
     "path": "src/content/blog/prompt-engineering/master-prompt-engineering-2025.mdx",
     "posted_at": 1767104685.542331
+  },
+  {
+    "path": "src/content/blog/prompt-engineering/system-prompts-vs-user-prompts-2025.mdx",
+    "posted_at": 1767108403.0441744
   }
 ]

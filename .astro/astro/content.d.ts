@@ -306,13 +306,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"test-linkedin-automation.mdx": {
-	id: "test-linkedin-automation.mdx";
-  slug: "test-linkedin-automation";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
 };
 
 	};
